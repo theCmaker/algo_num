@@ -25,7 +25,7 @@ generateur.o: generateur.c
 	$(CC) -c $^ -lm
 
 clean: 
-	rm *~ *.o *.aux *.toc *.log
+	rm *~ *.o *.aux *.toc *.log *.bbl *.blg *.gz
 
 rapport: rapport.pdf
 

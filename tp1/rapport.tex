@@ -4,6 +4,7 @@
 \usepackage{graphicx} %images
 \usepackage[usenames,dvipsnames]{color} %couleurs
 \usepackage{listings} %mise en forme de code source
+\usepackage{upquote}
 \usepackage[frenchb]{babel} %langue
 \usepackage{lipsum} %génération de lipsum
 \usepackage{verbatim} %code source
@@ -13,14 +14,14 @@
 \usepackage[a4paper]{geometry} %mise en page
 \geometry{hscale=0.8,vscale=0.8,centering}
 %\lstinputlisting[language=Python, firstline=37, lastline=45]{source_filename.py}
-\title{Algorithmes numériques -- Rapport}
+\title{Algorithmes numériques -- Rapport \\ \vspace{0.5cm}Résolution de systèmes linéaires}
 \author{Axel Delsol, Pierre-Loup Pissavy}
 \date{Novembre 2013}
 \lstset{literate=
    {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
    {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1
-   {à}{{\`a}}1 {è}{{\'e}}1 {ì}{{\`i}}1 {ò}{{\`o}}1 {ò}{{\`u}}1
-   {À}{{\`A}}1 {È}{{\'E}}1 {Ì}{{\`I}}1 {Ò}{{\`O}}1 {Ò}{{\`U}}1
+   {à}{{\`a}}1 {è}{{\`e}}1 {ì}{{\`i}}1 {ò}{{\`o}}1 {ò}{{\`u}}1
+   {À}{{\`A}}1 {È}{{\`E}}1 {Ì}{{\`I}}1 {Ò}{{\`O}}1 {Ò}{{\`U}}1
    {ä}{{\"a}}1 {ë}{{\"e}}1 {ï}{{\"i}}1 {ö}{{\"o}}1 {ü}{{\"u}}1
    {Ä}{{\"A}}1 {Ë}{{\"E}}1 {Ï}{{\"I}}1 {Ö}{{\"O}}1 {Ü}{{\"U}}1
    {â}{{\^a}}1 {ê}{{\^e}}1 {î}{{\^i}}1 {ô}{{\^o}}1 {û}{{\^u}}1
@@ -42,6 +43,27 @@
    identifierstyle=\color{NavyBlue},
    stringstyle=\color{Orange},
    numbers=left,
+   caption=Code : \lstname,
+   captionpos=b,
+}
+\lstset{
+upquote=true,
+columns=flexible,
+basicstyle=\ttfamily,
+}
+\renewcommand{\lstlistingname}{\textsc{Figure}}
+\lstdefinestyle{apercu}{
+   	xleftmargin=2cm,
+	xrightmargin=2cm,
+	frame=single,
+	breaklines=true,
+	breakatwhitespace=true,
+	breakindent=5pt,
+	postbreak=\space,
+	captionpos=b
+   	escapeinside={\%*}{*)},
+   	showstringspaces=false,
+   	caption=Apercu : \lstname
 }
 \begin{document}
   \maketitle
@@ -51,7 +73,8 @@
     \lipsum[1-5]
   \chapter{Structure globale du programme}
     Nous avons choisi de générer un programme principal avec menus, présenté sous la forme suivante :
-    \begin{lstlisting}[linewidth=14cm,frame=single,breaklines=true, breakatwhitespace=true]
+
+    \begin{lstlisting}[style=apercu, name=Menu Principal]
 MENU PRINCIPAL : RESOLUTION D'EQUATIONS LINEAIRES
 
 1. Résolution par Gauss
@@ -64,9 +87,11 @@ MENU PRINCIPAL : RESOLUTION D'EQUATIONS LINEAIRES
 0. Quitter
 Votre choix : 
 	\end{lstlisting}
-	Tous les fonctions de résolution font appel à des fonctions adaptées aux matrices, écrites dans le fichier \verb"matrices.c".
+
     
-    Chaque méthode de résolution reçoit les matrices générées auparavant (juste après le choix de la méthode dans le menu) en arguments.
+	Toutes les fonctions de résolution font appel à des fonctions intermédiaires, caractéristiques du calcul matriciel, écrites dans le fichier \verb"matrices.c".
+    
+    Chaque fonction de résolution reçoit les matrices générées auparavant (juste après le choix de la méthode dans le menu) en arguments.
     
   \chapter{Méthodes directes}
     \section{Méthode de Gauss}
@@ -90,5 +115,20 @@ Votre choix :
       \subsection{Jeux de tests}
       
     \section{Comparaison}
+  \chapter{Méthodes itératives}
+  	\section{Méthode de Jacobi}
+  	  \subsection{Programme}
+        \lstinputlisting[style=customc]{jacobi.c}
+      \subsection{Jeux de tests}
+  	\newpage
+  	\section{Méthode de Gauss-Seidel}
+  	  \subsection{Programme}
+        %\lstinputlisting[style=customc]{jacobi.c}
+      \subsection{Jeux de tests}
+  	\newpage
+  	\section{Méthode de Sur-relaxation}
+  	  \subsection{Programme}
+        \lstinputlisting[style=customc]{surrelaxation.c}
+      \subsection{Jeux de tests}
   \chapter*{Conclusion}
 \end{document}

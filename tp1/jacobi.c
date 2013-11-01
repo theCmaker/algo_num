@@ -14,19 +14,19 @@ void jacobi (double** a, double** b, double** xInit, int n, double prec)
     for (i=0; i<n; i++)
     {
       double somme1=0, somme2=0;
-      for (j=0; j<i; j++)
+      for (j=0; j<i; j++) //avant l'élément diagonal
       {
         somme1=somme1+a[i][j]*xNext[j][0];
       }
       for (j=i+1; j<n; j++)
       {
-        somme2=somme2+a[i][j]*xNext[j][0];
+        somme2=somme2+a[i][j]*xNext[j][0]; //après l'élément diagonal
       }
       xNext[i][0]=(1/a[i][i])*(b[i][0]-somme1-somme2);
     }
-    double** ax=produitMatriciel(a, xNext, n, n, 1);
-    double** axb=difference(ax, b, n, 1);
-    residu=norme(axb, n);
+    double** ax=produitMatriciel(a, xNext, n, n, 1); //ax
+    double** axb=difference(ax, b, n, 1); //ax - b
+    residu=norme(axb, n); //norme de (ax - b)
     cpt++;
 
     //affichage
