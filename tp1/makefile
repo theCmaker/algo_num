@@ -5,7 +5,7 @@ main: main.o gauss.o cholesky.o matrices.o jacobi.o surrelaxation.o generateur.o
 
 main.o: main.c
 	$(CC) -c $^ -lm
-	
+
 cholesky.o: cholesky.c
 	$(CC) -c $^ -lm
 
@@ -24,7 +24,7 @@ surrelaxation.o: surrelaxation.c
 generateur.o: generateur.c
 	$(CC) -c $^ -lm
 
-clean: 
+clean:
 	rm *~ *.o *.aux *.toc *.log *.bbl *.blg *.gz
 
 rapport: rapport.pdf
