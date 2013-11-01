@@ -1,15 +1,16 @@
 \documentclass{report}
-\usepackage{verbatim}
-\usepackage[utf8]{inputenc}
-\usepackage{endnotes}
-\usepackage{graphicx}
-\usepackage[usenames,dvipsnames]{color}
+\usepackage[utf8]{inputenc} %encodage entrée
+\usepackage{endnotes} %notes de fin
+\usepackage{graphicx} %images
+\usepackage[usenames,dvipsnames]{color} %couleurs
 \usepackage{listings} %mise en forme de code source
-\usepackage[frenchb]{babel}
-\usepackage{lipsum}
-\usepackage{titlesec}
+\usepackage[frenchb]{babel} %langue
+\usepackage{lipsum} %génération de lipsum
+\usepackage{verbatim} %code source
+\usepackage{moreverb} %amélioration du package verbatim
+\usepackage{titlesec} %formatage des chapitres
 \titleformat{\chapter}[hang]{\bf\huge}{\thechapter}{2pc}{}
-\usepackage[a4paper]{geometry}
+\usepackage[a4paper]{geometry} %mise en page
 \geometry{hscale=0.8,vscale=0.8,centering}
 %\lstinputlisting[language=Python, firstline=37, lastline=45]{source_filename.py}
 \title{Algorithmes numériques -- Rapport}
@@ -39,10 +40,9 @@
    keywordstyle=\bfseries\color{ForestGreen},
    commentstyle=\itshape\color{Plum},
    identifierstyle=\color{NavyBlue},
-   stringstyle=\color{orange},
+   stringstyle=\color{Orange},
    numbers=left,
 }
-\definecolor{orange}{rgb}{1,0.5,0}
 \begin{document}
   \maketitle
   \tableofcontents
@@ -50,7 +50,24 @@
   \chapter*{Introduction}
     \lipsum[1-5]
   \chapter{Structure globale du programme}
-    Nous avons choisi de générer un programme principal avec menus.
+    Nous avons choisi de générer un programme principal avec menus, présenté sous la forme suivante :
+    \begin{lstlisting}[linewidth=14cm,frame=single,breaklines=true, breakatwhitespace=true]
+MENU PRINCIPAL : RESOLUTION D'EQUATIONS LINEAIRES
+
+1. Résolution par Gauss
+3. Résolution par Cholesky
+2. Résolution par Jacobi
+4. Résolution par Gauss-Seidel
+5. Résolution par Surrelaxation
+6. Génération de matrices carrées
+7. Jeux de test
+0. Quitter
+Votre choix : 
+	\end{lstlisting}
+	Tous les fonctions de résolution font appel à des fonctions adaptées aux matrices, écrites dans le fichier \verb"matrices.c".
+    
+    Chaque méthode de résolution reçoit les matrices générées auparavant (juste après le choix de la méthode dans le menu) en arguments.
+    
   \chapter{Méthodes directes}
     \section{Méthode de Gauss}
       La méthode de Gauss permet de calculer une solution exacte en un nombre fini d'étapes.
@@ -66,7 +83,7 @@
       \subsection{Programme}
         \lstinputlisting[style=customc]{gauss.c}
       \subsection{Jeux de tests}
-      
+    \newpage
     \section{Méthode de Cholesky}
       \subsection{Programme}
         \lstinputlisting[style=customc]{cholesky.c}
