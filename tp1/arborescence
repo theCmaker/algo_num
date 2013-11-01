@@ -1,0 +1,14 @@
+- cholesky.c
+- cholesky.h
+- gauss.c
+- gauss.h
+- generateur.c
+- generateur.h
+- jacobi.c
+- jacobi.h
+- main.c
+- makefile
+- matrices.c
+- matrices.h
+- surrelaxation.c
+- surrelaxation.h
