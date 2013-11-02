@@ -6,6 +6,7 @@
 #include "gauss.h"
 #include "cholesky.h"
 #include "jacobi.h"
+#include "gauss-seidel.h"
 #include "surrelaxation.h"
 #include "generateur.h"
 
@@ -83,7 +84,7 @@ int main (int argc, char ** argv)
 	  printf("Précision : ");
 	  scanf("%lf", &prec);
 	  printf("\nRésolution par Gauss-Seidel...\n");
-	  surrelaxation(A,b,xInit,n,prec,1);
+	  gaussseidel(A,b,xInit,n,prec);
 	  //libération mémoire
 	  for (i=0;i<n;i++)
 	  {

@@ -1,0 +1,15 @@
+gauss.c
+gauss-seidel.c
+generateur.c
+jacobi.c
+main.c
+matrices.c
+surrelaxation.c
+cholesky.h
+gauss.h
+gauss-seidel.h
+generateur.h
+jacobi.h
+matrices.h
+surrelaxation.h
+makefile

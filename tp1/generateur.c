@@ -5,6 +5,7 @@
 #include "gauss.h"
 #include "cholesky.h"
 #include "jacobi.h"
+#include "gauss-seidel.h"
 #include "surrelaxation.h"
 #include "generateur.h"
 
@@ -92,7 +93,7 @@ void usewithMenu(double **a, int n)
   double** xInit; //jacobi et sur-relaxation
   double prec; //jacobi et sur-relaxation
   double omega; //sur-relaxation
-  int* carac=(int*) malloc(4*sizeof(int)); //tableau caractéristique des resolutions possibles 0-Gauss; 1-Cholesky; 2-Jacobi; 3-Sur-relaxation
+  int* carac=(int*) malloc(5*sizeof(int)); //tableau caractéristique des resolutions possibles 0-Gauss; 1-Cholesky; 2-Jacobi; 3-Gauss-Seidel; 4-Sur-relaxation
 // --------------------------------------
 //   
 //   FONCTION DE
@@ -146,17 +147,15 @@ void usewithMenu(double **a, int n)
 	    free(xInit);
           }
           break;
-        case 4: //sur-relaxation
-          if (carac[3==1]) //possibilité sur-relaxation en position 3 du tableau.
+        case 4: //gauss-seidel
+          if (carac[3]==1) //possibilité gauss-seidel en position 3 du tableau.
           {
             printf("Vecteur initial x0 :\n");
             xInit=creerRemplirMatrice(n,1);
             printf("Précision : ");
             scanf("%lf", &prec);
-            printf("Entrer omega : ");
-            scanf("%lf", &omega);
-            printf("\nRésolution par Surrelaxation...\n");
-            surrelaxation(a,b,xInit,n,prec,omega);
+            printf("\nRésolution par Gauss-Seidel...\n");
+            gaussseidel(a,b,xInit,n,prec);
 	    //libération mémoire
 	    for (i=0;i<n;i++)
 	    {
@@ -165,6 +164,25 @@ void usewithMenu(double **a, int n)
 	    free(xInit);
           }
           break;
+	case 5: //sur-relaxation
+	  if (carac[4]==1) //possibilité sur-relaxation en position 4 du tableau.
+	  {
+	    printf("Vecteur initial x0 :\n");
+	    xInit=creerRemplirMatrice(n,1);
+	    printf("Précision : ");
+	    scanf("%lf", &prec);
+	    printf("Entrer omega : ");
+	    scanf("%lf", &omega);
+	    printf("\nRésolution par Surrelaxation...\n");
+	    surrelaxation(a,b,xInit,n,prec,omega);
+	    //libération mémoire
+	    for (i=0;i<n;i++)
+	    {
+	      free(xInit[i]);
+	    }
+	    free(xInit);
+	  }
+	  break;
       }
       //libération mémoire
       for (i=0;i<n;i++)

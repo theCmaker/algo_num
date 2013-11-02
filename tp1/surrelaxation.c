@@ -2,43 +2,51 @@
 #include <stdlib.h>
 #include <math.h>
 #include "matrices.h"
+#include "gauss-seidel.h"
 
 void surrelaxation (double** a, double** b, double** xInit, int n, double prec, double ohm)
 {
-  int i, j, cpt;
-  double residu=2*prec;
-  cpt=0;
-  while (residu>=prec)
+  if (ohm==1)
   {
-    for (i=0; i<n; i++)
+    gaussseidel(a,b,xInit,n,prec);
+  }
+  else
+  {
+    int i, j, cpt;
+    double residu=2*prec;
+    cpt=0;
+    while (residu>=prec)
     {
-      double somme1=0, somme2=0;
-      for (j=0; j<i; j++)
+      for (i=0; i<n; i++)
       {
-        somme1=somme1+a[i][j]*xInit[j][0];
+	double somme1=0, somme2=0;
+	for (j=0; j<i; j++)
+	{
+	  somme1=somme1+a[i][j]*xInit[j][0];
+	}
+	for (j=i+1; j<n; j++)
+	{
+	  somme2=somme2+a[i][j]*xInit[j][0];
+	}
+	xInit[i][0]=(1-ohm)*xInit[i][0]+(ohm/a[i][i])*(b[i][0]-somme1-somme2);
       }
-      for (j=i+1; j<n; j++)
+      double** ax=produitMatriciel(a, xInit, n, n, 1);
+      double** axb=difference(ax, b, n, 1);
+      residu=norme(axb, n);
+      cpt++;
+      
+      //affichage
+      printf("\nVecteur à l'itération %d :\n", cpt);
+      afficherMatrice(xInit, n, 1);
+      
+      //libération mémoire
+      for (i=0;i<n;i++)
       {
-        somme2=somme2+a[i][j]*xInit[j][0];
+	free(ax[i]);
+	free(axb[i]);
       }
-      xInit[i][0]=(1-ohm)*xInit[i][0]+(ohm/a[i][i])*(b[i][0]-somme1-somme2);
+      free(ax);
+      free(axb);
     }
-    double** ax=produitMatriciel(a, xInit, n, n, 1);
-    double** axb=difference(ax, b, n, 1);
-    residu=norme(axb, n);
-    cpt++;
-    
-    //affichage
-    printf("\nVecteur à l'itération %d :\n", cpt);
-    afficherMatrice(xInit, n, 1);
-    
-    //libération mémoire
-    for (i=0;i<n;i++)
-    {
-      free(ax[i]);
-      free(axb[i]);
-    }
-    free(ax);
-    free(axb);
   }
 }

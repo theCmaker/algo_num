@@ -4,6 +4,11 @@
 \usepackage{graphicx} %images
 \usepackage[usenames,dvipsnames]{color} %couleurs
 \usepackage{listings} %mise en forme de code source
+\usepackage{xfrac}
+\usepackage{amsmath}
+\renewcommand\theequation{\arabic{equation}}
+\usepackage{upquote}
+\usepackage{textcomp}
 \usepackage[frenchb]{babel} %langue
 \usepackage{amsmath} %affichage des matrices
 \usepackage{lipsum} %génération de lipsum
@@ -14,14 +19,14 @@
 \usepackage[a4paper]{geometry} %mise en page
 \geometry{hscale=0.8,vscale=0.8,centering}
 %\lstinputlisting[language=Python, firstline=37, lastline=45]{source_filename.py}
-\title{Algorithmes numériques -- Rapport}
+\title{Algorithmes numériques -- Rapport \\ \vspace{0.5cm}Résolution de systèmes linéaires}
 \author{Axel Delsol, Pierre-Loup Pissavy}
 \date{Novembre 2013}
 \lstset{literate=
    {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
    {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1
-   {à}{{\`a}}1 {è}{{\'e}}1 {ì}{{\`i}}1 {ò}{{\`o}}1 {ò}{{\`u}}1
-   {À}{{\`A}}1 {È}{{\'E}}1 {Ì}{{\`I}}1 {Ò}{{\`O}}1 {Ò}{{\`U}}1
+   {à}{{\`a}}1 {è}{{\`e}}1 {ì}{{\`i}}1 {ò}{{\`o}}1 {ò}{{\`u}}1
+   {À}{{\`A}}1 {È}{{\`E}}1 {Ì}{{\`I}}1 {Ò}{{\`O}}1 {Ò}{{\`U}}1
    {ä}{{\"a}}1 {ë}{{\"e}}1 {ï}{{\"i}}1 {ö}{{\"o}}1 {ü}{{\"u}}1
    {Ä}{{\"A}}1 {Ë}{{\"E}}1 {Ï}{{\"I}}1 {Ö}{{\"O}}1 {Ü}{{\"U}}1
    {â}{{\^a}}1 {ê}{{\^e}}1 {î}{{\^i}}1 {ô}{{\^o}}1 {û}{{\^u}}1
@@ -43,6 +48,27 @@
    identifierstyle=\color{NavyBlue},
    stringstyle=\color{Orange},
    numbers=left,
+   caption=Code : \lstname,
+   captionpos=b,
+}
+\lstset{
+upquote=true,
+columns=flexible,
+basicstyle=\ttfamily,
+}
+\renewcommand{\lstlistingname}{\textsc{Figure}}
+\lstdefinestyle{apercu}{
+   	xleftmargin=2cm,
+	xrightmargin=2cm,
+	frame=single,
+	breaklines=true,
+	breakatwhitespace=true,
+	breakindent=5pt,
+	postbreak=\space,
+	captionpos=b
+   	escapeinside={\%*}{*)},
+   	showstringspaces=false,
+   	caption=Apercu : \lstname
 }
 \begin{document}
   \maketitle
@@ -52,7 +78,8 @@
     \lipsum[1-5]
   \chapter{Structure globale du programme}
     Nous avons choisi de générer un programme principal avec menus, présenté sous la forme suivante :
-    \begin{lstlisting}[linewidth=14cm,frame=single,breaklines=true, breakatwhitespace=true]
+
+    \begin{lstlisting}[style=apercu, name=Menu Principal]
 MENU PRINCIPAL : RESOLUTION D'EQUATIONS LINEAIRES
 
 1. Résolution par Gauss
@@ -65,10 +92,23 @@ MENU PRINCIPAL : RESOLUTION D'EQUATIONS LINEAIRES
 0. Quitter
 Votre choix : 
 	\end{lstlisting}
+<<<<<<< HEAD
 	Tous les fonctions de résolution font appel à des fonctions adaptées aux matrices, écrites dans le fichier \verb"matrices.c".
     
     Chaque méthode de résolution reçoit les matrices (à éléments réels) générées auparavant (juste après le choix de la méthode dans le menu) en arguments.
     
+=======
+	
+	Chaque entrée du menu est codée dans un fichier source qui lui est propre (cf Figure \ref{arborescence}). Les fichiers headers correspondants contiennent les prototypes. Le fichier source \verb"main.c" contient le menu principal.\\
+	
+	Toutes les fonctions de résolution font appel à des fonctions intermédiaires, caractéristiques du calcul matriciel, écrites dans le fichier \verb"matrices.c".\\
+	
+    \lstinputlisting[style=apercu, name=Arborescence, label=arborescence]{arborescence}
+
+    Les matrices sont générées juste après le choix de la méthode, avant d'être passées en arguments à la fonction de résolution.\\
+
+	Enfin, la compilation est gérée par un \verb"makefile".     
+>>>>>>> 8e40838088fc6d96da302cd16076aafc3c33c838
   \chapter{Méthodes directes}
     Les méthodes directes ont pour but d'obtenir des solutions exactes en simplifiant, étape par étape, le système donné sous la forme 
     $A_{n,n} \cdot X_{n,1} = B_{n,1}$ où :
@@ -102,7 +142,115 @@ Votre choix :
         \lstset{language=C,showstringspaces=false}
       \subsection{Programme}
         \lstinputlisting[style=customc]{gauss.c}
+      \newpage
       \subsection{Jeux de tests}
+        Systèmes :
+        \begin{equation}
+        \begin{pmatrix}
+		  2 & 4 & -2 & 0 \\
+		  1 & 2 & 0 & 1 \\
+		  3 & -1 & 1 & 2 \\
+		  0 & -1 & 2 & 1 \\
+        \end{pmatrix}
+        \cdot
+        \begin{pmatrix}
+          x_1 \\
+          x_2 \\
+          x_3 \\
+          x_4 \\
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+          -6 \\
+          0 \\
+          8 \\
+          6 \\
+        \end{pmatrix}
+        \end{equation}
+        \begin{equation}
+        \begin{pmatrix}
+		  2 & -1 & 0 & 0 \\
+		  -1 & 2 & -1 & 0 \\
+		  0 & -1 & 2 & -1 \\
+		  0 & 0 & -1 & 2 \\
+        \end{pmatrix}
+        \cdot
+        \begin{pmatrix}
+          x_1 \\
+          x_2 \\
+          x_3 \\
+          x_4 \\
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+          3 \\
+          5 \\
+          7 \\
+          9 \\
+        \end{pmatrix}
+        \end{equation}
+        \begin{equation}
+        \begin{pmatrix}
+		  1 & 1 & 1 \\
+		  3 & 9 & 27 \\
+		  2 & 4 & 8 \\
+        \end{pmatrix}
+        \cdot
+        \begin{pmatrix}
+          x_1 \\
+          x_2 \\
+          x_3 \\
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+          14 \\
+          120 \\
+          50 \\
+        \end{pmatrix}
+        \end{equation}
+        \begin{equation}
+        \begin{pmatrix}
+		  2 & 0 & 4 & -2 \\
+		  1 & 0 & 2 & 1 \\
+		  0 & 1 & 0 & 2 \\
+		  1 & 3 & 1 & 2 \\
+        \end{pmatrix}
+        \cdot
+        \begin{pmatrix}
+          x_1 \\
+          x_2 \\
+          x_3 \\ 
+          x_4 \\
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+          2 \\
+          1 \\
+          2 \\
+          1 \\
+        \end{pmatrix}
+        \end{equation}
+        \begin{equation}
+        \begin{pmatrix}
+		  1 & -1 & 1 \\
+		  1 & 1 & 1 \\
+		  1 & 3 & 9 \\
+        \end{pmatrix}
+        \cdot
+        \begin{pmatrix}
+          x_1 \\
+          x_2 \\
+          x_3 \\
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+          \sfrac{1}{2}\\
+          2 \\
+          9 \\
+        \end{pmatrix}
+        \end{equation}
+        
+                
     \newpage
     \section{Méthode de Cholesky}
       La méthode de Cholesky peut-être divisée en 2 étapes.
@@ -110,9 +258,115 @@ Votre choix :
         \item{On décompose la matrice}
       \subsection{Programme}
         \lstinputlisting[style=customc]{cholesky.c}
+      \newpage
       \subsection{Jeux de tests}
-      
+      	\begin{equation}
+        \begin{pmatrix}
+		  64 & 40 & 24 \\
+		  40 & 29 & 17 \\
+		  24 & 17 & 19 \\
+        \end{pmatrix}
+        \cdot
+        \begin{pmatrix}
+          x_1 \\
+          x_2 \\
+          x_3 \\
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+          1 \\
+          1 \\
+          1 \\
+        \end{pmatrix}
+        \end{equation}
+        \begin{equation}
+        \begin{pmatrix}
+		  2 & 1 & 0 & 0 \\
+		  1 & 2 & 1 & 0 \\
+		  0 & 1 & 2 & 1 \\
+		  0 & 0 & 1 & 2 \\
+        \end{pmatrix}
+        \cdot
+        \begin{pmatrix}
+          x_1 \\
+          x_2 \\
+          x_3 \\
+          x_4 \\
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+          1 \\
+          0 \\
+          1 \\
+          -1 \\
+        \end{pmatrix}
+        \end{equation}
+        \begin{equation}
+        \begin{pmatrix}
+		  1 & 1 & 1 & 1 \\
+		  1 & 5 & 5 & 5 \\
+		  1 & 5 & 14 & 14 \\
+		  1 & 5 & 14 & 15 \\
+        \end{pmatrix}
+        \cdot
+        \begin{pmatrix}
+          x_1 \\
+          x_2 \\
+          x_3 \\
+          x_4 \\
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+          0 \\
+          2 \\
+          4 \\
+          6 \\
+        \end{pmatrix}
+        \end{equation}
+        \begin{equation}
+        \begin{pmatrix}
+		  1 & -2 & 0 \\
+		  -2 & 8 & -6 \\
+		  0 & -6 & 25 \\
+        \end{pmatrix}
+        \cdot
+        \begin{pmatrix}
+          x_1 \\
+          x_2 \\
+          x_3 \\
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+          \sfrac{3}{2} \\
+          \sfrac{5}{3} \\
+          \sfrac{3}{4} \\
+        \end{pmatrix}
+        \end{equation}
+        \begin{equation}
+        \begin{pmatrix}
+		  4 & 0 & 12 & -6 \\
+		  0 & 1 & 2 & 1 \\
+		  12 & 2 & 49 & -4 \\
+		  -6 & 1 & -4 & 51 \\
+        \end{pmatrix}
+        \cdot
+        \begin{pmatrix}
+          x_1 \\
+          x_2 \\
+          x_3 \\
+          x_4 \\
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+          1 \\
+          1 \\
+          1 \\
+          1 \\
+        \end{pmatrix}
+        \end{equation}
+    \newpage
     \section{Comparaison}
+<<<<<<< HEAD
     \newpage
     
    \chapter{Méthodes itératives}
@@ -121,6 +375,28 @@ Votre choix :
     \section{Métode de Gauss-Seidle}
     
     
+=======
+  \chapter{Méthodes itératives}
+  	\section{Méthode de Jacobi}
+  	  \subsection{Programme}
+        \lstinputlisting[style=customc]{jacobi.c}
+      \newpage
+      \subsection{Jeux de tests}
+  	\newpage
+  	\section{Méthode de Gauss-Seidel}
+  	  \subsection{Programme}
+        %\lstinputlisting[style=customc]{jacobi.c}
+      \newpage
+      \subsection{Jeux de tests}
+  	\newpage
+  	\section{Méthode de Sur-relaxation}
+  	  \subsection{Programme}
+        \lstinputlisting[style=customc]{surrelaxation.c}
+      \newpage
+      \subsection{Jeux de tests}
+     \newpage
+     \section{Comparaison}
+>>>>>>> 8e40838088fc6d96da302cd16076aafc3c33c838
   \chapter*{Conclusion}
   
 \end{document}
