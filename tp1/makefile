@@ -1,6 +1,6 @@
 CC=gcc -g
 
-main: main.o gauss.o cholesky.o matrices.o jacobi.o surrelaxation.o generateur.o
+main: main.o gauss.o cholesky.o matrices.o jacobi.o gauss-seidel.o surrelaxation.o generateur.o
 	$(CC) -o $@ $^ -lm
 
 main.o: main.c
@@ -18,6 +18,9 @@ gauss.o: gauss.c
 jacobi.o: jacobi.c
 	$(CC) -c $^ -lm
 
+gauss-seidel.o: gauss-seidel.c
+	$(CC) -c $^ -lm
+
 surrelaxation.o: surrelaxation.c
 	$(CC) -c $^ -lm
 
@@ -26,6 +29,9 @@ generateur.o: generateur.c
 
 clean:
 	rm *~ *.o *.aux *.toc *.log *.bbl *.blg *.gz
+
+arborescence: *.c *.h make*
+	tree -r -P $^ | cut -d " " -f 1 | head -n -2 > $@
 
 rapport: rapport.pdf
 
