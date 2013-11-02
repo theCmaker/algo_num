@@ -25,8 +25,8 @@ int main (int argc, char ** argv)
   {
     printf("MENU PRINCIPAL : RESOLUTION D'EQUATIONS LINEAIRES\n\n");
     printf("1. Résolution par Gauss\n");
-    printf("3. Résolution par Cholesky\n");
-    printf("2. Résolution par Jacobi\n");
+    printf("2. Résolution par Cholesky\n");
+    printf("3. Résolution par Jacobi\n");
     printf("4. Résolution par Gauss-Seidel\n");
     printf("5. Résolution par Surrelaxation\n");
     printf("6. Génération de matrices carrées\n");
