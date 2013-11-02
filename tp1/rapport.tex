@@ -5,6 +5,7 @@
 \usepackage[usenames,dvipsnames]{color} %couleurs
 \usepackage{listings} %mise en forme de code source
 \usepackage[frenchb]{babel} %langue
+\usepackage{amsmath} %affichage des matrices
 \usepackage{lipsum} %génération de lipsum
 \usepackage{verbatim} %code source
 \usepackage{moreverb} %amélioration du package verbatim
@@ -66,13 +67,32 @@ Votre choix :
 	\end{lstlisting}
 	Tous les fonctions de résolution font appel à des fonctions adaptées aux matrices, écrites dans le fichier \verb"matrices.c".
     
-    Chaque méthode de résolution reçoit les matrices générées auparavant (juste après le choix de la méthode dans le menu) en arguments.
+    Chaque méthode de résolution reçoit les matrices (à éléments réels) générées auparavant (juste après le choix de la méthode dans le menu) en arguments.
     
   \chapter{Méthodes directes}
+    Les méthodes directes ont pour but d'obtenir des solutions exactes en simplifiant, étape par étape, le système donné sous la forme 
+    $A_{n,n} \cdot X_{n,1} = B_{n,1}$ où :
+    \begin{itemize}
+     \item{$A$ est une matrice donnée}
+     \item{$X$ est le vecteur solution}
+     \item{$B$ est un vecteur colonne donné}
+    \end{itemize}
+    Pour ce faire, on utilise 2 étapes :
+    \begin{enumerate}
+     \item{On décompose la matrice $A_{n,n}$ tel que $A = M \cdot N$ où $M_{n,n}$ est facile à inverser et $N_{n,n}$ est triangulaire.}
+     \item{On résoud les systèmes suivants : 
+           \begin{itemize}
+            \item{On trouve $Y_{n,1}$ tel que $M \cdot Y = B$}
+            \item{On trouve enfin $X_{n,1} $ tel quel $N \cdot X = Y$}
+           \end{itemize}
+           }
+    \end{enumerate}
     \section{Méthode de Gauss}
       La méthode de Gauss permet de calculer une solution exacte en un nombre fini d'étapes.
       \newline
       On cherche la matrice $N$ triangulaire supérieure telle que $A = M \cdot N$ avec $M$ la matrice identité.
+      \newline
+      Remarque : La résolution du sysème $M \cdot Y = B$ est évidente puisque la matrice $M$ est la matrice identité.
       \newline
       Critère d'application de l'algorithme :
       \begin{itemize}
@@ -85,10 +105,22 @@ Votre choix :
       \subsection{Jeux de tests}
     \newpage
     \section{Méthode de Cholesky}
+      La méthode de Cholesky peut-être divisée en 2 étapes.
+      \begin{enumerate}
+        \item{On décompose la matrice}
       \subsection{Programme}
         \lstinputlisting[style=customc]{cholesky.c}
       \subsection{Jeux de tests}
       
     \section{Comparaison}
+    \newpage
+    
+   \chapter{Méthodes itératives}
+    \section{Méthode de Jacobi}
+     \newpage
+    \section{Métode de Gauss-Seidle}
+    
+    
   \chapter*{Conclusion}
+  
 \end{document}
