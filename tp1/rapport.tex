@@ -65,18 +65,17 @@ basicstyle=\ttfamily,
 	breakatwhitespace=true,
 	breakindent=5pt,
 	postbreak=\space,
-	captionpos=b
+	captionpos=b,
    	escapeinside={\%*}{*)},
    	showstringspaces=false,
-   	caption=Apercu : \lstname
+   	caption=Apercu : \lstname,
 }
 \begin{document}
   \maketitle
   \tableofcontents
 
-  \chapter*{Introduction}
-    \lipsum[1-5]
-  \chapter{Structure globale du programme}
+  \chapter{Préambule}
+  	\section{Structure du programme}
     Nous avons choisi de générer un programme principal avec menus, présenté sous la forme suivante :
 
     \begin{lstlisting}[style=apercu, name=Menu Principal]
@@ -92,13 +91,11 @@ MENU PRINCIPAL : RESOLUTION D'EQUATIONS LINEAIRES
 0. Quitter
 Votre choix : 
 	\end{lstlisting}
-<<<<<<< HEAD
+	
 	Tous les fonctions de résolution font appel à des fonctions adaptées aux matrices, écrites dans le fichier \verb"matrices.c".
     
     Chaque méthode de résolution reçoit les matrices (à éléments réels) générées auparavant (juste après le choix de la méthode dans le menu) en arguments.
-    
-=======
-	
+    	
 	Chaque entrée du menu est codée dans un fichier source qui lui est propre (cf Figure \ref{arborescence}). Les fichiers headers correspondants contiennent les prototypes. Le fichier source \verb"main.c" contient le menu principal.\\
 	
 	Toutes les fonctions de résolution font appel à des fonctions intermédiaires, caractéristiques du calcul matriciel, écrites dans le fichier \verb"matrices.c".\\
@@ -107,8 +104,11 @@ Votre choix :
 
     Les matrices sont générées juste après le choix de la méthode, avant d'être passées en arguments à la fonction de résolution.\\
 
-	Enfin, la compilation est gérée par un \verb"makefile".     
->>>>>>> 8e40838088fc6d96da302cd16076aafc3c33c838
+	Enfin, la compilation est gérée par un \verb"makefile".  
+	\section{Compilation}
+	
+	\newpage
+	\section{Systèmes testés}   
   \chapter{Méthodes directes}
     Les méthodes directes ont pour but d'obtenir des solutions exactes en simplifiant, étape par étape, le système donné sous la forme 
     $A_{n,n} \cdot X_{n,1} = B_{n,1}$ où :
@@ -120,7 +120,7 @@ Votre choix :
     Pour ce faire, on utilise 2 étapes :
     \begin{enumerate}
      \item{On décompose la matrice $A_{n,n}$ tel que $A = M \cdot N$ où $M_{n,n}$ est facile à inverser et $N_{n,n}$ est triangulaire.}
-     \item{On résoud les systèmes suivants : 
+     \item{On résout les systèmes suivants : 
            \begin{itemize}
             \item{On trouve $Y_{n,1}$ tel que $M \cdot Y = B$}
             \item{On trouve enfin $X_{n,1} $ tel quel $N \cdot X = Y$}
@@ -256,6 +256,7 @@ Votre choix :
       La méthode de Cholesky peut-être divisée en 2 étapes.
       \begin{enumerate}
         \item{On décompose la matrice}
+      \end{enumerate}
       \subsection{Programme}
         \lstinputlisting[style=customc]{cholesky.c}
       \newpage
@@ -366,16 +367,8 @@ Votre choix :
         \end{equation}
     \newpage
     \section{Comparaison}
-<<<<<<< HEAD
     \newpage
-    
-   \chapter{Méthodes itératives}
-    \section{Méthode de Jacobi}
-     \newpage
-    \section{Métode de Gauss-Seidle}
-    
-    
-=======
+     
   \chapter{Méthodes itératives}
   	\section{Méthode de Jacobi}
   	  \subsection{Programme}
@@ -396,7 +389,6 @@ Votre choix :
       \subsection{Jeux de tests}
      \newpage
      \section{Comparaison}
->>>>>>> 8e40838088fc6d96da302cd16076aafc3c33c838
   \chapter*{Conclusion}
   
 \end{document}
