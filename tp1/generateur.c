@@ -88,19 +88,16 @@ void generatorMenu()
 
 void usewithMenu(double **a, int n)
 {
-  int choice=1, i; //choix, indice boucle
+  int choice=1, i, j; //choix, indice boucle
   double** b; //vecteur b
   double** xInit; //jacobi et sur-relaxation
   double prec; //jacobi et sur-relaxation
   double omega; //sur-relaxation
-  int* carac=(int*) malloc(5*sizeof(int)); //tableau caractéristique des resolutions possibles 0-Gauss; 1-Cholesky; 2-Jacobi; 3-Gauss-Seidel; 4-Sur-relaxation
-// --------------------------------------
-//   
-//   FONCTION DE
-//   
-// 	TESTS
-//   
-//   --------------------------------------
+  double** mat=(double**) malloc(n*sizeof(double*)); //matrice copie de a
+  for (i=0; i<n; i++)
+  {
+    mat[i]=(double*) malloc(n*sizeof(double));
+  }
   while (choice != 0)
   {
     printf("\n\nSOUS-MENU : UTILISER LA MATRICE PRECEDEMMENT GENEREE\n\n");
@@ -108,90 +105,89 @@ void usewithMenu(double **a, int n)
     printf("1. Gauss\n");
     printf("2. Cholesky\n");
     printf("3. Jacobi\n");
-    printf("4. Surrelaxation\n");
+    printf("4. Gauss-Seidel\n");
+    printf("5. Surrelaxation\n");
     printf("0. Ne rien faire, retourner au menu de génération de matrices.\n");
     printf("Votre choix : ");
     scanf("%d", &choice);
     if (choice!=0)
     {
+      for (i=0; i<n; i++)
+      {
+        for (j=0; j<n; j++)
+        {
+          mat[i][j]=a[i][j]; //copie matrice
+        }
+      }
       printf("Vecteur b :\n"); //demande du vecteur b
       b=creerRemplirMatrice(n,1);
       switch (choice)
       {
         case 1: //gauss
-          if (carac[0]==1) //possibilité gauss en position 0 du tableau.
-          {
-            gauss(a,b,n);
-          }
+            gauss(mat,b,n);
           break;
         case 2: //cholesky
-          if (carac[1]==1) //possibilité cholesky en position 1 du tableau.
-          {
-            cholesky(a,b,n);
-          }
+            cholesky(mat,b,n);
           break;
         case 3: //jacobi
-          if (carac[2]==1) //possibilité jacobi en position 2 du tableau.
-          {
             printf("Vecteur initial x0 :\n");
             xInit=creerRemplirMatrice(n,1);
             printf("Précision : ");
             scanf("%lf", &prec);
             printf("\nRésolution par Jacobi...\n");
-            jacobi(a,b,xInit,n,prec);
-	    //libération mémoire
-	    for (i=0;i<n;i++)
-	    {
-	      free(xInit[i]);
-	    }
-	    free(xInit);
-          }
+            jacobi(mat,b,xInit,n,prec);
+            //libération mémoire
+            for (i=0;i<n;i++)
+            {
+              free(xInit[i]);
+            }
+            free(xInit);
           break;
         case 4: //gauss-seidel
-          if (carac[3]==1) //possibilité gauss-seidel en position 3 du tableau.
-          {
             printf("Vecteur initial x0 :\n");
             xInit=creerRemplirMatrice(n,1);
             printf("Précision : ");
             scanf("%lf", &prec);
             printf("\nRésolution par Gauss-Seidel...\n");
-            gaussseidel(a,b,xInit,n,prec);
-	    //libération mémoire
-	    for (i=0;i<n;i++)
-	    {
-	      free(xInit[i]);
-	    }
-	    free(xInit);
-          }
+            gaussseidel(mat,b,xInit,n,prec);
+            //libération mémoire
+            for (i=0;i<n;i++)
+            {
+              free(xInit[i]);
+            }
+            free(xInit);
           break;
-	case 5: //sur-relaxation
-	  if (carac[4]==1) //possibilité sur-relaxation en position 4 du tableau.
-	  {
-	    printf("Vecteur initial x0 :\n");
-	    xInit=creerRemplirMatrice(n,1);
-	    printf("Précision : ");
-	    scanf("%lf", &prec);
-	    printf("Entrer omega : ");
-	    scanf("%lf", &omega);
-	    printf("\nRésolution par Surrelaxation...\n");
-	    surrelaxation(a,b,xInit,n,prec,omega);
-	    //libération mémoire
-	    for (i=0;i<n;i++)
-	    {
-	      free(xInit[i]);
-	    }
-	    free(xInit);
-	  }
-	  break;
+        case 5: //sur-relaxation
+            printf("Vecteur initial x0 :\n");
+            xInit=creerRemplirMatrice(n,1);
+            printf("Précision : ");
+            scanf("%lf", &prec);
+            printf("Entrer omega : ");
+            scanf("%lf", &omega);
+            printf("\nRésolution par Surrelaxation...\n");
+            surrelaxation(mat,b,xInit,n,prec,omega);
+            //libération mémoire
+            for (i=0;i<n;i++)
+            {
+              free(xInit[i]);
+            }
+            free(xInit);
+          break;
       }
       //libération mémoire
       for (i=0;i<n;i++)
       {
-	free(b[i]);
+        free(b[i]);
       }
       free(b);
     }
   }
+  //libération mémoire copie matrice -> choice=0
+  for (i=0; i<n; i++)
+  {
+    free(mat[i]);
+  }
+  free(mat);
 }
 
 double** creuse70(int n)

@@ -249,6 +249,114 @@ Votre choix :
         \end{pmatrix}
         \label{syst5}
         \end{equation}
+        \begin{equation}
+        \begin{pmatrix}
+          4 & 1 & 0 \\
+          1 & 4 & 1 \\
+          0 & 1 & 4 \\
+        \end{pmatrix}
+        \cdot
+        \begin{pmatrix}
+          x_1 \\
+          x_2 \\
+          x_3 \\
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+          -5 \\
+          6 \\
+          7 \\
+        \end{pmatrix}
+        \label{syst6}
+        \end{equation}
+        \begin{equation}
+        \begin{pmatrix}
+          7 & -2 & 0 \\
+          -2 & 9 & -6 \\
+          0 & -6 & 25 \\
+        \end{pmatrix}
+        \cdot
+        \begin{pmatrix}
+          x_1 \\
+          x_2 \\
+          x_3 \\
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+          \sfrac{3}{2} \\
+          \sfrac{3}{5} \\
+          \sfrac{3}{4} \\
+        \end{pmatrix}
+        \label{syst7}
+        \end{equation}
+        \begin{equation}
+        \begin{pmatrix}
+          4 & 1 & 1 & 0 \\
+          1 & 4 & 0 & 1 \\
+          1 & 0 & 4 & 1 \\
+          0 & 1 & 1 & 4 \\
+        \end{pmatrix}
+        \cdot
+        \begin{pmatrix}
+          x_1 \\
+          x_2 \\
+          x_3 \\
+          x_4 \\
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+          0 \\
+          0 \\
+          0 \\
+          24 \\
+        \end{pmatrix}
+        \label{syst8}
+        \end{equation}
+        \begin{equation}
+        \begin{pmatrix}
+          65 & 40 & 24 \\
+          40 & 68 & 17 \\
+          24 & 17 & 81 \\
+        \end{pmatrix}
+        \cdot
+        \begin{pmatrix}
+          x_1 \\
+          x_2 \\
+          x_3 \\
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+          1 \\
+          1 \\
+          1 \\
+        \end{pmatrix}
+        \label{syst9}
+        \end{equation}
+        \begin{equation}
+        \text{Matrice KMS (}
+        p=0.25\text{) :}
+        \begin{pmatrix}
+          1 & 0.25 & 0.0625 & 0.015625 \\
+          0.25 & 1 & 0.25 & 0.0625 \\
+          0.0625 & 0.25 & 1 & 0.25 \\
+          0.015625 & 0.0625 & 0.25 & 1 \\
+        \end{pmatrix}
+        \cdot
+        \begin{pmatrix}
+          x_1 \\
+          x_2 \\
+          x_3 \\
+          x_4 \\
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+          1 \\
+          2 \\
+          3 \\
+          4 \\
+        \end{pmatrix}
+        \label{syst10}
+        \end{equation}
 
 	  
   \chapter{Méthodes directes}
@@ -309,7 +417,7 @@ Votre choix :
               -\frac{24}{41} \\
 			     \end{pmatrix}$
 			     &
-			     $0$ \\
+			     $0.0008213058895$ \\
 			     %fin eq1
            %debut eq2
            \hline
@@ -329,7 +437,7 @@ Votre choix :
               \frac{1089}{50015} \\
 			     \end{pmatrix}$
 			     &
-			     $0$ \\
+			     $0.02643817358$ \\
 			     %fin eq2
 			     %debut eq3
            \hline
@@ -349,7 +457,7 @@ Votre choix :
               \frac{95}{872} \\
           \end{pmatrix}$         
            &
-           $0$ \\
+           $26.27445408$ \\
            %fin eq3
            %debut eq4
            \hline
@@ -367,7 +475,7 @@ Votre choix :
               \frac{12}{11} \\
 			     \end{pmatrix}$
 			     &
-			     $0$ \\
+			     $0.0003888866667$ \\
 			     %fin eq4
 			     %debut eq5
            \hline
@@ -399,8 +507,110 @@ Votre choix :
               \frac{24553}{11880} \\
           \end{pmatrix}$
           &
-          $0$ \\
+          $0.0001766790236$ \\
           %fin eq5
+          \hline
+          \end{tabular}
+        \renewcommand{\arraystretch}{1}
+        \newpage
+        \renewcommand{\arraystretch}{2}
+        \begin{tabular}{|c|c|c|c|}
+           \hline
+           Système & Résultat obtenu & Résultat théorique & Ecart \\ % ajout de hline entre chaque ligne pour séparer
+          %debut eq6
+           \hline
+           ~\eqref{syst6}
+           &
+           $\begin{pmatrix}
+              -1.64286 \\
+              1.57143 \\
+              1.35714 \\
+          \end{pmatrix}$
+           &
+           $\begin{pmatrix}
+              -\frac{23}{14} \\
+              \frac{11}{7} \\
+              \frac{19}{14} \\
+          \end{pmatrix}$
+          &
+          $0$ \\
+          %fin eq6
+          %debut eq7
+           \hline
+           ~\eqref{syst7}
+           &
+           $\begin{pmatrix}
+              0.26370 \\
+              0.17294 \\
+              0.07150 \\
+          \end{pmatrix}$
+           &
+           $\begin{pmatrix}
+              \frac{645}{2446} \\
+              \frac{423}{2446} \\
+              \frac{1749}{24460} \\
+          \end{pmatrix}$
+          &
+          $0$ \\
+          %fin eq7
+          %debut eq8
+           \hline
+           ~\eqref{syst8}
+           &
+           $\begin{pmatrix}
+              1.00000 \\
+              -2.00000 \\
+              -2.00000 \\
+              7.00000 \\
+          \end{pmatrix}$
+           &
+           $\begin{pmatrix}
+              1 \\
+              -2 \\
+              -2 \\
+              7 \\
+          \end{pmatrix}$
+          &
+          $0$ \\
+          %fin eq8
+          %debut eq9
+           \hline
+           ~\eqref{syst9}
+           &
+           $\begin{pmatrix}
+              0.00707 \\
+              0.00843 \\
+              0.00848 \\
+          \end{pmatrix}$
+           &
+           $\begin{pmatrix}
+              \frac{1435}{203107} \\
+              \frac{1712}{203107} \\
+              \frac{1723}{203107} \\
+          \end{pmatrix}$
+          &
+          $0$ \\
+          %fin eq9
+          %debut eq10
+           \hline
+           ~\eqref{syst10}
+           &
+           $\begin{pmatrix}
+              0.53333 \\
+              1.20000 \\
+              1.80000 \\
+              3.46667
+          \end{pmatrix}$
+           &
+           $\begin{pmatrix}
+              MAPLE \\
+          \end{pmatrix}$
+          &
+          $0$ \\
+          %fin eq10
+
+
+          
           \hline
 
          \end{tabular}
@@ -424,7 +634,12 @@ Votre choix :
           \hline
           ~\eqref{syst1}
           &
-          $0$
+          $\begin{pmatrix}
+              0.63415 \\
+              -0.26829 \\
+              0.17073 \\
+              -0.58537 \\
+           \end{pmatrix}$
           &
           $\begin{pmatrix}
               \frac{26}{41} \\
@@ -437,7 +652,12 @@ Votre choix :
           \hline
           ~\eqref{syst2}
           &
-          $0$
+          $\begin{pmatrix}
+              0.06132 \\
+              0.24599 \\
+              -0.00287 \\
+              0.02177 \\
+           \end{pmatrix}$
           &
           $\begin{pmatrix}
               \frac{3067}{50015} \\
@@ -450,7 +670,12 @@ Votre choix :
           \hline
           ~\eqref{syst3}
           &
-          $0$
+          $\begin{pmatrix}
+              -0.04885 \\
+              0.10345 \\
+              0.04458 \\
+              0.09623 \\
+           \end{pmatrix}$
           &
           $\begin{pmatrix}
               -\frac{1181}{20928} \\
@@ -463,7 +688,11 @@ Votre choix :
           \hline
           ~\eqref{syst4}
           &
-          $0$
+          $\begin{pmatrix}
+              -0.36364 \\
+              2.18182 \\
+              1.09091 \\
+           \end{pmatrix}$
           &
           $\begin{pmatrix}
               -\frac{4}{11} \\
@@ -475,7 +704,18 @@ Votre choix :
           \hline
           ~\eqref{syst5}
           &
-          $0$
+          $\begin{pmatrix}
+              1.00000 \\
+              -0.81145 \\
+              1.27048 \\
+              -0.46016 \\
+              1.56790 \\
+              0.05780 \\
+              2.05345 \\
+              0.88005 \\
+              1.86675 \\
+              2.06675 \\
+           \end{pmatrix}$
           &
           $\begin{pmatrix}
               1 \\
@@ -495,6 +735,105 @@ Votre choix :
 
          \end{tabular}
          \renewcommand{\arraystretch}{1}
+         \newpage
+        \renewcommand{\arraystretch}{2}
+        \begin{tabular}{|c|c|c|c|}
+           \hline
+           Système & Résultat obtenu & Résultat théorique & Ecart \\ % ajout de hline entre chaque ligne pour séparer
+          %debut eq6
+           \hline
+           ~\eqref{syst6}
+           &
+           $\begin{pmatrix}
+              -1.64286 \\
+              1.57143 \\
+              1.35714 \\
+          \end{pmatrix}$
+           &
+           $\begin{pmatrix}
+              -\frac{23}{14} \\
+              \frac{11}{7} \\
+              \frac{19}{14} \\
+          \end{pmatrix}$
+          &
+          $0$ \\
+          %fin eq6
+          %debut eq7
+           \hline
+           ~\eqref{syst7}
+           &
+           $\begin{pmatrix}
+              0.26370 \\
+              0.17294 \\
+              0.07150 \\
+          \end{pmatrix}$
+           &
+           $\begin{pmatrix}
+              \frac{645}{2446} \\
+              \frac{423}{2446} \\
+              \frac{1749}{24460} \\
+          \end{pmatrix}$
+          &
+          $0$ \\
+          %fin eq7
+          %debut eq8
+           \hline
+           ~\eqref{syst8}
+           &
+           $\begin{pmatrix}
+              1.00000 \\
+              -2.00000 \\
+              -2.00000 \\
+              7.00000 \\
+          \end{pmatrix}$
+           &
+           $\begin{pmatrix}
+              1 \\
+              -2 \\
+              -2 \\
+              7 \\
+          \end{pmatrix}$
+          &
+          $0$ \\
+          %fin eq8
+          %debut eq9
+           \hline
+           ~\eqref{syst9}
+           &
+           $\begin{pmatrix}
+              0.00707 \\
+              0.00843 \\
+              0.00848 \\
+          \end{pmatrix}$
+           &
+           $\begin{pmatrix}
+              \frac{1435}{203107} \\
+              \frac{1712}{203107} \\
+              \frac{1723}{203107} \\
+          \end{pmatrix}$
+          &
+          $0$ \\
+          %fin eq9
+          %debut eq10
+           \hline
+           ~\eqref{syst10}
+           &
+           $\begin{pmatrix}
+              0.53333 \\
+              1.20000 \\
+              1.80000 \\
+              3.46667
+          \end{pmatrix}$
+           &
+           $\begin{pmatrix}
+              MAPLE \\
+          \end{pmatrix}$
+          &
+          $0$ \\
+          %fin eq10
+          \hline
+         \end{tabular}
+         \renewcommand{\arraystretch}{1}
     \newpage
     \section{Comparaison}
     \newpage
@@ -506,9 +845,9 @@ Votre choix :
       \newpage
       \subsection{Résultats des tests}
         \renewcommand{\arraystretch}{2}
-        \begin{tabular}{|c|c|c|c|c|c|}
+        \begin{tabular}{|c|c|c|c|c|}
           \hline
-          Système & Résultat obtenu & Résultat théorique & Ecart & Précision & Convergence\\ % ajout de hline entre chaque ligne pour séparer
+          Système & Résultat obtenu & Résultat théorique & Ecart & Convergence\\ % ajout de hline entre chaque ligne pour séparer
           \hline
           ~\eqref{syst1}
           &
@@ -520,8 +859,6 @@ Votre choix :
               \frac{7}{41} \\
               -\frac{24}{41} \\
           \end{pmatrix}$
-          &
-          $0$
           &
           $0$
           &
@@ -540,8 +877,6 @@ Votre choix :
           &
           $0$
           &
-          $0$
-          &
           $0$ \\
           \hline
           ~\eqref{syst3}
@@ -557,8 +892,6 @@ Votre choix :
           &
           $0$
           &
-          $0$
-          &
           $0$ \\
           \hline
           ~\eqref{syst4}
@@ -570,8 +903,6 @@ Votre choix :
               \frac{24}{11} \\
               \frac{12}{11} \\
           \end{pmatrix}$
-          &
-          $0$
           &
           $0$
           &
@@ -596,11 +927,117 @@ Votre choix :
           &
           $0$
           &
-          $0$
-          &
           $0$ \\
       \hline
-
+         \end{tabular}
+         \renewcommand{\arraystretch}{1}
+         \newpage
+        \renewcommand{\arraystretch}{2}
+        \begin{tabular}{|c|c|c|c|c|}
+           \hline
+           Système & Résultat obtenu & Résultat théorique & Ecart & Convergence \\ % ajout de hline entre chaque ligne pour séparer
+          %debut eq6
+           \hline
+           ~\eqref{syst6}
+           &
+           $\begin{pmatrix}
+              -1.64286 \\
+              1.57143 \\
+              1.35714 \\
+          \end{pmatrix}$
+           &
+           $\begin{pmatrix}
+              -\frac{23}{14} \\
+              \frac{11}{7} \\
+              \frac{19}{14} \\
+          \end{pmatrix}$
+          &
+          $0$
+          &
+          13 itérations \\
+          %fin eq6
+          %debut eq7
+           \hline
+           ~\eqref{syst7}
+           &
+           $\begin{pmatrix}
+              0.26370 \\
+              0.17293 \\
+              0.07150 \\
+          \end{pmatrix}$
+           &
+           $\begin{pmatrix}
+              \frac{645}{2446} \\
+              \frac{423}{2446} \\
+              \frac{1749}{24460} \\
+          \end{pmatrix}$
+          &
+          $0$
+          &
+          17 itérations \\
+          %fin eq7
+          %debut eq8
+           \hline
+           ~\eqref{syst8}
+           &
+           $\begin{pmatrix}
+              1.00000 \\
+              -2.00000 \\
+              -2.00000 \\
+              7.00000 \\
+          \end{pmatrix}$
+           &
+           $\begin{pmatrix}
+              1 \\
+              -2 \\
+              -2 \\
+              7 \\
+          \end{pmatrix}$
+          &
+          $0$
+          &
+          21 itérations \\
+          %fin eq8
+          %debut eq9
+           \hline
+           ~\eqref{syst9}
+           &
+           $\begin{pmatrix}
+              0.00707 \\
+              0.00843 \\
+              0.00848 \\
+          \end{pmatrix}$
+           &
+           $\begin{pmatrix}
+              \frac{1435}{203107} \\
+              \frac{1712}{203107} \\
+              \frac{1723}{203107} \\
+          \end{pmatrix}$
+          &
+          $0$
+          &
+          54 itérations \\
+          %fin eq9
+          %debut eq10
+           \hline
+           ~\eqref{syst10}
+           &
+           $\begin{pmatrix}
+              0.53333 \\
+              1.20000 \\
+              1.80000 \\
+              3.46667
+          \end{pmatrix}$
+           &
+           $\begin{pmatrix}
+              MAPLE \\
+          \end{pmatrix}$
+          &
+          $0$
+          &
+          18 itérations \\
+          %fin eq10
+          \hline
          \end{tabular}
          \renewcommand{\arraystretch}{1}
       
@@ -611,9 +1048,9 @@ Votre choix :
       \newpage
       \subsection{Résultats de tests}
       \renewcommand{\arraystretch}{2}
-        \begin{tabular}{|c|c|c|c|c|c|}
+        \begin{tabular}{|c|c|c|c|c|}
           \hline
-          Système & Résultat obtenu & Résultat théorique & Ecart & Précision & Convergence\\ % ajout de hline entre chaque ligne pour séparer
+          Système & Résultat obtenu & Résultat théorique & Ecart & Convergence\\ % ajout de hline entre chaque ligne pour séparer
           \hline
           ~\eqref{syst1}
           &
@@ -625,8 +1062,6 @@ Votre choix :
               \frac{7}{41} \\
               -\frac{24}{41} \\
           \end{pmatrix}$
-          &
-          $0$
           &
           $0$
           &
@@ -645,8 +1080,6 @@ Votre choix :
           &
           $0$
           &
-          $0$
-          &
           $0$ \\
           \hline
           ~\eqref{syst3}
@@ -662,8 +1095,6 @@ Votre choix :
           &
           $0$
           &
-          $0$
-          &
           $0$ \\
           \hline
           ~\eqref{syst4}
@@ -675,8 +1106,6 @@ Votre choix :
               \frac{24}{11} \\
               \frac{12}{11} \\
           \end{pmatrix}$
-          &
-          $0$
           &
           $0$
           &
@@ -701,11 +1130,117 @@ Votre choix :
           &
           $0$
           &
-          $0$
-          &
           $0$ \\
       \hline
-
+         \end{tabular}
+         \renewcommand{\arraystretch}{1}
+         \newpage
+        \renewcommand{\arraystretch}{2}
+        \begin{tabular}{|c|c|c|c|c|}
+           \hline
+           Système & Résultat obtenu & Résultat théorique & Ecart & Convergence \\ % ajout de hline entre chaque ligne pour séparer
+          %debut eq6
+           \hline
+           ~\eqref{syst6}
+           &
+           $\begin{pmatrix}
+              -1.64286 \\
+              1.57143 \\
+              1.35714 \\
+          \end{pmatrix}$
+           &
+           $\begin{pmatrix}
+              -\frac{23}{14} \\
+              \frac{11}{7} \\
+              \frac{19}{14} \\
+          \end{pmatrix}$
+          &
+          $0$
+          &
+          7 itérations \\
+          %fin eq6
+          %debut eq7
+           \hline
+           ~\eqref{syst7}
+           &
+           $\begin{pmatrix}
+              0.26370 \\
+              0.17294 \\
+              0.07150 \\
+          \end{pmatrix}$
+           &
+           $\begin{pmatrix}
+              \frac{645}{2446} \\
+              \frac{423}{2446} \\
+              \frac{1749}{24460} \\
+          \end{pmatrix}$
+          &
+          $0$
+          &
+          9 itérations \\
+          %fin eq7
+          %debut eq8
+           \hline
+           ~\eqref{syst8}
+           &
+           $\begin{pmatrix}
+              1.00000 \\
+              -2.00000 \\
+              -2.00000 \\
+              7.00000 \\
+          \end{pmatrix}$
+           &
+           $\begin{pmatrix}
+              1 \\
+              -2 \\
+              -2 \\
+              7 \\
+          \end{pmatrix}$
+          &
+          $0$
+          &
+          12 itérations \\
+          %fin eq8
+          %debut eq9
+           \hline
+           ~\eqref{syst9}
+           &
+           $\begin{pmatrix}
+              0.00707 \\
+              0.00843 \\
+              0.00848 \\
+          \end{pmatrix}$
+           &
+           $\begin{pmatrix}
+              \frac{1435}{203107} \\
+              \frac{1712}{203107} \\
+              \frac{1723}{203107} \\
+          \end{pmatrix}$
+          &
+          $0$
+          &
+          11 itérations \\
+          %fin eq9
+          %debut eq10
+           \hline
+           ~\eqref{syst10}
+           &
+           $\begin{pmatrix}
+              0.53334 \\
+              1.20000 \\
+              1.80000 \\
+              3.46667
+          \end{pmatrix}$
+           &
+           $\begin{pmatrix}
+              MAPLE \\
+          \end{pmatrix}$
+          &
+          $0$
+          &
+          7 itérations \\
+          %fin eq10
+          \hline
          \end{tabular}
          \renewcommand{\arraystretch}{1}
   	\newpage
@@ -715,9 +1250,9 @@ Votre choix :
       \newpage
       \subsection{Résultats de tests}
       \renewcommand{\arraystretch}{2}
-        \begin{tabular}{|c|c|c|c|c|c|}
+        \begin{tabular}{|c|c|c|c|c|}
           \hline
-          Système & Résultat obtenu & Résultat théorique & Ecart & Précision & Convergence\\ % ajout de hline entre chaque ligne pour séparer
+          Système & Résultat obtenu & Résultat théorique & Ecart & Convergence\\ % ajout de hline entre chaque ligne pour séparer
           \hline
           ~\eqref{syst1}
           &
@@ -729,8 +1264,6 @@ Votre choix :
               \frac{7}{41} \\
               -\frac{24}{41} \\
           \end{pmatrix}$
-          &
-          $0$
           &
           $0$
           &
@@ -749,8 +1282,6 @@ Votre choix :
           &
           $0$
           &
-          $0$
-          &
           $0$ \\
           \hline
           ~\eqref{syst3}
@@ -766,8 +1297,6 @@ Votre choix :
           &
           $0$
           &
-          $0$
-          &
           $0$ \\
           \hline
           ~\eqref{syst4}
@@ -779,8 +1308,6 @@ Votre choix :
               \frac{24}{11} \\
               \frac{12}{11} \\
           \end{pmatrix}$
-          &
-          $0$
           &
           $0$
           &
@@ -805,11 +1332,117 @@ Votre choix :
           &
           $0$
           &
-          $0$
-          &
           $0$ \\
       \hline
-
+         \end{tabular}
+         \renewcommand{\arraystretch}{1}
+         \newpage
+        \renewcommand{\arraystretch}{2}
+        \begin{tabular}{|c|c|c|c|c|}
+           \hline
+           Système & Résultat obtenu & Résultat théorique & Ecart & Convergence \\ % ajout de hline entre chaque ligne pour séparer
+          %debut eq6
+           \hline
+           ~\eqref{syst6}
+           &
+           $\begin{pmatrix}
+              -1.64286 \\
+              1.57143 \\
+              1.35714 \\
+          \end{pmatrix}$
+           &
+           $\begin{pmatrix}
+              -\frac{23}{14} \\
+              \frac{11}{7} \\
+              \frac{19}{14} \\
+          \end{pmatrix}$
+          &
+          $0$
+          &
+          13 itérations \\
+          %fin eq6
+          %debut eq7
+           \hline
+           ~\eqref{syst7}
+           &
+           $\begin{pmatrix}
+              0.26370 \\
+              0.17293 \\
+              0.07150 \\
+          \end{pmatrix}$
+           &
+           $\begin{pmatrix}
+              \frac{645}{2446} \\
+              \frac{423}{2446} \\
+              \frac{1749}{24460} \\
+          \end{pmatrix}$
+          &
+          $0$
+          &
+          17 itérations \\
+          %fin eq7
+          %debut eq8
+           \hline
+           ~\eqref{syst8}
+           &
+           $\begin{pmatrix}
+              1.00000 \\
+              -2.00000 \\
+              -2.00000 \\
+              7.00000 \\
+          \end{pmatrix}$
+           &
+           $\begin{pmatrix}
+              1 \\
+              -2 \\
+              -2 \\
+              7 \\
+          \end{pmatrix}$
+          &
+          $0$
+          &
+          21 itérations \\
+          %fin eq8
+          %debut eq9
+           \hline
+           ~\eqref{syst9}
+           &
+           $\begin{pmatrix}
+              0.00707 \\
+              0.00843 \\
+              0.00848 \\
+          \end{pmatrix}$
+           &
+           $\begin{pmatrix}
+              \frac{1435}{203107} \\
+              \frac{1712}{203107} \\
+              \frac{1723}{203107} \\
+          \end{pmatrix}$
+          &
+          $0$
+          &
+          54 itérations \\
+          %fin eq9
+          %debut eq10
+           \hline
+           ~\eqref{syst10}
+           &
+           $\begin{pmatrix}
+              0.53333 \\
+              1.20000 \\
+              1.80000 \\
+              3.46667
+          \end{pmatrix}$
+           &
+           $\begin{pmatrix}
+              MAPLE \\
+          \end{pmatrix}$
+          &
+          $0$
+          &
+          18 itérations \\
+          %fin eq10
+          \hline
          \end{tabular}
          \renewcommand{\arraystretch}{1}
      \newpage
