@@ -34,12 +34,12 @@ void gaussseidel (double** a, double** b, double** xInit, int n, double prec)
     printf("\nVecteur à l'itération %d :\n", cpt);
     afficherMatrice(xInit, n, 1);
   }
-    //libération mémoire
-    for (i=0;i<n;i++)
-    {
-      free(ax[i]);
-      free(axb[i]);
-    }
-    free(ax);
-    free(axb);
+  //libération mémoire
+  for (i=0;i<n;i++)
+  {
+    free(ax[i]);
+    free(axb[i]);
+  }
+  free(ax);
+  free(axb);
 }
