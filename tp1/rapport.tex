@@ -7,6 +7,7 @@
 \usepackage{xfrac}
 \renewcommand\theequation{\arabic{equation}}
 \usepackage{upquote}
+\usepackage{tabularx} % modifier la taille des cellules des tableaux
 \usepackage{textcomp}
 \usepackage[frenchb]{babel} %langue
 \usepackage{amsmath} %affichage des matrices
@@ -132,7 +133,7 @@ Votre choix :
 		0 \\
 		-1 \\
         \end{pmatrix}
-        \label{syst1} % plus tard, utiliser \eqref{systX}
+        \label{syst1} % plus tard, utiliser ~\eqref{systX}
         \end{equation}
         \begin{equation}
         \begin{pmatrix}
@@ -278,11 +279,54 @@ Votre choix :
         \lstinputlisting[style=customc]{gauss.c}
       \newpage
       \subsection{Jeux de tests}
+        \renewcommand{\arraystretch}{2}
         \begin{tabular}{|c|c|c|c|}
            \hline
            Système & Résultat obtenu & Résultat théorique & Ecart \\ % ajout de hline entre chaque ligne pour séparer
            \hline
+           ~\eqref{syst1} & 0 & \begin{pmatrix}
+				\frac{26}{41} \\
+				-\frac{11}{41} \\
+				\frac{7}{41} \\
+				-\frac{24}{41} \\
+			     \end{pmatrix}          & 0 \\
+	    \hline
+           ~\eqref{syst2} & 0 & \begin{pmatrix}
+				\frac{3067}{50015} \\
+				\frac{7382}{30009} \\
+				-\frac{431}{150045} \\
+				\frac{1089}{50015} \\
+			     \end{pmatrix}          & 0 \\
+	    \hline
+           ~\eqref{syst3} & 0 & \begin{pmatrix}
+				-\frac{1181}{20928} \\
+				\frac{563}{6976} \\
+				\frac{121}{1308} \\
+				\frac{95}{872} \\
+			     \end{pmatrix}          & 0 \\
+	    \hline
+           ~\eqref{syst4} & 0 & \begin{pmatrix}
+				-\frac{4}{11} \\
+				\frac{24}{11} \\
+				\frac{12}{11} \\
+			     \end{pmatrix}          & 0 \\
+	    \hline
+           ~\eqref{syst5} & 0 & \begin{pmatrix}
+				1 \\
+				-\frac{241}{297} \\
+				\frac{1132}{891} \\
+				-\frac{410}{891} \\
+				\frac{127}{81} \\
+				\frac{103}{1782} \\
+				\frac{4879}{2376} \\
+				\frac{697}{792} \\
+				\frac{22177}{11880} \\
+				\frac{24553}{11880} \\
+			     \end{pmatrix}          & 0 \\
+	    \hline
+
          \end{tabular}
+         \renewcommand{\arraystretch}{1}
         
         
     \newpage
@@ -306,6 +350,54 @@ Votre choix :
         \lstinputlisting[style=customc]{jacobi.c}
       \newpage
       \subsection{Jeux de tests}
+        \renewcommand{\arraystretch}{2}
+        \begin{tabular}{|c|c|c|c|}
+           \hline
+           Système & Résultat obtenu & Résultat théorique & Ecart \\ % ajout de hline entre chaque ligne pour séparer
+           \hline
+           ~\eqref{syst1} & 0 & \begin{pmatrix}
+				\frac{26}{41} \\
+				-\frac{11}{41} \\
+				\frac{7}{41} \\
+				-\frac{24}{41} \\
+			     \end{pmatrix}          & 0 \\
+	    \hline
+           ~\eqref{syst2} & 0 & \begin{pmatrix}
+				\frac{3067}{50015} \\
+				\frac{7382}{30009} \\
+				-\frac{431}{150045} \\
+				\frac{1089}{50015} \\
+			     \end{pmatrix}          & 0 \\
+	    \hline
+           ~\eqref{syst3} & 0 & \begin{pmatrix}
+				-\frac{1181}{20928} \\
+				\frac{563}{6976} \\
+				\frac{121}{1308} \\
+				\frac{95}{872} \\
+			     \end{pmatrix}          & 0 \\
+	    \hline
+           ~\eqref{syst4} & 0 & \begin{pmatrix}
+				-\frac{4}{11} \\
+				\frac{24}{11} \\
+				\frac{12}{11} \\
+			     \end{pmatrix}          & 0 \\
+	    \hline
+           ~\eqref{syst5} & 0 & \begin{pmatrix}
+				1 \\
+				-\frac{241}{297} \\
+				\frac{1132}{891} \\
+				-\frac{410}{891} \\
+				\frac{127}{81} \\
+				\frac{103}{1782} \\
+				\frac{4879}{2376} \\
+				\frac{697}{792} \\
+				\frac{22177}{11880} \\
+				\frac{24553}{11880} \\
+			     \end{pmatrix}          & 0 \\
+	    \hline
+
+         \end{tabular}
+         \renewcommand{\arraystretch}{1}
   	\newpage
   	\section{Méthode de Gauss-Seidel}
   	  \subsection{Programme}
