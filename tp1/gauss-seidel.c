@@ -7,6 +7,8 @@ void gaussseidel (double** a, double** b, double** xInit, int n, double prec)
 {
   int i, j, cpt;
   double residu=2*prec;
+  double** ax;
+  double** axb;
   cpt=0;
   while (residu>=prec)
   {
@@ -15,23 +17,23 @@ void gaussseidel (double** a, double** b, double** xInit, int n, double prec)
       double somme1=0, somme2=0;
       for (j=0; j<i; j++)
       {
-	somme1=somme1+a[i][j]*xInit[j][0];
+        somme1=somme1+a[i][j]*xInit[j][0];
       }
       for (j=i+1; j<n; j++)
       {
-	somme2=somme2+a[i][j]*xInit[j][0];
+        somme2=somme2+a[i][j]*xInit[j][0];
       }
       xInit[i][0]=(1/a[i][i])*(b[i][0]-somme1-somme2);
     }
-    double** ax=produitMatriciel(a, xInit, n, n, 1);
-    double** axb=difference(ax, b, n, 1);
+    ax=produitMatriciel(a, xInit, n, n, 1);
+    axb=difference(ax, b, n, 1);
     residu=norme(axb, n);
     cpt++;
     
     //affichage
     printf("\nVecteur à l'itération %d :\n", cpt);
     afficherMatrice(xInit, n, 1);
-    
+  }
     //libération mémoire
     for (i=0;i<n;i++)
     {
@@ -40,5 +42,4 @@ void gaussseidel (double** a, double** b, double** xInit, int n, double prec)
     }
     free(ax);
     free(axb);
-  }
 }

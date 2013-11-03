@@ -50,4 +50,11 @@ void cholesky (double ** a, double ** b, int n)
   /*Affichage de x*/
   printf("\nVecteur résultat :\n");
   afficherMatrice(x,n,1);
+
+  // libération mémoire
+  for (i=0; i<n; i++)
+  {
+    free(r[i]);
+  }
+  free(r);
 }

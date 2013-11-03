@@ -127,7 +127,7 @@ int main (int argc, char ** argv)
 	free(A);
 	free(b);
 	//Attente retour
-        printf("\nAppuyer sur une touche pour retourner au menu principal");
+        printf("\nAppuyer sur Entrée pour retourner au menu principal");
         getchar(); //recupère le \n du dernier scanf
         getchar(); //recupere le caractere tape pour retour au menu
       }

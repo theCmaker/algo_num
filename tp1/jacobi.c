@@ -7,8 +7,18 @@ void jacobi (double** a, double** b, double** xInit, int n, double prec)
 {
   int i, j, cpt;
   double residu=2*prec;
-  double** xNext= xInit;
+  double** xNext= (double**) malloc(n*sizeof(double*));
+  double** ax;
+  double** axb;
   cpt=0;
+  for (i=0; i<n; i++)
+  {
+    xNext[i]= (double*) malloc(sizeof(double));
+    for (j=0; j<1; j++)
+    {
+      xNext[i][j]=xInit[i][j];
+    }
+  }
   while (residu>=prec)
   {
     for (i=0; i<n; i++)
@@ -24,8 +34,8 @@ void jacobi (double** a, double** b, double** xInit, int n, double prec)
       }
       xNext[i][0]=(1/a[i][i])*(b[i][0]-somme1-somme2);
     }
-    double** ax=produitMatriciel(a, xNext, n, n, 1); //ax
-    double** axb=difference(ax, b, n, 1); //ax - b
+    ax=produitMatriciel(a, xNext, n, n, 1); //ax
+    axb=difference(ax, b, n, 1); //ax - b
     residu=norme(axb, n); //norme de (ax - b)
     cpt++;
 
@@ -33,15 +43,15 @@ void jacobi (double** a, double** b, double** xInit, int n, double prec)
     printf("\nVecteur à l'itération %d :\n", cpt);
     afficherMatrice(xNext, n, 1);
 
-    //libération mémoire
-    for (i=0;i<n;i++)
-    {
-      free(ax[i]);
-      free(axb[i]);
-      free(xNext[i]);
-    }
-    free(ax);
-    free(axb);
-    free(xNext);
   }
+  //libération mémoire
+  for (i=0;i<n;i++)
+  {
+    free(ax[i]);
+    free(axb[i]);
+    free(xNext[i]);
+  }
+  free(ax);
+  free(axb);
+  free(xNext);
 }
