@@ -93,24 +93,30 @@ Votre choix :
 	\end{lstlisting}
 	
 	Tous les fonctions de résolution font appel à des fonctions adaptées aux matrices, écrites dans le fichier \verb"matrices.c".
+    \vspace{0.3cm}
     
     Chaque méthode de résolution reçoit les matrices (à éléments réels) générées auparavant (juste après le choix de la méthode dans le menu) en arguments.
+    \vspace{0.3cm}
     	
-	Chaque entrée du menu est codée dans un fichier source qui lui est propre (cf Figure \ref{arborescence}). Les fichiers headers correspondants contiennent les prototypes. Le fichier source \verb"main.c" contient le menu principal.\\
+	Chaque entrée du menu est codée dans un fichier source qui lui est propre (cf Figure \ref{arborescence}). Les fichiers headers correspondants contiennent les prototypes. Le fichier source \verb"main.c" contient le menu principal.
+	\vspace{0.3cm}
 	
-	Toutes les fonctions de résolution font appel à des fonctions intermédiaires, caractéristiques du calcul matriciel, écrites dans le fichier \verb"matrices.c".\\
+	Toutes les fonctions de résolution font appel à des fonctions intermédiaires, caractéristiques du calcul matriciel, écrites dans le fichier \verb"matrices.c".
+	\vspace{0.3cm}
 	
     \lstinputlisting[style=apercu, name=Arborescence, label=arborescence]{arborescence}
+    \vspace{0.3cm}
 
-    Les matrices sont générées juste après le choix de la méthode, avant d'être passées en arguments à la fonction de résolution.\\
+    Les matrices sont générées juste après le choix de la méthode, avant d'être passées en arguments à la fonction de résolution.
 
 	Enfin, la compilation est gérée par un \verb"makefile".  
 	\section{Compilation}
 	
 	\newpage
 	\section{Systèmes testés}
-	  Les matrices suivantes sont toutes symétriques définie positives à diagonale dominante. Nous avons choisi de prendre 10 matrices pouvant être utilisées pour
-	  faciliter la comparaison des méthodes directes, itératives et directes-intermédiaires.
+	  Les matrices suivantes sont toutes symétriques définies positives à diagonale dominante. Nous avons choisi de prendre 10 systèmes pouvant être résolus par toutes les méthodes pour faciliter la comparaison des méthodes directes, itératives et directes-intermédiaires.
+	  \vspace{0.5cm}
+	  
 	          Systèmes :
         \begin{equation}
         \begin{pmatrix}
@@ -225,7 +231,7 @@ Votre choix :
           x_7 \\
           x_8 \\
           x_9 \\
-          x_10 \\
+          x_{10} \\
         \end{pmatrix}
         =
         \begin{pmatrix}
@@ -252,7 +258,8 @@ Votre choix :
      \item{$X$ est le vecteur solution}
      \item{$B$ est un vecteur colonne donné}
     \end{itemize}
-    Pour ce faire, on utilise 2 étapes :
+	\vspace{0.3cm}    
+    La résolution se fait en 2 étapes :
     \begin{enumerate}
      \item{On décompose la matrice $A_{n,n}$ tel que $A = M \cdot N$ où $M_{n,n}$ est facile à inverser et $N_{n,n}$ est triangulaire.}
      \item{On résout les systèmes suivants : 
@@ -278,8 +285,12 @@ Votre choix :
       \subsection{Programme}
         \lstinputlisting[style=customc]{gauss.c}
       \newpage
+<<<<<<< HEAD
       \subsection{Jeux de tests}
         \renewcommand{\arraystretch}{2}
+=======
+      \subsection{Résultats des tests}
+>>>>>>> 43000cca06b978782c8ae6c025152c5d020c01ed
         \begin{tabular}{|c|c|c|c|}
            \hline
            Système & Résultat obtenu & Résultat théorique & Ecart \\ % ajout de hline entre chaque ligne pour séparer
@@ -338,7 +349,7 @@ Votre choix :
       \subsection{Programme}
         \lstinputlisting[style=customc]{cholesky.c}
       \newpage
-      \subsection{Jeux de tests}
+      \subsection{Résultats des tests}
       	
     \newpage
     \section{Comparaison}
@@ -349,6 +360,7 @@ Votre choix :
   	  \subsection{Programme}
         \lstinputlisting[style=customc]{jacobi.c}
       \newpage
+<<<<<<< HEAD
       \subsection{Jeux de tests}
         \renewcommand{\arraystretch}{2}
         \begin{tabular}{|c|c|c|c|}
@@ -398,18 +410,21 @@ Votre choix :
 
          \end{tabular}
          \renewcommand{\arraystretch}{1}
+=======
+      \subsection{Résultats des tests}
+>>>>>>> 43000cca06b978782c8ae6c025152c5d020c01ed
   	\newpage
   	\section{Méthode de Gauss-Seidel}
   	  \subsection{Programme}
-        %\lstinputlisting[style=customc]{jacobi.c}
+        \lstinputlisting[style=customc]{gauss-seidel.c}
       \newpage
-      \subsection{Jeux de tests}
+      \subsection{Résultats de tests}
   	\newpage
   	\section{Méthode de Sur-relaxation}
   	  \subsection{Programme}
         \lstinputlisting[style=customc]{surrelaxation.c}
       \newpage
-      \subsection{Jeux de tests}
+      \subsection{Résultats de tests}
      \newpage
      \section{Comparaison}
   \chapter*{Conclusion}
