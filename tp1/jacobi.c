@@ -42,16 +42,11 @@ void jacobi (double** a, double** b, double** xInit, int n, double prec)
     //affichage
     printf("\nVecteur à l'itération %d :\n", cpt);
     afficherMatrice(xNext, n, 1);
-
   }
   //libération mémoire
   for (i=0;i<n;i++)
   {
-    free(ax[i]);
-    free(axb[i]);
-    free(xNext[i]);
+    free(ax[i]); free(axb[i]); free(xNext[i]);
   }
-  free(ax);
-  free(axb);
-  free(xNext);
+  free(ax); free(axb); free(xNext);
 }
