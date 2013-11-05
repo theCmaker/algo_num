@@ -637,7 +637,7 @@ Votre choix :
       	\renewcommand{\arraystretch}{2}
         \begin{tabular}{|c|c|c|c|}
           \hline
-          Système & Résultat obtenu & Résultat théorique & Ecart \\ % ajout de hline entre chaque ligne pour séparer
+          Système & Résultat obtenu & Résultat théorique & Ecart (en \%) \\ % ajout de hline entre chaque ligne pour séparer
           \hline
           ~\eqref{syst1}
           &
@@ -747,7 +747,7 @@ Votre choix :
         \renewcommand{\arraystretch}{2}
         \begin{tabular}{|c|c|c|c|}
            \hline
-           Système & Résultat obtenu & Résultat théorique & Ecart \\ % ajout de hline entre chaque ligne pour séparer
+           Système & Résultat obtenu & Résultat théorique & Ecart (en \%) \\ % ajout de hline entre chaque ligne pour séparer
           %debut eq6
            \hline
            ~\eqref{syst6}
@@ -847,16 +847,38 @@ Votre choix :
          \renewcommand{\arraystretch}{1}
     \newpage
     \section{Comparaison}
-    \newpage
+    Cette section permet de synthétiser les observations sur les résultats obtenus et d'évaluer les avantages et inconvenients des méthodes.
+    Pour chaque méthode, on remarque que les résultats obtenus sur une précision de $10^{-5}$ sont les mêmes même si on peut supposer qu'ils diffèrent ensuite.
+    Cependant, même avec une faible précision, l'écart entre les valeurs réelles est très faible (toujours à moins de 0.01\%).
+    De plus, la vitesse de calcul des deux algorithmes est rapide même sur une matrice 10x10 et équivalente car leur compléxité est $O(n^3)$.
+    \newline 
+    Les conditions de la méthode de gauss sont relativement vérifiables. En effet, pour s'assurer l'existence d'une unique solution, il suffit de vérifier que le determinant n'est pas nul.
+    Cette condition peut se vérifier directement aprés mise en échelon de la matrice en faisant le produit des éléments diagonaux.
+    \newline
+    Cependant, les calculs se font les uns à la suite des autres, on a besoin qu'une la ligne i-1 soit complétement modifiée pour opérer sur la ligne i.
+    \newline
+    L'avantage de la méthode de cholesky est la possibilité de faire les calculs en parralèle c'est-à-dire :
+    lorsque les éléments avant la diagonale d'une ligne i d'une itération k  sont remplis, on peut calculer l'élément diagonale de la ligne i et continuer la recherche des éléments de l'itération k manquants.
+    Mais l' inconvenient majeur de la méthode de cholesky est la vérification de  l'applicabilité de la méthode. En effet, pour savoir si la matrice est définie positive, on doit passer par le calcul
+    des valeurs propres de la matrice qui est énormément couteux en nombre d'opération.
+    
+    
      
   \chapter{Méthodes itératives}
-      On cherche à décomposer la matrice $A$ en $M$ et $N$ telles que $A = M-N$.\\
+      On cherche à décomposer la matrice $A$ en $M$ et $N$ telles que $A = M-N$ avec $M$ facilement inversible.\\
       
       Le but est d'obtenir une solution approchée du système avec une certaine précision.\\
       A chaque itération, un nouveau vecteur résultat est calculé en fonction de celui de l'itération précédente, c'est la raison pour laquelle on doit définir un vecteur $x^{(0)}$ comme point initial.\\
       On peut donc calculer un résidu (i.e. un écart) à chaque itération. Lorsque cet écart devient inférieur à la précision demandée, on peut arrêter l'algorithme.
       
       Ces méthodes s'appliquent à des matrices dont les éléments diagonaux sont non-nuls.
+      Pour chaque test ci-dessous, la précision utilisée est $10^{-5}$ et le vecteur initial est :
+      $x^{(0)} = \begin{pmatrix}
+		0 \\
+		0 \\
+		0 \\
+		0 \\
+		\end{pmatrix}$
   	\section{Méthode de Jacobi}
       Pour cette méthode, on doit avoir $M=D$ où $D$ est la diagonale de $A$, et $N=E+F$ où $-E$ et $-F$ sont respectivement les matrices composées des éléments du dessous et du dessus de la diagonale de $A$.\\
       Les critères d'application de la méthode de Jacobi sont les suivants :
@@ -864,6 +886,9 @@ Votre choix :
         \item{$A$ doit être définie positive,}
         \item{$A$ doit être à diagonale dominante.}
       \end{itemize}
+      La formule de calcul des composantes du vecteur x est la suivante :
+       \newline
+      $x_{i}^{(k+1)} = \frac{1}{a_{ii}} \cdot \left [ b_{i} - \sum_{j=1}^{i-1} a_{ij} \cdot x_{j}^{(k)} - \sum_{j=i+1}^{n} a_{ij} \cdot x_{j}^{(k)} \right ] $
   	  \subsection{Programme}
         \lstinputlisting[style=customc]{jacobi.c}
       \newpage
@@ -871,7 +896,7 @@ Votre choix :
         \renewcommand{\arraystretch}{2}
         \begin{tabular}{|c|c|c|c|c|}
           \hline
-          Système & Résultat obtenu & Résultat théorique & Ecart & Convergence\\ % ajout de hline entre chaque ligne pour séparer
+          Système & Résultat obtenu & Résultat théorique & Ecart (en \%) & Convergence\\ % ajout de hline entre chaque ligne pour séparer
           \hline
           ~\eqref{syst1}
           &
@@ -989,7 +1014,7 @@ Votre choix :
         \renewcommand{\arraystretch}{2}
         \begin{tabular}{|c|c|c|c|c|}
            \hline
-           Système & Résultat obtenu & Résultat théorique & Ecart & Convergence \\ % ajout de hline entre chaque ligne pour séparer
+           Système & Résultat obtenu & Résultat théorique & Ecart (en \%) & Convergence \\ % ajout de hline entre chaque ligne pour séparer
           %debut eq6
            \hline
            ~\eqref{syst6}
@@ -1110,7 +1135,12 @@ Votre choix :
       Cette méthode est plus restrictive que Jacobi, mais elle converge plus vite pour les matrices correspondant à ces critères d'application.\\
       
       En effet, lors de la génération d'un vecteur résultat à une itération $k$, l'algorithme n'utilisera les valeurs de l'itération $k-1$ que dans le cas où il ne connaît pas encore celles de l'itération en cours. \\
+      
       C'est-à-dire qu'il utilisera les valeurs de l'itération en cours lorsqu'il cherchera à déterminer les valeurs d'indices inférieurs à l'indice de l'élément diagonal de la ligne itérée.
+      On a ainsi la formule : 
+      \newline
+      $x_{i}^{(k+1)} = \frac{1}{a_{ii}} \cdot \left [ b_{i} - \sum_{j=1}^{i-1} a_{ij} \cdot x_{j}^{(k+1)} - \sum_{j=i+1}^{n} a_{ij} \cdot x_{j}^{(k)} \right ] $
+      \newline
   	  \subsection{Programme}
         \lstinputlisting[style=customc]{gauss-seidel.c}
       \newpage
@@ -1347,7 +1377,11 @@ Votre choix :
      \newpage
      \section{Comparaison}
   \chapter{Conclusion}
-
+    
+	La méthode de Gauss est plus facile à appliquer et ses opérations sont des divisions, additions et multiplications alors que cholesky utilise en plus des calculs de carrés et de racine carrés ce qui engendre
+    des erreurs de précision en plus. De plus, avec la résolution par la méthode de Cholesky, il faut résoudre un système triangulaire en plus ce qui ajoute encore des erreurs de calcul.
+    Mais l'algorithme de Gauss oblige de calculer les éléments de façon séquentiels car une ligne i dépend totalement de la ligne i-1 alors que ceci n'est pas le cas avec la méthode de Cholesky.
+    \newpage
   \chapter{Annexe}
     \section{Fonctions caractéristiques du calcul matriciel}
       \lstinputlisting[style=customc, label=headerMatrices]{matrices.h}
@@ -1358,6 +1392,22 @@ Votre choix :
       \lstinputlisting[style=customc]{generateur.c}
       \newpage
     \section{Méthode de Sur-relaxation}
+    La méthode de Sur-relaxation est aussi une méthode itérative. Elle est semblable à la méthode de Gauss-Seidel dans son principe c'est à dire que
+    l'algorithme  n'utilise les valeurs de l'itération $k-1$ que dans le cas où il ne connaît pas encore celles de l'itération en cours.
+    \newline
+    De plus, ses conditions de convergence sont les mêmes c'est à dire que la matrice : 
+          \begin{itemize}
+        \item{$A$ doit être définie positive,}
+        \item{$A$ doit être à diagonale dominante.}
+      \end{itemize}
+    La différence entre ces deux méthodes est l'ajout d'un facteur $ \omega $ qui, s'il est bien choisi, accélère la convergence etle choix des matrices $M$ et $N$. 
+    \newline
+    En effet, $M = \frac{1}{\omega} \cdot D - E$ et $N = - \left( 1- \frac{1}{\omega} \right) \cdot D + F $.
+    \newline
+    On a alors la formule de calcul des composantes de $x$ à pour une itération k+1 :
+    \newline
+    $x_{i}^{(k+1)} = (1 - \omega) \cdot x_{i}^{(k)} +  \frac{\omega}{a_{ii}} \cdot \left [ b_{i} - \sum_{j=1}^{i-1} a_{ij} \cdot x_{j}^{(k+1)} - \sum_{j=i+1}^{n} a_{ij} \cdot x_{j}^{(k)} \right ] $
+      \newline
       \subsection{Programme}
         \lstinputlisting[style=customc]{surrelaxation.c}
   
