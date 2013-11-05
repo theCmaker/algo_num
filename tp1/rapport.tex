@@ -87,7 +87,6 @@ MENU PRINCIPAL : RESOLUTION D'EQUATIONS LINEAIRES
 4. Résolution par Gauss-Seidel
 5. Résolution par Surrelaxation
 6. Génération de matrices carrées
-7. Jeux de test
 0. Quitter
 Votre choix : 
 	\end{lstlisting}
@@ -107,7 +106,9 @@ Votre choix :
     \vspace{0.3cm}
 
   Toutes les fonctions de résolution font appel à des fonctions intermédiaires, caractéristiques du calcul matriciel, écrites dans le fichier \verb"matrices.c" présenté en annexe, page \pageref{sourceMatrices}.
+  
   \vspace{0.3cm}
+  Enfin, un générateur de matrices aléatoires (présenté en annexe page \pageref{generateur}) permet de créer les matrices demandées et de proposer à l'utilisateur de tenter une résolution.
 
 	\section{Compilation}
     La compilation est gérée par un \verb"makefile".\\
@@ -118,7 +119,7 @@ Votre choix :
 
 	\newpage
 	\section{Systèmes testés}
-	  Les matrices suivantes sont toutes symétriques définies positives à diagonale dominante. Nous avons choisi de prendre 10 systèmes pouvant être résolus par toutes les méthodes pour faciliter la comparaison des méthodes directes, itératives et directes-itératives.
+	  Les matrices suivantes sont toutes symétriques définies positives à diagonale dominante. Nous avons choisi de prendre 10 systèmes pouvant être résolus par toutes les méthodes pour faciliter la comparaison des méthodes directes et itératives.
 	  \vspace{0.5cm}
 	  
 	          Systèmes :
@@ -382,14 +383,15 @@ Votre choix :
            \end{itemize}
            }
     \end{enumerate}
+    \newpage
     \section{Méthode de Gauss}
       La méthode de Gauss permet de calculer une solution exacte en un nombre fini d'étapes.
       \newline
-      On cherche la matrice $N$ triangulaire supérieure telle que $A = M \cdot N$ avec $M$ la matrice identité.
+      On cherche la matrice $N$ triangulaire supérieure telle que $A = M \cdot N$ avec $M$ la matrice identité.\\
       \newline
-      Remarque : La résolution du système $M \cdot Y = B$ est évidente puisque la matrice $M$ est la matrice identité.
-      \newline
-      Critère d'application de l'algorithme :
+      \textbf{Remarque :} La résolution du système $M \cdot Y = B$ est évidente puisque la matrice $M$ est la matrice identité.\\
+      
+      Critères d'application de l'algorithme :
       \begin{itemize}
         \item{Les éléments diagonaux ne peuvent être nuls,}
         \item{Le déterminant ne doit pas être nul.}
@@ -873,6 +875,7 @@ Votre choix :
                     \vdots \\
                     0 \\
                  \end{pmatrix}$
+    \newpage
     \section{Méthode de Jacobi}
       Pour cette méthode, on doit avoir $M=D$ où $D$ est la diagonale de $A$, et $N=E+F$ où $-E$ et $-F$ sont respectivement les matrices composées des éléments du dessous et du dessus de la diagonale de $A$.\\
       Les critères d'application de la méthode de Jacobi sont les suivants :
@@ -880,12 +883,10 @@ Votre choix :
         \item{$A$ doit être définie positive,}
         \item{$A$ doit être à diagonale dominante.}
       \end{itemize}
-      La formule de calcul des composantes du vecteur x est la suivante :
-       \newline
+      La formule de calcul des composantes du vecteur x est la suivante :\\
       $x_{i}^{(k+1)} = \frac{1}{a_{ii}} \cdot \left [ b_{i} - \sum_{j=1}^{i-1} a_{ij} \cdot x_{j}^{(k)} - \sum_{j=i+1}^{n} a_{ij} \cdot x_{j}^{(k)} \right ] $
       \subsection{Programme}
         \lstinputlisting[style=customc]{jacobi.c}
-      \newpage
       \subsection{Résultats des tests}
         Rappels : la précision utilisée est $10^{-5}$ et le vecteur initial est
         $x^{(0)} = \begin{pmatrix}
@@ -1130,7 +1131,7 @@ Votre choix :
       \begin{itemize}
         \item{$A$ doit être définie positive,}
         \item{$A$ doit être à diagonale dominante,}
-        \item{$A$ doit être définie symétrique.}
+        \item{$A$ doit être symétrique.}
       \end{itemize}
       Cette méthode est plus restrictive que Jacobi, mais elle converge plus vite pour les matrices correspondant à ces critères d'application.\\
       
@@ -1384,9 +1385,9 @@ Votre choix :
      \section{Comparaison}
         On peut noter d'après les tests que les méthodes de résolution itératives fournissent des résultats de très bonne qualité puisque les écarts relatifs sont très proches de ceux des méthodes directes.
 
-        La principale différence entre les méthodes de Jacobi et Gauss-Seidel réside dans la vitesse de convergence. En effet, la méthode de Gauss-Seidel est beaucoup plus rapide, et ce indépendamment des dimensions de la matrice, comme en témoignent les résultats pour les systèmes ~\eqref{syst5} et ~\eqref{syst8}.
-	On peut ainsi en déduire que pour un vecteur $x^{0}$ donné, la vitesse convergence dépend entièrement des éléments constituants la matrice. \\
-	De plus, on peut remarquer que pour la méthode de jacobi, on peut calculer toutes les composantes du  vecteur $x^{0}$ en même temps alors que ceci est impossible avec la méthode de Gauss-Seidel.
+        La principale différence entre les méthodes de Jacobi et Gauss-Seidel réside dans la vitesse de convergence. En effet, la méthode de Gauss-Seidel est beaucoup plus rapide, et ce indépendamment des dimensions de la matrice, comme en témoignent les résultats pour les systèmes \eqref{syst5} et \eqref{syst8}.
+	On peut ainsi en déduire que pour un vecteur $x^{(0)}$ donné, la vitesse convergence dépend entièrement des éléments constituants la matrice. \\
+	De plus, on peut remarquer que pour la méthode de Jacobi, on peut calculer toutes les composantes du  vecteur $x^{(0)}$ en même temps alors que ceci est impossible avec la méthode de Gauss-Seidel.
         
         
   \chapter{Conclusion}
@@ -1401,6 +1402,7 @@ Votre choix :
     Les méthodes itératives sont très employées, et ce pour plusieurs raisons :
         \begin{itemize}
           \item{La qualité des résultats,}
+          \item{Le choix de la précision du résultat, permettant ainsi de s'affranchir de calculs inutiles,}
           \item{La rapidité des calculs par rapport aux méthodes directes.}
         \end{itemize}
     \vspace{0.3cm}
@@ -1408,9 +1410,9 @@ Votre choix :
 
     De plus, la vitesse de convergence de ces algorithmes est particulièrement intéressante, d'autant plus qu'on a le choix de la précision. La vitesse de résolution par les méthodes directes est d'autant plus faible que la taille des matrices est grande ; tandis que les méthodes itératives se rapprochent à chaque itération de toutes les valeurs du vecteur résultat. La taille des matrices n'influe donc pas ou très peu sur la vitesse de convergence.
 
-    Les méthodes directes implique des résultats exacts mais l'architecture d'un ordinateur ne peut pas obtenir cette exactitude. On a donc des méthodes directes coûteuses et plus ou moins précises selon le conditionnement du système traité. D'un autre coté, les méthodes itératives permettent des résultats approchés avec un contrôle de précision qu'on ne peut pas avoir avec une méthode directe et ces méthodes sont en général plus rapide.
+    Les méthodes directes impliquent des résultats exacts mais l'architecture d'un ordinateur ne peut pas obtenir cette exactitude. On a donc des méthodes directes coûteuses et plus ou moins précises selon le conditionnement du système traîté. D'un autre côté, les méthodes itératives permettent des résultats approchés avec un contrôle de précision qu'on ne peut pas avoir avec une méthode directe et ces méthodes sont en général plus rapides.
 
-    Enfin, même si les méthodes itératives sont plus efficaces que les méthodes directes, les 4 méthodes présentées et la sur-relaxation (présentée en annexe) ne sont pas des méthodes adaptées pour des systèmes de grande taille.
+    Enfin, même si les méthodes itératives sont plus efficaces que les méthodes directes, les 4 méthodes présentées et la sur-relaxation (présentée en annexe page \pageref{surrelaxation}) ne sont pas des méthodes adaptées pour des systèmes de grande taille.
     \newpage
   \chapter{Annexe}
     \section{Fonctions caractéristiques du calcul matriciel}
@@ -1419,7 +1421,7 @@ Votre choix :
       \newpage
     \section{Génération de matrices aléatoires}
       \lstinputlisting[style=customc]{generateur.h}
-      \lstinputlisting[style=customc]{generateur.c}
+      \lstinputlisting[style=customc, label=generateur]{generateur.c}
       \newpage
     \section{Méthode de Sur-relaxation}
     La méthode de Sur-relaxation est aussi une méthode itérative. Elle est semblable à la méthode de Gauss-Seidel dans son principe c'est-à-dire que l'algorithme n'utilise les valeurs de l'itération $k-1$ que dans le cas où il ne connaît pas encore celles de l'itération en cours.
@@ -1438,6 +1440,6 @@ Votre choix :
     $x_{i}^{(k+1)} = (1 - \omega) \cdot x_{i}^{(k)} +  \frac{\omega}{a_{ii}} \cdot \left [ b_{i} - \sum_{j=1}^{i-1} a_{ij} \cdot x_{j}^{(k+1)} - \sum_{j=i+1}^{n} a_{ij} \cdot x_{j}^{(k)} \right ] $
       \newline
       \subsection{Programme}
-        \lstinputlisting[style=customc]{surrelaxation.c}
+        \lstinputlisting[style=customc, label=surrelaxation]{surrelaxation.c}
   
 \end{document}

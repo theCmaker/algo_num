@@ -20,18 +20,12 @@ void cholesky (double ** a, double ** b, int n)
       double somme=0;
       if(k==i)
       {
-        for (j=0; j<k; j++)
-        {
-          somme=somme+r[i][j]*r[i][j]; //somme des carrés
-        }
+        for (j=0; j<k; j++) {somme=somme+r[i][j]*r[i][j]; }//somme des carrés
         r[i][k]=sqrt(a[i][k]-somme);
       }
       else
       {
-        for (j=0; j<k; j++)
-        {
-          somme=somme+r[i][j]*r[k][j];
-        }
+        for (j=0; j<k; j++) {somme=somme+r[i][j]*r[k][j];}
         r[i][k]=(1.0/r[k][k])*(a[i][k]-somme);
       }
     }
@@ -43,7 +37,6 @@ void cholesky (double ** a, double ** b, int n)
   
   /*Résolution de Ry=b*/
   double** y=solveTriangulaireInf(r,b,n);
-  
   /*Résolution de tRx=y*/
   double** x=solveTriangulaireSup(transpose(r,n),y,n);
   
@@ -52,9 +45,5 @@ void cholesky (double ** a, double ** b, int n)
   afficherMatrice(x,n,1);
 
   // libération mémoire
-  for (i=0; i<n; i++)
-  {
-    free(r[i]);
-  }
-  free(r);
+  for (i=0; i<n; i++) {free(r[i]);} free(r);
 }

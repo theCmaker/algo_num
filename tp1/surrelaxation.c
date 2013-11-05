@@ -7,9 +7,7 @@
 void surrelaxation (double** a, double** b, double** xInit, int n, double prec, double ohm)
 {
   if (ohm==1)
-  {
-    gaussseidel(a,b,xInit,n,prec);
-  }
+  {gaussseidel(a,b,xInit,n,prec);}
   else
   {
     int i, j, cpt;
@@ -42,12 +40,7 @@ void surrelaxation (double** a, double** b, double** xInit, int n, double prec, 
       afficherMatrice(xInit, n, 1);
     }
     //libération mémoire
-    for (i=0;i<n;i++)
-    {
-      free(ax[i]);
-      free(axb[i]);
-    }
-    free(ax);
-    free(axb);
+    for (i=0;i<n;i++) {free(ax[i]); free(axb[i]);}
+    free(ax);free(axb);
   }
 }

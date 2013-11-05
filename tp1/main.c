@@ -30,7 +30,6 @@ int main (int argc, char ** argv)
     printf("4. Résolution par Gauss-Seidel\n");
     printf("5. Résolution par Surrelaxation\n");
     printf("6. Génération de matrices carrées\n");
-    printf("7. Jeux de test\n");
     printf("0. Quitter\n");
     printf("Votre choix : ");
     scanf("%d", &choice);
@@ -112,8 +111,6 @@ int main (int argc, char ** argv)
           break;
         case 6:
           generatorMenu();
-          break;
-        case 7:
           break;
       }
       if (choice!=6)
