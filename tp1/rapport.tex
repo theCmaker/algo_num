@@ -1393,12 +1393,13 @@ Votre choix :
   \chapter{Conclusion}
   	Les méthodes directes de résolution de système d'équation sont utilisées afin de retrouver les solutions exactes ce qui implique que les calculs intermédiaires soient exacts eux aussi.
     \vspace{0.3cm}
+    
     La méthode de Gauss est plus facile à appliquer et ses opérations sont des divisions, additions et multiplications alors que Cholesky utilise en plus des calculs de carrés et de racines carrées, ce qui engendre des erreurs de précision supplémentaires. De plus, avec la résolution par la méthode de Cholesky, il faut résoudre un système triangulaire en plus, ce qui accentue encore les erreurs de calcul.
     
     Mais l'algorithme de Gauss oblige à calculer les éléments de façon séquentielle car une ligne $i$ dépend totalement de la ligne $i-1$ alors que ce n'est pas le cas avec la méthode de Cholesky.
     En effet, les méthodes directes accumulent les erreurs de précision, même si les résultats restent de bonne qualité.
 
-    \vspace{0.3cm}
+    \vspace{0.7cm}
     Les méthodes itératives sont très employées, et ce pour plusieurs raisons :
         \begin{itemize}
           \item{La qualité des résultats,}
@@ -1415,14 +1416,6 @@ Votre choix :
     Enfin, même si les méthodes itératives sont plus efficaces que les méthodes directes, les 4 méthodes présentées et la sur-relaxation (présentée en annexe page \pageref{surrelaxation}) ne sont pas des méthodes adaptées pour des systèmes de grande taille.
     \newpage
   \chapter{Annexe}
-    \section{Fonctions caractéristiques du calcul matriciel}
-      \lstinputlisting[style=customc, label=headerMatrices]{matrices.h}
-      \lstinputlisting[style=customc, label=sourceMatrices]{matrices.c}
-      \newpage
-    \section{Génération de matrices aléatoires}
-      \lstinputlisting[style=customc]{generateur.h}
-      \lstinputlisting[style=customc, label=generateur]{generateur.c}
-      \newpage
     \section{Méthode de Sur-relaxation}
     La méthode de Sur-relaxation est aussi une méthode itérative. Elle est semblable à la méthode de Gauss-Seidel dans son principe c'est-à-dire que l'algorithme n'utilise les valeurs de l'itération $k-1$ que dans le cas où il ne connaît pas encore celles de l'itération en cours.
     \newline
@@ -1441,5 +1434,13 @@ Votre choix :
       \newline
       \subsection{Programme}
         \lstinputlisting[style=customc, label=surrelaxation]{surrelaxation.c}
+    \section{Fonctions caractéristiques du calcul matriciel}
+      \lstinputlisting[style=customc, label=headerMatrices]{matrices.h}
+      \lstinputlisting[style=customc, label=sourceMatrices]{matrices.c}
+      \newpage
+    \section{Génération de matrices aléatoires}
+      \lstinputlisting[style=customc]{generateur.h}
+      \lstinputlisting[style=customc, label=generateur]{generateur.c}
+      \newpage
   
 \end{document}
