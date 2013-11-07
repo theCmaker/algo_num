@@ -91,7 +91,7 @@ MENU PRINCIPAL : RESOLUTION D'EQUATIONS LINEAIRES
 Votre choix : 
 	\end{lstlisting}
 	
-	Toutes les fonctions de résolution font appel à des fonctions adaptées aux matrices, écrites dans le fichier \verb"matrices.c".
+	Nous avons choisi de coder les réels en double précision (\verb"double") pour gagner en précision, même si cela double la capacité mémoire nécessaire par rapport à la simple précision (\verb"float").
     \vspace{0.3cm}
     
     Chaque méthode de résolution reçoit les matrices (à éléments réels) générées auparavant (juste après le choix de la méthode dans le menu) en arguments.
@@ -108,7 +108,7 @@ Votre choix :
   Toutes les fonctions de résolution font appel à des fonctions intermédiaires, caractéristiques du calcul matriciel, écrites dans le fichier \verb"matrices.c" présenté en annexe, page \pageref{sourceMatrices}.
   
   \vspace{0.3cm}
-  Enfin, un générateur de matrices aléatoires (présenté en annexe page \pageref{generateur}) permet de créer les matrices demandées et de proposer à l'utilisateur de tenter une résolution.
+  Enfin, un générateur de matrices aléatoires (présenté en annexe page \pageref{generateur}) permet à travers un sous-menu de créer les matrices demandées et de proposer à l'utilisateur de tenter une résolution.
 
 	\section{Compilation}
     La compilation est gérée par un \verb"makefile".\\
@@ -849,17 +849,16 @@ Votre choix :
          \renewcommand{\arraystretch}{1}
     \newpage
     \section{Comparaison}
-    Cette section permet de synthétiser les observations sur les résultats obtenus et d'évaluer les avantages et inconvénients des méthodes.Pour chaque méthode, on remarque que les résultats obtenus sur une précision de $10^{-5}$ sont les mêmes même si on peut supposer qu'ils diffèrent ensuite.Cependant, même avec une faible précision, l'écart avec les valeurs réelles est très faible (toujours à moins de 0.01\%).
-    De plus, la vitesse de calcul des deux algorithmes est rapide même sur une matrice 10x10 et équivalente car leur complexité est $O(n^3)$.
+    Cette section permet de synthétiser les observations sur les résultats obtenus et d'évaluer les avantages et inconvénients des méthodes.Pour chaque méthode, on remarque que les résultats obtenus sur une précision de $10^{-5}$ sont les mêmes même si on peut supposer qu'ils diffèrent ensuite. Cependant, même avec une faible précision, l'écart avec les valeurs réelles est très faible (toujours à moins de 0.01\%).
+    De plus, la vitesse de calcul des deux algorithmes est rapide même sur une matrice de taille $10\cdot10$ et équivalente car leur complexité est $O(n^3)$.
 
     \vspace{0.7cm}
-    Les conditions de la méthode de Gauss sont relativement vérifiables. En effet, pour s'assurer l'existence d'une unique solution, il suffit de vérifier que le déterminant n'est pas nul.Cette condition peut se vérifier directement après mise en échelon de la matrice en faisant le produit des éléments diagonaux.
-    Cependant, les calculs se font les uns à la suite des autres, on a besoin que la ligne i-1 soit complètement modifiée pour opérer sur la ligne i.
+    Les conditions de la méthode de Gauss sont relativement vérifiables. En effet, pour s'assurer l'existence d'une unique solution, il suffit de vérifier que le déterminant n'est pas nul. Cette condition peut se vérifier directement après mise en échelon de la matrice en faisant le produit des éléments diagonaux.\\
+    Cependant, les calculs se font les uns à la suite des autres, on a besoin que la ligne $i-1$ soit complètement modifiée pour opérer sur la ligne $i$.
 
     \vspace{0.7cm}
     L'avantage de la méthode de Cholesky est la possibilité de faire les calculs en parallèle c'est-à-dire que lorsque les éléments avant la diagonale d'une ligne $i$ d'une itération $k$ sont remplis, on peut calculer l'élément diagonal de la ligne $i$ et continuer la recherche des éléments de l'itération $k$ manquants.
-    Mais l'inconvénient majeur de la méthode de Cholesky est la vérification de  l'applicabilité de la méthode. En effet, pour savoir si la matrice est définie positive, on doit passer par le calcul
-    des valeurs propres de la matrice qui est énormément coûteux en nombre d'opérations.
+    Mais l'inconvénient majeur de la méthode de Cholesky est la vérification de  l'applicabilité de la méthode. En effet, pour savoir si la matrice est définie positive, on doit passer par le calcul des valeurs propres de la matrice qui est énormément coûteux en opérations (N.B. : Dans notre programme, les résolutions sont effectuées sans vérification du conditionnement, les résultats sont donc plus rapides qu'avec vérification.).
     
      
   \chapter{Méthodes itératives}
@@ -1095,7 +1094,7 @@ Votre choix :
               \frac{1435}{203107} \\
               \frac{1712}{203107} \\
               \frac{1723}{203107} \\
-          \end{pmatrix}$
+          \end{pmatrix}$ombre
           &
           $0.03881495963$
           &
@@ -1392,17 +1391,17 @@ Votre choix :
         La principale différence entre les méthodes de Jacobi et Gauss-Seidel réside dans la vitesse de convergence. En effet, la méthode de Gauss-Seidel est beaucoup plus rapide, et ce indépendamment des dimensions de la matrice, comme en témoignent les résultats pour les systèmes \eqref{syst5} et \eqref{syst8}.
         
         \vspace{0.7cm}
-	On peut ainsi en déduire que pour un vecteur $x^{(0)}$ donné, la vitesse convergence dépend entièrement des éléments constituants la matrice.
+	On peut ainsi en déduire que pour un vecteur $x^{(0)}$ donné, la vitesse de convergence dépend entièrement des éléments constituants la matrice et le vecteur résultat.
 	
 	\vspace{0.7cm}
 	De plus, on peut remarquer que pour la méthode de Jacobi, on peut calculer toutes les composantes du  vecteur $x^{(0)}$ en même temps alors que ceci est impossible avec la méthode de Gauss-Seidel.
         
         
   \chapter{Conclusion}
-  	Les méthodes directes de résolution de système d'équation sont utilisées afin de retrouver les solutions exactes ce qui implique que les calculs intermédiaires soient exacts eux aussi.
+  	Les méthodes directes de résolution de système d'équations sont utilisées afin de retrouver les solutions exactes, ce qui implique que les calculs intermédiaires soient exacts eux aussi.
     \vspace{0.3cm}
     
-    La méthode de Gauss est plus facile à appliquer et ses opérations sont des divisions, additions et multiplications alors que Cholesky utilise en plus des calculs de carrés et de racines carrées, ce qui engendre des erreurs de précision supplémentaires. De plus, avec la résolution par la méthode de Cholesky, il faut résoudre un système triangulaire en plus, ce qui accentue encore les erreurs de calcul.
+    La méthode de Gauss est plus facile à appliquer et les opérations employées sont des divisions, additions et multiplications ; tandis que Cholesky utilise également des calculs de carrés et de racines carrées, ce qui engendre des erreurs de précision supplémentaires. De plus, avec la résolution par la méthode de Cholesky, il faut résoudre un système triangulaire en plus, ce qui accentue encore les erreurs de calcul.
     
     \vspace{0.3cm}
     Mais l'algorithme de Gauss oblige à calculer les éléments de façon séquentielle car une ligne $i$ dépend totalement de la ligne $i-1$ alors que ce n'est pas le cas avec la méthode de Cholesky.
@@ -1421,10 +1420,10 @@ Votre choix :
     De plus, la vitesse de convergence de ces algorithmes est particulièrement intéressante, d'autant plus qu'on a le choix de la précision. La vitesse de résolution par les méthodes directes est d'autant plus faible que la taille des matrices est grande ; tandis que les méthodes itératives se rapprochent à chaque itération de toutes les valeurs du vecteur résultat. La taille des matrices n'influe donc pas ou très peu sur la vitesse de convergence.
 
     \vspace{0.7cm}
-    Les méthodes directes impliquent des résultats exacts mais l'architecture d'un ordinateur ne peut pas obtenir cette exactitude. On a donc des méthodes directes coûteuses et plus ou moins précises selon le conditionnement du système traîté. D'un autre côté, les méthodes itératives permettent des résultats approchés avec un contrôle de précision qu'on ne peut pas avoir avec une méthode directe et ces méthodes sont en général plus rapides.
+    Les méthodes directes impliquent des résultats exacts mais l'architecture d'un ordinateur ne peut pas obtenir cette exactitude. On a donc des méthodes directes coûteuses et plus ou moins précises selon le conditionnement du système traîté. D'un autre côté, les méthodes itératives permettent des résultats approchés avec un contrôle de précision qu'on ne peut pas avoir avec une méthode directe et ces méthodes sont en général plus rapides, surtout sur des systèmes de grande taille.
 
     \vspace{0.7cm}
-    Enfin, même si les méthodes itératives sont plus efficaces que les méthodes directes, les 4 méthodes présentées et la sur-relaxation (présentée en annexe page \pageref{surrelaxation}) ne sont pas des méthodes adaptées pour des systèmes de grande taille.
+    Enfin, même si les méthodes itératives sont plus efficaces que les méthodes directes, les 4 méthodes présentées et la sur-relaxation (présentée en annexe page \pageref{surrelaxation}) ne sont pas des méthodes adaptées pour des systèmes de très grande taille.
     \newpage
   \chapter{Annexe}
     \section{Méthode de Sur-relaxation}
