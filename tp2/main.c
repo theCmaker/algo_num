@@ -37,23 +37,27 @@ int main (int argc, char ** argv)
   while (i!=0)
   {
     printf("\nQuelle résolution utiliser ?\n");
-    printf("1- Newton\n");
-    printf("2- Neuville\n");
-    printf("3- Régression Linéaire\n");
+	 printf("1-Lagrange")
+    printf("2- Newton\n");
+    printf("3- Neuville\n");
+    printf("4- Régression Linéaire\n");
     printf("0- Quitter\n");
     printf("Votre choix : ");
     scanf("%d", &i);
     switch (i)
     {
-      case 1: 
+		 case 1:
+	printf("Résolution par Lagrange...\n");
+// lagrange(tab,n);
+      case 2: 
 	printf("Résolution par Newton ... \n");
 	newton(tab,n);
 	break;
-      case 2:
+      case 3:
 	printf("Résolution par Neuville ... \n");
 // 	neuville(tab,n);
 	break;
-      case 3:
+      case 4:
 	printf("Résolution par Régression linéaire ... \n");
 // 	regressionlineaire(tab,n);
 	break;	
