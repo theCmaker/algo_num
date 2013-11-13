@@ -10,7 +10,7 @@ int main (int argc, char ** argv)
 {
   int n, i, j;
   FILE* fichier = NULL;
-  if (argc>=1) //demande sortie LaTeX -> ouverture du fichier resultat
+  if (argc>1) //demande sortie LaTeX -> ouverture du fichier resultat
   {
     fichier=fopen("resultat", "a+");
   }
@@ -37,7 +37,7 @@ int main (int argc, char ** argv)
   while (i!=0)
   {
     printf("\nQuelle résolution utiliser ?\n");
-	 printf("1-Lagrange")
+    printf("1-Lagrange")
     printf("2- Newton\n");
     printf("3- Neuville\n");
     printf("4- Régression Linéaire\n");
@@ -46,9 +46,10 @@ int main (int argc, char ** argv)
     scanf("%d", &i);
     switch (i)
     {
-		 case 1:
+      case 1:
 	printf("Résolution par Lagrange...\n");
-// lagrange(tab,n);
+// 	lagrange(tab,n);
+	break;
       case 2: 
 	printf("Résolution par Newton ... \n");
 	newton(tab,n);
@@ -60,10 +61,10 @@ int main (int argc, char ** argv)
       case 4:
 	printf("Résolution par Régression linéaire ... \n");
 // 	regressionlineaire(tab,n);
-	break;	
+	break;
     }
   }
-  if (argc>=1)
+  if (argc>1)
   {
     fclose(fichier);
   }
