@@ -14,18 +14,24 @@ int main (int argc, char ** argv)
   {
     fichier=fopen("resultat", "a+");
   }
-  polynome* P= (polynome*) malloc(sizeof(polynome));
+  polynome* P1= (polynome*) malloc(sizeof(polynome));
+  polynome* P2= (polynome*) malloc(sizeof(polynome));
+  polynome* P3= (polynome*) malloc(sizeof(polynome));
   double* tab=(double*) malloc(4*sizeof(double));
-  tab[0]=1;
-  tab[1]=2;
-  tab[2]=3;
-  tab[3]=4;
-  P=creerPoly(4, "tableau", tab); 
-  afficherPoly(P, "console");
+  tab[0]=+1.;
+  tab[1]=+2.;
+  tab[2]=+3.;
+  tab[3]=+4.;
+  P1=creerPoly(4, "tableau", tab); 
+  afficherPoly(P1, "console");
+  P2=creerPoly(4, "valeur", 1., 2., 3., 4.); 
+  afficherPoly(P2, "console");
+  P3=mulPoly(P1,P2);
+  afficherPoly(P3, "console");
+  
   if (argc>1)
   {
-    P=creerPoly(4, "valeur", 1., 2., 3., 4.); //bien veiller à mettre des points
-    afficherPoly(P, "latex", fichier);
+    afficherPoly(P1, "latex", fichier);
   }
   
 //   printf("Interpolation et Approximation\n\n");

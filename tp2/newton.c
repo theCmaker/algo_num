@@ -41,7 +41,7 @@ void newton (double ** tab, int n)
     tmp->poln=creerPoly(1,"valeurs",t[n-1-i][n-1-i]); //??
     tabP[i]->d=i;
     tabP[i]->poln=(double*) malloc((i+1)*sizeof(double));
-//     tab[i]->poln=addPoly(tmp,multPoly(/*Créer polynome*/,tabP[i-1]))
+//     tabP[i]->poln=addPoly(tmp,multPoly(/*Créer polynome*/,tabP[i-1]))
   }
   //calcul du polynome
   polynome* P=creerPoly(1,"valeur", t[]);

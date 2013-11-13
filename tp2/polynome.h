@@ -19,7 +19,7 @@ void afficherPoly(polynome* P, char* mode, ...);
 // Le mode peut-être "console" ou "latex". Le mode console affiche dans la console alors que le latex écrit dans un fichier sous le format maths de latex.
 // Si le mode latex est utilisé, le paramètre optionnel est le pointeur FILE *.
 
-polynome* redimensionnerPoly(polynome* P1);
+void redimensionnerPoly(polynome* P1);
 // Enleve les 0 inutile dans le polynome. Attention, l'adresse de résultat ne sera pas la même que celle de P1.
 
 

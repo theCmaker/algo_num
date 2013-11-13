@@ -83,9 +83,18 @@ void afficherPoly(polynome* P, char* mode, ...)
 }
 
 
-polynome* redimensionnerPoly(polynome* P1)
+void redimensionnerPoly(polynome* P1)
 {
-	
+  int degre=P1->d;
+  while((P1->poln[degre])==0)
+  {
+    degre--;
+  }
+  if(degre!=P1->d)
+  {
+    P1->d=degre;
+    P1->poln= (double*) realloc(P1->poln, (degre+1)*sizeof(double));
+  }
 }
 
 
@@ -129,7 +138,7 @@ polynome* addPoly(polynome* P1, polynome* P2)
       P->poln[i] = P1->poln[i] + P2->poln[i];
     }
   }
-  P=redimensionnerPoly(P);
+  redimensionnerPoly(P);
   return P;
 }
 
@@ -144,31 +153,31 @@ polynome* mulSPoly(double s, polynome* P1)
   {
     P->poln[i] = s*P1->poln[i] ;
   }
-  P = redimensionnerPoly(P);
+  redimensionnerPoly(P); //redimensionnement nécessaire si le scalaire est nul.
   return P;
 }
 
 
 polynome* mulPoly(polynome * P1, polynome* P2)
 {
-  int i,j, k;
-  polynome* P;
+  int i,j;
+  polynome* P=(polynome*)malloc(sizeof(polynome));
   P->d = P1->d + P2->d ;
   P->poln = (double*) malloc((1+P->d)*sizeof(double));
-
-  for(i=0;i<= P->d; i++)
+  
+  for(i=0; i<=P->d; i++)
   {
     P->poln[i] = 0;
   }
   
-  for(i=0;i<=P->d;i++)
+  for(i=0; i<=(P2->d); i++)
   {
-    for(j=0; j<i;j++)
+    for(j=0; j<=(P1->d); j++)
     {
-      P->poln[i+j] = P->poln[i+j] + P1->poln[i]*P2->poln[j];
+      P->poln[i+j] = P->poln[i+j] + (P2->poln[i])*(P1->poln[j]);
     }
   }
   
-  P=redimensionnerPoly(P);
+  redimensionnerPoly(P);
   return P;
 }
