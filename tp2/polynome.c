@@ -8,13 +8,13 @@
 polynome* creerPoly(int c,char* mode, ...)
 {
   int i;
-  polynome* P;
-  P->d = c-1
+  polynome* P=(polynome*) malloc(sizeof(polynome));
+  P->d = c-1;
   P->poln = (double*) malloc(c*sizeof(double));
-  if ((strcmp(mode,"valeur")))//si mode = "valeur"
+  if ((strcmp(mode,"valeur"))==0)//si mode = "valeur"
   {
     va_list ap;
-    va_start(ap,mode);
+    va_start(ap, mode);
     for (i=0; i<c; i++)
     {
       P->poln[i]=va_arg(ap, double);
@@ -33,6 +33,7 @@ polynome* creerPoly(int c,char* mode, ...)
     free(tmp);
     va_end(ap);
   }
+  return P;
 }
 
 
@@ -49,14 +50,14 @@ void afficherPoly(polynome* P, char* mode, ...)
       if(P->poln[i] > 0) 
       {
 	if(i != 0) { printf("+"); }
-	printf("%f * x^%d ", P->poln[i],i);
+	printf("(%f * x^%d)", P->poln[i],i);
       }
       if(P->poln[i] < 0) 
       {
-	printf("- %f * x^%d", -(P->poln[i]), i);
+	printf("-(%f * x^%d)", -(P->poln[i]), i);
       }
-
     }
+    printf("\n");
   }
   else
   {
@@ -82,10 +83,10 @@ void afficherPoly(polynome* P, char* mode, ...)
 }
 
 
-// polynome* redimensionnerPoly(polynome* P1)
-// {
-// 	
-// }
+polynome* redimensionnerPoly(polynome* P1)
+{
+	
+}
 
 
 polynome* addPoly(polynome* P1, polynome* P2)
@@ -96,7 +97,7 @@ polynome* addPoly(polynome* P1, polynome* P2)
   if(P1->d > P2->d) // Deg(P1) > Deg(P2)
   {
     P->d = P1->d;
-    P->poln = (double*) malloc((1+P1->d)*sizeof(double);
+    P->poln = (double*) malloc((1+P1->d)*sizeof(double));
     for(i=0;i <= P2->d;i++)
     {
       P->poln[i] = P1->poln[i] + P2->poln[i];
@@ -109,7 +110,7 @@ polynome* addPoly(polynome* P1, polynome* P2)
   else if (P1->d < P2->d) // Deg(P2) > Deg(P1)
   {
     P->d = P2->d;
-    P->poln = (double*) malloc((1+P2->d)*sizeof(double);
+    P->poln = (double*) malloc((1+P2->d)*sizeof(double));
     for(i=0;i <= P1->d;i++)
     {
       P->poln[i] = P1->poln[i] + P2->poln[i];
@@ -122,7 +123,7 @@ polynome* addPoly(polynome* P1, polynome* P2)
   else // Deg(P2) = Deg(P1)
   {
     P->d =  P2->d;
-    P->poln = (double*) malloc((1+P2->d)*sizeof(double);
+    P->poln = (double*) malloc((1+P2->d)*sizeof(double));
     for(i=0;i <= P1->d;i++)
     {
       P->poln[i] = P1->poln[i] + P2->poln[i];
@@ -137,7 +138,7 @@ polynome* mulSPoly(double s, polynome* P1)
   int i;
   polynome* P;
   P->d = P1->d;
-  P->poln = (double*) malloc((1+P1->d)*sizeof(double);
+  P->poln = (double*) malloc((1+P1->d)*sizeof(double));
   
   for(i=0;i <= P1->d;i++)
   {
