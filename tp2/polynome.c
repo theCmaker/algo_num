@@ -49,12 +49,16 @@ void afficherPoly(polynome* P, char* mode, ...)
     {
       if(P->poln[i] > 0) 
       {
-	if(i != 0) { printf("+"); }
-	printf("(%f * x^%d)", P->poln[i],i);
+	if(i != 0) { printf(" + "); }
+	if(i == 0) { printf("%f",P->poln[i]); }
+	else if(i == 1) { printf("%f * x",P->poln[i]); }
+	else { printf("%f * x^%d", P->poln[i],i); }
       }
       if(P->poln[i] < 0) 
       {
-	printf("-(%f * x^%d)", -(P->poln[i]), i);
+			if(i == 0) { printf("-%f",-(P->poln[i])); }
+			else if(i == 1) { printf("-%f * x",-(P->poln[i])); }
+			else { printf("-%f * x^%d", -(P->poln[i]), i); }
       }
     }
     printf("\n");
@@ -69,12 +73,16 @@ void afficherPoly(polynome* P, char* mode, ...)
     {
       if(P->poln[i] > 0)
       {
-	if(i != 0) { fprintf(f,"+ "); }
-	fprintf(f,"%f \\cdot x^{%d} ", P->poln[i],i);
+			if(i != 0) { fprintf(f," + "); }
+			if(i == 0) { fprintf(f,"%f",P->poln[i]); }
+			else if(i == 1) { fprintf(f,"%f \\cdot x",P->poln[i]); }
+			else { fprintf(f,"%f \\cdot x^{%d} ", P->poln[i],i); }
       }
       if(P->poln[i] < 0)
       {
-	fprintf(f,"- %f \\cdot x^{%d} ", -(P->poln[i]), i);
+			if(i == 0) { fprintf(f,"-%f", -(P->poln[i])); }
+			else if(i == 1) { fprintf(f,"-%f \\cdot x", -(P->poln[i])); }
+			else { fprintf(f,"- %f \\cdot x^{%d} ", -(P->poln[i]), i); }
       }
     }
     fprintf(f,"$\n");
