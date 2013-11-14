@@ -33,9 +33,9 @@ polynome* creerPoly(int c,char* mode, ...)
     free(tmp);
     va_end(ap);
   }
+  redimensionnerPoly(P);
   return P;
 }
-
 
 void afficherPoly(polynome* P, char* mode, ...)
 {
@@ -56,9 +56,10 @@ void afficherPoly(polynome* P, char* mode, ...)
       }
       if(P->poln[i] < 0) 
       {
-	if(i == 0) { printf("-%f",-(P->poln[i])); }
-	else if(i == 1) { printf("-%f * x",-(P->poln[i])); }
-	else { printf("-%f * x^%d", -(P->poln[i]), i); }
+	printf(" - ");
+	if(i == 0) { printf("%f",-(P->poln[i])); }
+	else if(i == 1) { printf("%f * x",-(P->poln[i])); }
+	else { printf("%f * x^%d", -(P->poln[i]), i); }
       }
     }
     printf("\n");
@@ -90,6 +91,22 @@ void afficherPoly(polynome* P, char* mode, ...)
   }
 }
 
+void menuAffichage(polynome* P)
+{
+  FILE* fichier=fopen("resultat", "a+");
+  int choix; // permet de choisir les options voulues
+  printf("Voulez-vous afficher le polynome dans la sortie standard ? 1-Oui Autre-Non");
+  scanf("%d",&choix);
+  if(choix ==1)
+  {
+    afficherPoly(P,"console");
+  }
+  else
+  {
+    afficherPoly(P,"latex",fichier);
+  }
+  fclose(fichier);
+}
 
 void redimensionnerPoly(polynome* P1)
 {
@@ -105,12 +122,11 @@ void redimensionnerPoly(polynome* P1)
   }
 }
 
-
 polynome* addPoly(polynome* P1, polynome* P2)
 {
   // Rappel : Deg(P1+P2) <= max(Deg(P1),Deg(P2))
   int i;
-  polynome* P;
+  polynome* P=(polynome*)malloc(sizeof(polynome));
   if(P1->d > P2->d) // Deg(P1) > Deg(P2)
   {
     P->d = P1->d;
@@ -153,7 +169,7 @@ polynome* addPoly(polynome* P1, polynome* P2)
 polynome* mulSPoly(double s, polynome* P1)
 {
   int i;
-  polynome* P;
+  polynome* P=(polynome*) malloc(sizeof(polynome));
   P->d = P1->d;
   P->poln = (double*) malloc((1+P1->d)*sizeof(double));
   
@@ -164,7 +180,6 @@ polynome* mulSPoly(double s, polynome* P1)
   redimensionnerPoly(P); //redimensionnement nécessaire si le scalaire est nul.
   return P;
 }
-
 
 polynome* mulPoly(polynome * P1, polynome* P2)
 {
@@ -185,7 +200,6 @@ polynome* mulPoly(polynome * P1, polynome* P2)
       P->poln[i+j] = P->poln[i+j] + (P2->poln[i])*(P1->poln[j]);
     }
   }
-  
   redimensionnerPoly(P);
   return P;
 }
