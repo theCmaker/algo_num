@@ -43,14 +43,20 @@ int main (int argc, char ** argv)
 	}
 	printf("\n");
 	afficherPoly(P4,"console");
-	afficherPoly(P4,"latex",fichier);
+	if(argc>1)
+	{
+	  afficherPoly(P4,"latex",fichier);
+	}
 	redimensionnerPoly(P4);
 	for(i=0;i<=P4->d;i++)
 	{
 		printf("poln[%d] : %f\n",i,P4->poln[i]);
 	}
 	afficherPoly(P4,"console");
-	afficherPoly(P4,"latex",fichier);
+	if(argc>1)
+	{
+	  afficherPoly(P4,"latex",fichier);
+	}
 	
 //   if (argc>1)
 //   {
