@@ -34,7 +34,7 @@ int main (int argc, char ** argv)
     afficherPoly(P1, "latex", fichier);
   }
   
-//   printf("Interpolation et Approximation\n\n");
+//   printf("Menu principal : Interpolation et Approximation\n\n");
 //   printf("Entrez n le nombre de points : ");
 //   scanf("%d", &n);
 //   double** tab= (double**) malloc(n*sizeof(double*));
