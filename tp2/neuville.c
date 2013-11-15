@@ -35,5 +35,13 @@ void neuville (double ** tab, int n)
   printf("\n");
   
   //libération mémoire
-
+ for(i=0;i<n;i++)
+ {
+// 	for(k=0;k<n;k++)
+// 	{
+// 		free(t[i][k]->poln);
+// 	}
+	free(t[i]);
+ }
+ free(t);
 }
