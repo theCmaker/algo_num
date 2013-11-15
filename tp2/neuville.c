@@ -28,10 +28,12 @@ void neuville (double ** tab, int n)
     }
   }
   
-//   t[i][k]=(t[i][k-1]-t[k-1][k-1])/(tab[0][i]-tab[0][k-1]);
-//   redimensionnerPoly(t[n-1][n-1]);
+  redimensionnerPoly(t[n-1][n-1]);
   
   //affichage
   menuAffichage(t[n-1][n-1]);
   printf("\n");
+  
+  //libération mémoire
+
 }

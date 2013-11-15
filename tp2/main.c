@@ -31,7 +31,9 @@ int main (int argc, char ** argv)
     printf("1- Lagrange\n");
     printf("2- Newton\n");
     printf("3- Neuville\n");
-    printf("4- Régression Linéaire\n");
+    printf("4- Régression Linéaire par une droite\n");
+	 printf("5- Regression Linéaire par une fonction exponentielle\n");
+	 printf("6- Regression Linéaire par une fonction puissance\n");
     printf("0- Quitter\n");
     printf("Votre choix : ");
     scanf("%d", &i);
@@ -50,7 +52,15 @@ int main (int argc, char ** argv)
 	neuville(tab,n);
 	break;
       case 4:
-	printf("Résolution par Régression linéaire ... \n");
+	printf("Résolution par Régression linéaire par une droite ... \n");
+	reglinD(tab,n);
+	break;
+      case 5:
+	printf("Résolution par Régression linéaire par une fonction exponentielle... \n");
+// 	regressionlineaire(tab,n);
+	break;
+      case 6:
+	printf("Résolution par Régression linéaire par une fonction puissance... \n");
 // 	regressionlineaire(tab,n);
 	break;
     }
