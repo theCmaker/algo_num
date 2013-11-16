@@ -65,64 +65,63 @@ basicstyle=\ttfamily,
 }
 \renewcommand{\lstlistingname}{\textsc{Figure}}
 \lstdefinestyle{apercu}{
-   	xleftmargin=2cm,
-	xrightmargin=2cm,
-	frame=single,
-	breaklines=true,
-	breakatwhitespace=true,
-	breakindent=5pt,
-	postbreak=\space,
-	captionpos=b,
-   	escapeinside={\%*}{*)},
-   	showstringspaces=false,
-   	caption=Apercu : \lstname,
+  xleftmargin=2cm,
+  xrightmargin=2cm,
+  frame=single,
+  breaklines=true,
+  breakatwhitespace=true,
+  breakindent=5pt,
+  postbreak=\space,
+  captionpos=b,
+  escapeinside={\%*}{*)},
+  showstringspaces=false,
+  caption=Apercu : \lstname,
 }
 \begin{document}
-  \shorthandoff{:}
   \maketitle
   \tableofcontents
 
   \chapter{Préambule}
-  	\section{Structure du programme}
-		Nous avons conçu un programme principal avec menus, présenté sous la forme suivante :
-		\begin{lstlisting}[style=apercu, name=Menu Principal]
-Menu principal : Interpolation et Approximation
+    \section{Structure du programme}
+    Nous avons conçu un programme principal avec menus, présenté sous la forme suivante :
+    \begin{lstlisting}[style=apercu, name=Menu Principal]
+    Menu principal : Interpolation et Approximation
 
-Quelle résolution utiliser ?
-1- Lagrange
-2- Newton
-3- Neuville
-4- Régression Linéaire
-0- Quitter
-		\end{lstlisting}
+    Quelle résolution utiliser ?
+    1- Lagrange
+    2- Newton
+    3- Neuville
+    4- Régression Linéaire
+    0- Quitter
+    \end{lstlisting}
   \chapter{Interpolation}
-	\section{Méthode de Lagrange}
-		\subsection{Programme}
-        \lstinputlisting[style=customc]{lagrange.c}
-		\subsection{Résultats de tests}
-			\renewcommand{\arraystretch}{2}
-			\renewcommand{\arraystretch}{1}
-	\section{Méthode de Newton}
-        \lstinputlisting[style=customc]{newton.c}
-		\subsection{Programme}
-		\subsection{Résultats de tests}
-			\renewcommand{\arraystretch}{2}
-			\renewcommand{\arraystretch}{1}
-	\section{Méthode de Neville}
-		\subsection{Programme}
-        \lstinputlisting[style=customc]{neuville.c}
-		\subsection{Résultats de tests}
-			\renewcommand{\arraystretch}{2}
-			\renewcommand{\arraystretch}{1}
-	\section{Comparaison}
+    \section{Méthode de Lagrange}
+      \subsection{Programme}
+	\lstinputlisting[style=customc]{lagrange.c}
+      \subsection{Résultats de tests}
+	\renewcommand{\arraystretch}{2}
+	\renewcommand{\arraystretch}{1}
+    \section{Méthode de Newton}
+      \subsection{Programme}
+	\lstinputlisting[style=customc]{newton.c}
+      \subsection{Résultats de tests}
+	\renewcommand{\arraystretch}{2}
+	\renewcommand{\arraystretch}{1}
+    \section{Méthode de Neville}
+      \subsection{Programme}
+	\lstinputlisting[style=customc]{neuville.c}
+      \subsection{Résultats de tests}
+	\renewcommand{\arraystretch}{2}
+	\renewcommand{\arraystretch}{1}
+    \section{Comparaison}
   \chapter{Approximation}
-	\section{Regression linéaire}
-		\subsection{Programme}
-		\includegraphics{graph.pdf}
-        \lstinputlisting[style=customc]{reglin.c}
-		\subsection{Résultats de tests}
-			\renewcommand{\arraystretch}{2}
-			\renewcommand{\arraystretch}{1}
-	\chapter{Conclusion}
+    \section{Regression linéaire}
+      \subsection{Programme}
+	\lstinputlisting[style=customc]{reglin.c}
+      \subsection{Résultats de tests}
+	\includegraphics{graphiques/pdf_output/reglin.pdf}
+	\renewcommand{\arraystretch}{2}
+	\renewcommand{\arraystretch}{1}
+  \chapter{Conclusion}
 
 \end{document}
