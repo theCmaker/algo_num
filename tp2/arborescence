@@ -1,0 +1,11 @@
+main.c
+neuville.c
+newton.c
+polynome.c
+reglin.c
+lagrange.h
+neuville.h
+newton.h
+polynome.h
+reglin.h
+makefile
