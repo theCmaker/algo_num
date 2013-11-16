@@ -27,7 +27,7 @@ void neuville (double ** tab, int n)
       t[i][k]=mulSPoly((1/((tab[0][i-k])-(tab[0][i]))),addPoly(mulPoly(creerPoly(2,"valeur", -(tab[0][i]), 1.), t[i-1][k-1]), mulPoly(creerPoly(2, "valeur", tab[0][i-k], -1.),t[i][k-1])));
     }
   }
-  
+  //polynome à retourner
   redimensionnerPoly(t[n-1][n-1]);
   
   //affichage
@@ -35,13 +35,14 @@ void neuville (double ** tab, int n)
   printf("\n");
   
   //libération mémoire
- for(i=0;i<n;i++)
- {
-// 	for(k=0;k<n;k++)
-// 	{
-// 		free(t[i][k]->poln);
-// 	}
-	free(t[i]);
- }
- free(t);
+  for(i=0;i<n;i++)
+  {
+    for(k=0;k<i;k++)
+    {
+      free(t[i][k]->poln);
+      free(t[i][k]);
+    }
+    free(t[i]);
+  }
+  free(t);
 }

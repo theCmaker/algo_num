@@ -48,18 +48,12 @@ void newton (double ** tab, int n)
   menuAffichage(tabP[n-1]);
   printf("\n");
   
-  //libération mémoire
   for(i=0;i<n;i++)
   {
-	free(t[i]);
-  }
-  free(t);
-  
-  for(i=0;i<n;i++)
-  {
-	free(tabP[i]->poln);
-	free(tabP[i]);
+    free(tabP[i]->poln);
+    free(tabP[i]);
+    free(t[i]);
   }
   free(tabP);
-  
+  free(t);
 }

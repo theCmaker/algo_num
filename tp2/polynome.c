@@ -95,7 +95,7 @@ void menuAffichage(polynome* P)
 {
   FILE* fichier=fopen("resultat", "a+");
   int choix; // permet de choisir les options voulues
-  printf("Voulez-vous afficher le polynome dans la sortie standard ? 1-Oui Autre-Non");
+  printf("Voulez-vous afficher le polynome dans la sortie standard (1-Oui *-Non) ? ");
   scanf("%d",&choix);
   if(choix ==1)
   {

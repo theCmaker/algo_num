@@ -1,6 +1,7 @@
 #ifndef REGLIN_H__
 #define REGLIN_H__
 
+void mapping(double** from, double** to, int n, char* fn);
 double moyenneElements(double** tab,int l, int n);
 double moyenneElementsCarres(double** tab,int l, int n);
 double moyenneProduitElements(double** tab, int n);
