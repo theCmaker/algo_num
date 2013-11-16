@@ -1,0 +1,2 @@
+Pour obtenir les versions PDF avec Asymptote :
+$ asy -V -f pdf <filename>
