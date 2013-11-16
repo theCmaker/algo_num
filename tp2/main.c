@@ -14,6 +14,7 @@ int main (int argc, char ** argv)
   while (i!=0)
   {
     printf("Menu principal : Interpolation et Approximation\n\n");
+    n=0;
     while (n<2) //minimum 2 points
     {
       printf("Entrez n le nombre de points : ");
@@ -47,7 +48,7 @@ int main (int argc, char ** argv)
 	  {
 	    printf(" y ");
 	  }
-	  printf("| %.5f ", tab[i][j]);
+	  printf("| %+.5f ", tab[i][j]);
 	}
 	printf("\n");
       }

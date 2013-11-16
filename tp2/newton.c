@@ -10,7 +10,7 @@ void newton (double ** tab, int n)
   double** t= (double**) malloc(n*sizeof(double*));
   for (i=0; i<n; i++)
   {
-    t[i]= (double*) malloc(n*sizeof(double));
+    t[i]= (double*) malloc((i+1)*sizeof(double));
   }
   
   //initialisation des valeurs : on récupère les y.

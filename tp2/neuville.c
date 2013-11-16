@@ -10,7 +10,7 @@ void neuville (double ** tab, int n)
   polynome*** t= (polynome***) malloc(n*sizeof(polynome**));
   for (i=0; i<n; i++)
   {
-    t[i]= (polynome**) malloc(n*sizeof(polynome*));
+    t[i]= (polynome**) malloc((i+1)*sizeof(polynome*));
   }
   
   //initialisation des valeurs : on récupère les y.
