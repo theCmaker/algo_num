@@ -232,3 +232,66 @@ polynome* mulPoly(polynome * P1, polynome* P2)
   redimensionnerPoly(P);
   return P;
 }
+
+double imagePoly(polynome* P, double x)
+{
+	int i;
+	double res = P->poln[0];
+	for(i=1;i<=P->d;i++)
+	{
+		res = res + P->poln[i]*pow(x,i);
+	}
+	return res;
+}
+
+
+double imageExpo(double c, double d, double x)
+{
+	double res = 0.;
+	res = c*exp(d*x);
+	return res;
+}
+
+double imagePui(double a, double b, double x)
+{
+	double res = 0.;
+	res = a*pow(x,b);
+	return res;
+}
+
+
+void ecartPoly(double** tab, int n, polynome* P)
+{
+	int i;
+	double moyecart= 0.;
+	for(i=0;i<n;i++)
+	{
+		moyecart = moyecart + fabs((imagePoly(P,tab[0][i])-tab[1][i])/tab[1][i]);
+	}
+	moyecart = (100*moyecart)/n;
+	printf("Pourcentage moyen d'erreur : %f",moyecart);
+}
+
+void ecartExpo(double** tab, int n, double c, double d)
+{
+	int i;
+	double moyecart= 0.;
+	for(i=0;i<n;i++)
+	{
+		moyecart = moyecart + fabs((imageExpo(c,d,tab[0][i])-tab[1][i])/tab[1][i]);
+	}
+	moyecart = (100*moyecart)/n;
+	printf("Pourcentage moyen d'erreur : %f",moyecart);
+}
+
+void ecartPui(double** tab, int n, double a, double b)
+{
+	int i;
+	double moyecart= 0.;
+	for(i=0;i<n;i++)
+	{
+		moyecart = moyecart + fabs((imagePui(a,b,tab[0][i])-tab[1][i])/tab[1][i]);
+	}
+	moyecart = (100*moyecart)/n;
+	printf("Pourcentage moyen d'erreur : %f",moyecart);
+}

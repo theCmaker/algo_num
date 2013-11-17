@@ -89,9 +89,12 @@ reglinD(double** tab, int n)
   // creation et affichage du polynome
   polynome *P = creerPoly(2,"valeur",a0,a1);
   menuAffichage(P);
+  ecartPoly(tab,n,P);
+  free(P->poln);
+  free(P);
 }
 
-reglinE(double** tab, int n) //y=c(e^(dx)) => ln(y)=ln(c)+xd => c=e^(a_0) & d=a1
+reglinE(double** tab, int n) //y=c(e^(dx)) <=> ln(y)=ln(c)+xd => c=e^(a_0) & d=a1
 {
   double c = 0;
   double d = 0;
@@ -117,9 +120,11 @@ reglinE(double** tab, int n) //y=c(e^(dx)) => ln(y)=ln(c)+xd => c=e^(a_0) & d=a1
   d = a1;
   c = exp(a0);
   printf("P(x) = %f*exp(%f*x)",c,d);
+  ecartExpo(tab,n,c,d);
+  
 }
 
-reglinP(double ** tab, int n) //y=a(x^b) => ln(y)=ln(a)+b*ln(x) => a=e^(a_0) & b=a1
+reglinP(double ** tab, int n) //y=a(x^b) <=> ln(y)=ln(a)+b*ln(x) => a=e^(a_0) & b=a1
 {
   double a = 0.;
   double b = 0.;
@@ -145,4 +150,5 @@ reglinP(double ** tab, int n) //y=a(x^b) => ln(y)=ln(a)+b*ln(x) => a=e^(a_0) & b
   b = a1;
   a = exp(a0);
   printf("P(x) = %f*x^(%f)",a,b);
+  ecartPui(tab,n,a,b);
 }

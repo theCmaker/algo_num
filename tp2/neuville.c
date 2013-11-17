@@ -32,6 +32,7 @@ void neuville (double ** tab, int n)
   
   //affichage
   menuAffichage(t[n-1][n-1]);
+  ecartPoly(tab,n,t[n-1][n-1]);
   printf("\n");
   
   //libération mémoire
