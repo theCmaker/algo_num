@@ -32,6 +32,8 @@ int main (int argc, char ** argv)
       printf("Entrez y[%d] : ", i+1);
       scanf("%lf", &tab[1][i]);
     }
+    //fonction temporaire, utile uniquement pour la rédaction du rapport
+    convertTabtoLatex(tab,n);
     i=1;
     while (i!=0 && i!=9)
     {

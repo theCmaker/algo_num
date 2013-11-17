@@ -98,19 +98,29 @@ basicstyle=\ttfamily,
     \section{Méthode de Lagrange}
       \subsection{Programme}
 	\lstinputlisting[style=customc]{lagrange.c}
-      \subsection{Résultats de tests}
 	\renewcommand{\arraystretch}{2}
 	\renewcommand{\arraystretch}{1}
     \section{Méthode de Newton}
       \subsection{Programme}
 	\lstinputlisting[style=customc]{newton.c}
-      \subsection{Résultats de tests}
 	\renewcommand{\arraystretch}{2}
 	\renewcommand{\arraystretch}{1}
     \section{Méthode de Neuville}
       \subsection{Programme}
 	\lstinputlisting[style=customc]{neuville.c}
       \subsection{Résultats de tests}
+			\begin{tabular}{| c | c | c | c | c |}
+			\hline 
+			$x_{i}$ & $1.000000$ & $2.000000$ & $3.000000$ & $4.000000 $ \\ 
+			\hline 
+			$y_{i}$ & $0.000000$ & $0.000000$ & $0.000000$ & $6.000000 $ \\ 
+			\hline 
+			\end{tabular}
+
+			Méthode de Newton: $P(x)= -6.000000 + 11.000000 \cdot x- 6.000000 \cdot x^{2}  + 1.000000 \cdot x^{3} $
+
+			Méthode de Neuville: $P(x)= -6.000000 + 11.000000 \cdot x- 6.000000 \cdot x^{2}  + 1.000000 \cdot x^{3} $
+			
 	\renewcommand{\arraystretch}{2}
 	\renewcommand{\arraystretch}{1}
     \section{Comparaison}

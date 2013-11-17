@@ -9,6 +9,8 @@ typedef struct polynome
 
 //fonctions auxiliaires
 
+void convertTabtoLatex(double** tab, int n);
+
 polynome* creerPoly(int c,char* mode, ...);
 // les valeurs seront de type double et c correspond au nombre de coefficient. 
 //Le mode peut être "tableau" ou "valeur". 

@@ -37,6 +37,34 @@ polynome* creerPoly(int c,char* mode, ...)
   return P;
 }
 
+void convertTabtoLatex(double** tab, int n)
+{
+	FILE* fichier = fopen("resultat","a+");
+	int i,j;
+	//déclaration de l'environnement et de n+1 colonnes
+	fprintf(fichier,"\\begin{tabular}{|");
+	for(i=0;i<=n;i++)
+	{
+		fprintf(fichier," c |");
+	}
+	fprintf(fichier,"}\n \\hline \n");
+	
+	//remplissage des cases
+	for(i=0;i<2;i++)
+	{
+		if(i==0) {fprintf(fichier,"$x_{i}$ & ");}
+		if(i==1) {fprintf(fichier,"$y_{i}$ & ");}
+		for(j=0;j<n;j++)
+		{
+			if(j!=(n-1)) {fprintf(fichier,"$%f$ & ",tab[i][j]);}
+			else {fprintf(fichier,"$%f $ ",tab[i][j]);}
+		}
+		fprintf(fichier,"\\\\ \n \\hline \n");
+	}
+	fprintf(fichier,"\\end{tabular}\n\n");
+	fclose(fichier);
+}
+
 void afficherPoly(polynome* P, char* mode, ...)
 {
   int i;
@@ -86,7 +114,7 @@ void afficherPoly(polynome* P, char* mode, ...)
 	else { fprintf(f,"- %f \\cdot x^{%d} ", -(P->poln[i]), i); }
       }
     }
-    fprintf(f,"$\n");
+    fprintf(f,"$\n\n");
     va_end(ap);
   }
 }
@@ -103,6 +131,7 @@ void menuAffichage(polynome* P)
   }
   else
   {
+	  afficherPoly(P,"console");
     afficherPoly(P,"latex",fichier);
   }
   fclose(fichier);
