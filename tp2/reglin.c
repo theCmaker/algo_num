@@ -78,6 +78,8 @@ reglinD(double** tab, int n)
   double a1 = 0;
   double xb, yb, xcb, xyb; // b pour barre et c pour carre
   printf("Nous cherchons le polynome de degré 1 sous la forme a0 + a1*x.\n");
+  
+  //calculs
   xb = moyenneElements(tab,0,n);
   yb = moyenneElements(tab,1,n);
   xcb = moyenneElementsCarres(tab,0,n);
@@ -89,25 +91,31 @@ reglinD(double** tab, int n)
   // creation et affichage du polynome
   polynome *P = creerPoly(2,"valeur",a0,a1);
   menuAffichage(P);
+  
+  //statistiques
   ecartPoly(tab,n,P);
+  
+  //libération mémoire
   free(P->poln);
   free(P);
 }
 
-reglinE(double** tab, int n) //y=c(e^(dx)) <=> ln(y)=ln(c)+xd => c=e^(a_0) & d=a1
+reglinE(double** tab, int n) //y=c(e^(dx)) <=> ln(y)=ln(c)+xd => c=e^(a0) & d=a1
 {
+  int i;
   double c = 0;
   double d = 0;
   double a0 = 0;
   double a1 = 0;
   double xb, yb, xcb, xyb; // b pour barre et c pour carre
-  printf("Nous cherchons une approximation sous la forme c*(e^(d*x)).\n");
   double** t = (double**) malloc(2*sizeof(double*)); // contiendra le mapping de tab
-  int i;
   for(i=0;i<2;i++)
   {
     t[i] = (double*) malloc (n*sizeof(double));
   }
+  printf("Nous cherchons une approximation sous la forme c*(e^(d*x)).\n");
+  
+  //calculs
   mapping(tab, t, n, "exponentielle");
   xb = moyenneElements(t,0,n);
   yb = moyenneElements(t,1,n);
@@ -116,28 +124,39 @@ reglinE(double** tab, int n) //y=c(e^(dx)) <=> ln(y)=ln(c)+xd => c=e^(a_0) & d=a
   
   a1 = (xyb-xb*yb)/(xcb-pow(xb,2.));
   a0 = yb-xb*a1;
-  
   d = a1;
   c = exp(a0);
+  
+  //affichage
   printf("P(x) = %f*exp(%f*x)",c,d);
+  
+  //statistiques
   ecartExpo(tab,n,c,d);
   
+  //libération mémoire
+  for (i=0; i<2; i++)
+  {
+    free(t[i]);
+  }
+  free(t);
 }
 
-reglinP(double ** tab, int n) //y=a(x^b) <=> ln(y)=ln(a)+b*ln(x) => a=e^(a_0) & b=a1
+reglinP(double ** tab, int n) //y=a(x^b) <=> ln(y)=ln(a)+b*ln(x) => a=e^(a0) & b=a1
 {
+  int i;
   double a = 0.;
   double b = 0.;
   double a0 = 0.;
   double a1 = 0.;
   double xb, yb, xcb, xyb; // b pour barre et c pour carre
-  printf("Nous cherchons une approximation sous la forme a*(x^(b)).\n");
   double** t = (double**) malloc(2*sizeof(double*)); // contiendra le mapping de tab
-  int i;
   for(i=0;i<2;i++)
   {
     t[i] = (double*) malloc (n*sizeof(double));
   }
+  printf("Nous cherchons une approximation sous la forme a*(x^(b)).\n");
+  
+  //calculs
   mapping(tab, t, n, "puissance");
   xb = moyenneElements(t,0,n);
   yb = moyenneElements(t,1,n);
@@ -146,9 +165,18 @@ reglinP(double ** tab, int n) //y=a(x^b) <=> ln(y)=ln(a)+b*ln(x) => a=e^(a_0) & 
   
   a1 = (xyb-xb*yb)/(xcb-pow(xb,2));
   a0 = yb-xb*a1;
-  
   b = a1;
   a = exp(a0);
+  
+  //affichage
   printf("P(x) = %f*x^(%f)",a,b);
+  //statistiques
   ecartPui(tab,n,a,b);
+  
+  //libération mémoire
+  for (i=0; i<2; i++)
+  {
+    free(t[i]);
+  }
+  free(t);
 }

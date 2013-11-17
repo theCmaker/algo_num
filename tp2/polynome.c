@@ -37,32 +37,22 @@ polynome* creerPoly(int c,char* mode, ...)
   return P;
 }
 
-void convertTabtoLatex(double** tab, int n)
+void menuAffichage(polynome* P)
 {
-	FILE* fichier = fopen("resultat","a+");
-	int i,j;
-	//déclaration de l'environnement et de n+1 colonnes
-	fprintf(fichier,"\\begin{tabular}{|");
-	for(i=0;i<=n;i++)
-	{
-		fprintf(fichier," c |");
-	}
-	fprintf(fichier,"}\n \\hline \n");
-	
-	//remplissage des cases
-	for(i=0;i<2;i++)
-	{
-		if(i==0) {fprintf(fichier,"$x_{i}$ & ");}
-		if(i==1) {fprintf(fichier,"$y_{i}$ & ");}
-		for(j=0;j<n;j++)
-		{
-			if(j!=(n-1)) {fprintf(fichier,"$%f$ & ",tab[i][j]);}
-			else {fprintf(fichier,"$%f $ ",tab[i][j]);}
-		}
-		fprintf(fichier,"\\\\ \n \\hline \n");
-	}
-	fprintf(fichier,"\\end{tabular}\n\n");
-	fclose(fichier);
+  FILE* fichier=fopen("resultat", "a+");
+  int choix; // permet de choisir les options voulues
+  printf("Voulez-vous afficher le polynome dans la sortie standard (1-Oui *-Non) ? ");
+  scanf("%d",&choix);
+  if(choix ==1)
+  {
+    afficherPoly(P,"console");
+  }
+  else
+  {
+	  afficherPoly(P,"console");
+    afficherPoly(P,"latex",fichier);
+  }
+  fclose(fichier);
 }
 
 void afficherPoly(polynome* P, char* mode, ...)
@@ -117,24 +107,6 @@ void afficherPoly(polynome* P, char* mode, ...)
     fprintf(f,"$\n\n");
     va_end(ap);
   }
-}
-
-void menuAffichage(polynome* P)
-{
-  FILE* fichier=fopen("resultat", "a+");
-  int choix; // permet de choisir les options voulues
-  printf("Voulez-vous afficher le polynome dans la sortie standard (1-Oui *-Non) ? ");
-  scanf("%d",&choix);
-  if(choix ==1)
-  {
-    afficherPoly(P,"console");
-  }
-  else
-  {
-	  afficherPoly(P,"console");
-    afficherPoly(P,"latex",fichier);
-  }
-  fclose(fichier);
 }
 
 void redimensionnerPoly(polynome* P1)
@@ -244,7 +216,6 @@ double imagePoly(polynome* P, double x)
 	return res;
 }
 
-
 double imageExpo(double c, double d, double x)
 {
 	double res = 0.;
@@ -258,7 +229,6 @@ double imagePui(double a, double b, double x)
 	res = a*pow(x,b);
 	return res;
 }
-
 
 void ecartPoly(double** tab, int n, polynome* P)
 {
@@ -294,4 +264,32 @@ void ecartPui(double** tab, int n, double a, double b)
 	}
 	moyecart = (100*moyecart)/n;
 	printf("Pourcentage moyen d'erreur : %f",moyecart);
+}
+
+void convertTabtoLatex(double** tab, int n)
+{
+	FILE* fichier = fopen("resultat","a+");
+	int i,j;
+	//déclaration de l'environnement et de n+1 colonnes
+	fprintf(fichier,"\\begin{tabular}{|");
+	for(i=0;i<=n;i++)
+	{
+		fprintf(fichier," c |");
+	}
+	fprintf(fichier,"}\n \\hline \n");
+	
+	//remplissage des cases
+	for(i=0;i<2;i++)
+	{
+		if(i==0) {fprintf(fichier,"$x_{i}$ & ");}
+		if(i==1) {fprintf(fichier,"$y_{i}$ & ");}
+		for(j=0;j<n;j++)
+		{
+			if(j!=(n-1)) {fprintf(fichier,"$%f$ & ",tab[i][j]);}
+			else {fprintf(fichier,"$%f $ ",tab[i][j]);}
+		}
+		fprintf(fichier,"\\\\ \n \\hline \n");
+	}
+	fprintf(fichier,"\\end{tabular}\n\n");
+	fclose(fichier);
 }

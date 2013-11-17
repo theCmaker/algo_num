@@ -1,15 +1,12 @@
 CC=gcc -g
 
-main: main.o neuville.o polynome.o newton.o  reglin.o #lagrange.o
+main: main.o neuville.o polynome.o newton.o  reglin.o
 	$(CC) -o $@ $^ -lm
 
 main.o: main.c
 	$(CC) -c $^ -lm
 
 polynome.o: polynome.c
-	$(CC) -c $^ -lm
-
-lagrange.o: lagrange.c
 	$(CC) -c $^ -lm
 
 newton.o: newton.c
