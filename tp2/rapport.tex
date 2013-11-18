@@ -63,6 +63,10 @@ upquote=true,
 columns=flexible,
 basicstyle=\ttfamily,
 }
+\addto\captionsfrench{\renewcommand{\figurename}{\textsc{Graphique}}}
+\addto\captionsfrench{\renewcommand{\tablename}{\textsc{Tableau}}}
+\renewcommand{\thefigure}{\thesection.\arabic{figure}}
+\renewcommand{\thetable}{\thesection.\arabic{table}}
 \renewcommand{\lstlistingname}{\textsc{Figure}}
 \lstdefinestyle{apercu}{
   xleftmargin=2cm,
@@ -100,10 +104,14 @@ basicstyle=\ttfamily,
 	\lstinputlisting[style=customc]{newton.c}
 	\renewcommand{\arraystretch}{2}
 	\renewcommand{\arraystretch}{1}
+    \newpage
     \section{Méthode de Neuville}
       \subsection{Programme}
 	\lstinputlisting[style=customc]{neuville.c}
-      \subsection{Résultats de tests}
+    \newpage
+    \section{Résultats de tests}
+      \begin{table}[h]
+	\centering
 	\begin{tabular}{| c | c | c | c | c |}
 	\hline 
 	$x_{i}$ & $1.000000$ & $2.000000$ & $3.000000$ & $4.000000 $ \\ 
@@ -111,24 +119,48 @@ basicstyle=\ttfamily,
 	$y_{i}$ & $0.000000$ & $0.000000$ & $0.000000$ & $6.000000 $ \\ 
 	\hline 
 	\end{tabular}
+	\caption{test}
+	\label{inter_test1}
+      \end{table}
 
-	Méthode de Newton: $P(x)= -6.000000 + 11.000000 \cdot x- 6.000000 \cdot x^{2}  + 1.000000 \cdot x^{3} $
+      Méthode de Newton: $P(x)= -6.000000 + 11.000000 \cdot x- 6.000000 \cdot x^{2}  + 1.000000 \cdot x^{3} $
 
-	Méthode de Neuville: $P(x)= -6.000000 + 11.000000 \cdot x- 6.000000 \cdot x^{2}  + 1.000000 \cdot x^{3} $
+      Méthode de Neuville: $P(x)= -6.000000 + 11.000000 \cdot x- 6.000000 \cdot x^{2}  + 1.000000 \cdot x^{3} $
+      
+      \begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.7]{graphiques/pdf_output/inter_test1.pdf}
+	\caption{Interpolation de Newton et Neuville -- Tableau \ref{inter_test1}}
+      \end{figure}
 
-	\renewcommand{\arraystretch}{2}
-	\renewcommand{\arraystretch}{1}
+      \renewcommand{\arraystretch}{2}
+      \renewcommand{\arraystretch}{1}
     \section{Comparaison}
   \chapter{Approximation}
     \section{Régression linéaire}
       \subsection{Programme}
 	\lstinputlisting[style=customc]{reglin.c}
-      \subsection{Résultats de tests}
-	\begin{figure}
-	  \includegraphics{graphiques/pdf_output/reglin.pdf}
-	\end{figure}
-	\renewcommand{\arraystretch}{2}
-	\renewcommand{\arraystretch}{1}
+    \newpage
+    \section{Résultats de tests}
+      \begin{table}[h]
+	\centering
+	\begin{tabular}{| c | c | c | c | c | c |}
+	\hline 
+	$x_{i}$ & $0.5$ & $1$ & $1.5$ & $2$ & $2.5$ \\ 
+	\hline 
+	$y_{i}$ & $0.49$ & $1.6$ & $3.36$ & $6.44$ & $10.16$ \\ 
+	\hline 
+	\end{tabular}
+	\caption{test}
+	\label{approx_td3_ex6}
+      \end{table}
+      \begin{figure}[h]
+	\centering
+	\includegraphics{graphiques/pdf_output/reglin.pdf}
+	\caption{Régression linéaire -- tableau \ref{approx_td3_ex6}}
+      \end{figure}
+      \renewcommand{\arraystretch}{2}
+      \renewcommand{\arraystretch}{1}
   \chapter{Conclusion}
 
 \end{document}
