@@ -21,6 +21,7 @@ int main (int argc, char ** argv)
   double prec;
   double ohm;
   srand (time(NULL));
+
   while (0!=choice)
   {
     printf("MENU PRINCIPAL : RESOLUTION D'EQUATIONS LINEAIRES\n\n");

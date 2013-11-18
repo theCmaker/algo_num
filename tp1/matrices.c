@@ -232,3 +232,38 @@ double det (double** mat, int n)
   
   return determinant;
 }
+
+double trace(double** mat, int n)
+{
+	int i;
+	double resultat = .0;
+	for(i=0;i<n;i++)
+	{
+		resultat = resultat + mat[i][i];
+	}
+	return resultat;
+}
+
+double** puissanceMatrice(double** mat, int n, int e)
+{
+	int i,j;
+	double** resultat = (double**) malloc(n*sizeof(double*));
+	for(i=0;i<n;i++)
+	{
+		resultat[i] = (double*) malloc(n*sizeof(double));
+	}
+// 	copie des valeurs de mat dans resultat. Ici resultat = m^1
+	for(i=0;i<n;i++)
+	{
+		for(j=0;j<n;j++)
+		{
+			resultat[i][j] = mat[i][j];
+		}
+	}
+	
+	for(i=2;i<=e;i++)
+	{
+		resultat = produitMatriciel(resultat,mat,n,n,n);
+	}
+	return resultat;
+}
