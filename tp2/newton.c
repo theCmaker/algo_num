@@ -49,6 +49,7 @@ void newton (double ** tab, int n)
   ecartPoly(tab,n,tabP[n-1]);
   printf("\n");
   
+  //libération mémoire
   for(i=0;i<n;i++)
   {
     free(tabP[i]->poln);

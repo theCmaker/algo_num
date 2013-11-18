@@ -89,14 +89,21 @@ basicstyle=\ttfamily,
     \section{Structure du programme}
     Nous avons conçu un programme principal avec menus, présenté sous la forme suivante :
     \begin{lstlisting}[style=apercu, name=Menu Principal]
-    Menu principal : Interpolation et Approximation
+Menu principal : Interpolation et Approximation
 
-    Quelle résolution utiliser ?
-    1- Lagrange
-    2- Newton
-    3- Neuville
-    4- Régression Linéaire
-    0- Quitter
+Entrez n le nombre de points : 2
+%*\textit{(Saisie de la série de points...)}*)
+
+%*\textit{(Affichage du tableau correspondant...)}*)
+Quelle résolution utiliser ?
+1- Newton
+2- Neuville
+3- Régression Linéaire par une droite
+4- Regression Linéaire par une fonction exponentielle
+5- Regression Linéaire par une fonction puissance
+9- Nouvelle série de points (Menu principal)
+0- Quitter
+Votre choix :
     \end{lstlisting}
   \chapter{Interpolation}
     \section{Méthode de Newton}
@@ -114,13 +121,13 @@ basicstyle=\ttfamily,
 	\centering
 	\begin{tabular}{| c | c | c | c | c |}
 	\hline 
-	$x_{i}$ & $1.000000$ & $2.000000$ & $3.000000$ & $4.000000 $ \\ 
+	$x_{i}$ & $1$ & $2$ & $3$ & $4$ \\ 
 	\hline 
-	$y_{i}$ & $0.000000$ & $0.000000$ & $0.000000$ & $6.000000 $ \\ 
+	$y_{i}$ & $0$ & $0$ & $0$ & $6$ \\ 
 	\hline 
 	\end{tabular}
-	\caption{test}
-	\label{inter_test1}
+	\caption{Série 1}
+	\label{inter_td3_ex3}
       \end{table}
 
       Méthode de Newton: $P(x)= -6.000000 + 11.000000 \cdot x- 6.000000 \cdot x^{2}  + 1.000000 \cdot x^{3} $
@@ -130,7 +137,7 @@ basicstyle=\ttfamily,
       \begin{figure}[h]
 	\centering
 	\includegraphics[scale=0.7]{graphiques/pdf_output/inter_test1.pdf}
-	\caption{Interpolation de Newton et Neuville -- Tableau \ref{inter_test1}}
+	\caption{Interpolation de Newton et Neuville -- (Tableau \ref{inter_td3_ex3})}
       \end{figure}
 
       \renewcommand{\arraystretch}{2}
@@ -151,16 +158,14 @@ basicstyle=\ttfamily,
 	$y_{i}$ & $0.49$ & $1.6$ & $3.36$ & $6.44$ & $10.16$ \\ 
 	\hline 
 	\end{tabular}
-	\caption{test}
+	\caption{Série 1}
 	\label{approx_td3_ex6}
       \end{table}
       \begin{figure}[h]
 	\centering
 	\includegraphics{graphiques/pdf_output/reglin.pdf}
-	\caption{Régression linéaire -- tableau \ref{approx_td3_ex6}}
+	\caption{Régression linéaire -- (Tableau \ref{approx_td3_ex6})}
       \end{figure}
-      \renewcommand{\arraystretch}{2}
-      \renewcommand{\arraystretch}{1}
   \chapter{Conclusion}
 
 \end{document}
