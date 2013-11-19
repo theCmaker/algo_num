@@ -236,9 +236,9 @@ void ecartPoly(double** tab, int n, polynome* P)
 	double moyecart= 0.;
 	for(i=0;i<n;i++)
 	{
-		moyecart = moyecart + fabs((imagePoly(P,tab[0][i])-tab[1][i])/tab[1][i]);
+		moyecart = moyecart + fabs((imagePoly(P,tab[0][i])-tab[1][i]));
 	}
-	moyecart = (100*moyecart)/n;
+	moyecart = moyecart/n;
 	printf("Pourcentage moyen d'erreur : %f",moyecart);
 }
 
@@ -248,9 +248,9 @@ void ecartExpo(double** tab, int n, double c, double d)
 	double moyecart= 0.;
 	for(i=0;i<n;i++)
 	{
-		moyecart = moyecart + fabs((imageExpo(c,d,tab[0][i])-tab[1][i])/tab[1][i]);
+		moyecart = moyecart + fabs((imageExpo(c,d,tab[0][i])-tab[1][i]));
 	}
-	moyecart = (100*moyecart)/n;
+	moyecart = moyecart/n;
 	printf("Pourcentage moyen d'erreur : %f",moyecart);
 }
 
@@ -260,9 +260,9 @@ void ecartPui(double** tab, int n, double a, double b)
 	double moyecart= 0.;
 	for(i=0;i<n;i++)
 	{
-		moyecart = moyecart + fabs((imagePui(a,b,tab[0][i])-tab[1][i])/tab[1][i]);
+		moyecart = moyecart + fabs((imagePui(a,b,tab[0][i])-tab[1][i]));
 	}
-	moyecart = (100*moyecart)/n;
+	moyecart = moyecart/n;
 	printf("Pourcentage moyen d'erreur : %f",moyecart);
 }
 

@@ -139,7 +139,28 @@ Votre choix :
 	\includegraphics[scale=0.7]{graphiques/pdf_output/inter_test1.pdf}
 	\caption{Interpolation de Newton et Neuville -- (Tableau \ref{inter_td3_ex3})}
       \end{figure}
-
+		\begin{table}[h]
+			\centering
+		\begin{tabular}{| c | c | c | c | c | c | c | c | c | c | c | c |}
+		\hline 
+		$x_{i}$ & $752.000000$ & $855.000000$ & $871.000000$ & $734.000000$ & $610.000000$ & $582.000000$ & $921.000000$ & $492.000000$ & $569.000000$ & $462.000000$ & $907.000000 $ \\ 
+		\hline 
+		$y_{i}$ & $85.000000$ & $83.000000$ & $162.000000$ & $79.000000$ & $81.000000$ & $83.000000$ & $281.000000$ & $81.000000$ & $81.000000$ & $80.000000$ & $243.000000 $ \\ 
+		\hline 
+		\end{tabular}
+		\caption{Série1 dépense}
+		\label{exo_tp3_3.3}
+		\end{table}
+		Méthode de Newton : $P(x)= 524166663.148073-8065079.743259 \cdot x + 55479.774423 \cdot x^{2} - 224.689243 \cdot x^{3}  + 0.593281 \cdot x^{4} - 0.001067 \cdot x^{5}  + 0.000001 \cdot x^{6} - 0.000000 \cdot x^{7}  + 0.000000 \cdot x^{8} - 0.000000 \cdot x^{9}  + 0.000000 \cdot x^{10} $
+		
+		Méthode de Neuville : $P(x)= 524166663.148078-8065079.743259 \cdot x + 55479.774423 \cdot x^{2} - 224.689243 \cdot x^{3}  + 0.593281 \cdot x^{4} - 0.001067 \cdot x^{5}  + 0.000001 \cdot x^{6} - 0.000000 \cdot x^{7}  + 0.000000 \cdot x^{8} - 0.000000 \cdot x^{9}  + 0.000000 \cdot x^{10} $
+		
+		Pourcentage d'erreur : $0.000046$
+% 		\begin{figure}[h]
+% 	\centering
+% 	\includegraphics[scale=0.7]{}
+% 	\caption{Interpolation de Newton et Neuville -- (Tableau \ref{exo_tp3_3})}
+% 		\end{figure}
       \renewcommand{\arraystretch}{2}
       \renewcommand{\arraystretch}{1}
     \section{Comparaison}
