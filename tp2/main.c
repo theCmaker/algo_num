@@ -33,7 +33,7 @@ int main (int argc, char ** argv)
       scanf("%lf", &tab[1][i]);
     }
     //fonction temporaire, utile uniquement pour la rédaction du rapport
-    convertTabtoLatex(tab,n);
+    convertTabtoLatex(tab,n,1);
     i=1;
     while (i!=0 && i!=9)
     {
@@ -58,8 +58,8 @@ int main (int argc, char ** argv)
       printf("1- Newton\n");
       printf("2- Neuville\n");
       printf("3- Régression Linéaire par une droite\n");
-      printf("4- Regression Linéaire par une fonction exponentielle\n");
-      printf("5- Regression Linéaire par une fonction puissance\n");
+      printf("4- Régression Linéaire par une fonction exponentielle\n");
+      printf("5- Régression Linéaire par une fonction puissance\n");
       printf("9- Nouvelle série de points (Menu principal)\n");
       printf("0- Quitter\n");
       printf("Votre choix : ");

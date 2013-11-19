@@ -8,7 +8,7 @@ typedef struct polynome
 } polynome;
 
 //fonctions sortie LaTeX
-void convertTabtoLatex(double** tab, int n);
+void convertTabtoLatex(double** tab, int n, int m); //sortie du tableau en LaTeX
 void menuAffichage(polynome* P); //choix entre LaTeX et terminal
 void afficherPoly(polynome* P, char* mode, ...); //mode:"console"||"latex"; console->terminal; latex->fichier (FILE* opt) format maths LaTeX.
 

@@ -94,6 +94,7 @@ reglinD(double** tab, int n)
   
   //statistiques
   ecartPoly(tab,n,P);
+  printf("\n");
   
   //libération mémoire
   free(P->poln);
@@ -132,6 +133,7 @@ reglinE(double** tab, int n) //y=c(e^(dx)) <=> ln(y)=ln(c)+xd => c=e^(a0) & d=a1
   
   //statistiques
   ecartExpo(tab,n,c,d);
+  printf("\n");
   
   //libération mémoire
   for (i=0; i<2; i++)
@@ -172,6 +174,7 @@ reglinP(double ** tab, int n) //y=a(x^b) <=> ln(y)=ln(a)+b*ln(x) => a=e^(a0) & b
   printf("P(x) = %f*x^(%f)",a,b);
   //statistiques
   ecartPui(tab,n,a,b);
+  printf("\n");
   
   //libération mémoire
   for (i=0; i<2; i++)

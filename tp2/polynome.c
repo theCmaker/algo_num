@@ -207,89 +207,89 @@ polynome* mulPoly(polynome * P1, polynome* P2)
 
 double imagePoly(polynome* P, double x)
 {
-	int i;
-	double res = P->poln[0];
-	for(i=1;i<=P->d;i++)
-	{
-		res = res + P->poln[i]*pow(x,i);
-	}
-	return res;
+  int i;
+  double res = P->poln[0];
+  for(i=1;i<=P->d;i++)
+  {
+    res = res + P->poln[i]*pow(x,i);
+  }
+  return res;
 }
 
 double imageExpo(double c, double d, double x)
 {
-	double res = 0.;
-	res = c*exp(d*x);
-	return res;
+  double res = 0.;
+  res = c*exp(d*x);
+  return res;
 }
 
 double imagePui(double a, double b, double x)
 {
-	double res = 0.;
-	res = a*pow(x,b);
-	return res;
+  double res = 0.;
+  res = a*pow(x,b);
+  return res;
 }
 
 void ecartPoly(double** tab, int n, polynome* P)
 {
-	int i;
-	double moyecart= 0.;
-	for(i=0;i<n;i++)
-	{
-		moyecart = moyecart + fabs((imagePoly(P,tab[0][i])-tab[1][i]));
-	}
-	moyecart = moyecart/n;
-	printf("Pourcentage moyen d'erreur : %f",moyecart);
+  int i;
+  double moyecart= 0.;
+  for(i=0;i<n;i++)
+  {
+    moyecart = moyecart + fabs((imagePoly(P,tab[0][i])-tab[1][i]));
+  }
+  moyecart = moyecart/n;
+  printf("Pourcentage moyen d'erreur : %f",moyecart);
 }
 
 void ecartExpo(double** tab, int n, double c, double d)
 {
-	int i;
-	double moyecart= 0.;
-	for(i=0;i<n;i++)
-	{
-		moyecart = moyecart + fabs((imageExpo(c,d,tab[0][i])-tab[1][i]));
-	}
-	moyecart = moyecart/n;
-	printf("Pourcentage moyen d'erreur : %f",moyecart);
+  int i;
+  double moyecart= 0.;
+  for(i=0;i<n;i++)
+  {
+    moyecart = moyecart + fabs((imageExpo(c,d,tab[0][i])-tab[1][i]));
+  }
+  moyecart = moyecart/n;
+  printf("Pourcentage moyen d'erreur : %f",moyecart);
 }
 
 void ecartPui(double** tab, int n, double a, double b)
 {
-	int i;
-	double moyecart= 0.;
-	for(i=0;i<n;i++)
-	{
-		moyecart = moyecart + fabs((imagePui(a,b,tab[0][i])-tab[1][i]));
-	}
-	moyecart = moyecart/n;
-	printf("Pourcentage moyen d'erreur : %f",moyecart);
+  int i;
+  double moyecart= 0.;
+  for(i=0;i<n;i++)
+  {
+    moyecart = moyecart + fabs((imagePui(a,b,tab[0][i])-tab[1][i]));
+  }
+  moyecart = moyecart/n;
+  printf("Pourcentage moyen d'erreur : %f",moyecart);
 }
 
-void convertTabtoLatex(double** tab, int n)
+void convertTabtoLatex(double** tab, int n, int m)
 {
-	FILE* fichier = fopen("resultat","a+");
-	int i,j;
-	//déclaration de l'environnement et de n+1 colonnes
-	fprintf(fichier,"\\begin{tabular}{|");
-	for(i=0;i<=n;i++)
-	{
-		fprintf(fichier," c |");
-	}
-	fprintf(fichier,"}\n \\hline \n");
-	
-	//remplissage des cases
-	for(i=0;i<2;i++)
-	{
-		if(i==0) {fprintf(fichier,"$x_{i}$ & ");}
-		if(i==1) {fprintf(fichier,"$y_{i}$ & ");}
-		for(j=0;j<n;j++)
-		{
-			if(j!=(n-1)) {fprintf(fichier,"$%f$ & ",tab[i][j]);}
-			else {fprintf(fichier,"$%f $ ",tab[i][j]);}
-		}
-		fprintf(fichier,"\\\\ \n \\hline \n");
-	}
-	fprintf(fichier,"\\end{tabular}\n\n");
-	fclose(fichier);
+  FILE* fichier = fopen("resultat","a+");
+  int i,j;
+  //déclaration de l'environnement et de n+1 colonnes
+  fprintf(fichier,"\\begin{tabular}{|");
+  for(i=0;i<=n;i++)
+  {
+    fprintf(fichier," c |");
+  }
+  fprintf(fichier,"}\n \\hline \n");
+  
+  //remplissage des cases
+  for(i=0;i<2;i++)
+  {
+  if(i==0) {fprintf(fichier,"$x_{i}$ & ");}
+  if(i==1) {fprintf(fichier,"$y_{i}$ & ");}
+  for(j=0;j<n;j++)
+  {
+    if(j!=(n-1)) {fprintf(fichier,"$%f$ & ",tab[i][j]);}
+    else {fprintf(fichier,"$%f$ ",tab[i][j]);}
+  }
+  fprintf(fichier,"\\\\ \n \\hline \n");
+  }
+  fprintf(fichier,"\\end{tabular}\n\n");
+  fclose(fichier);
 }
