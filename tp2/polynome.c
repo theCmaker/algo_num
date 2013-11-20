@@ -239,7 +239,7 @@ void ecartPoly(double** tab, int n, polynome* P)
     moyecart = moyecart + fabs((imagePoly(P,tab[0][i])-tab[1][i]));
   }
   moyecart = moyecart/n;
-  printf("Pourcentage moyen d'erreur : %f",moyecart);
+  printf("Erreur moyenne : %f",moyecart);
 }
 
 void ecartExpo(double** tab, int n, double c, double d)
@@ -251,7 +251,7 @@ void ecartExpo(double** tab, int n, double c, double d)
     moyecart = moyecart + fabs((imageExpo(c,d,tab[0][i])-tab[1][i]));
   }
   moyecart = moyecart/n;
-  printf("Pourcentage moyen d'erreur : %f",moyecart);
+  printf("Erreur moyenne : %f",moyecart);
 }
 
 void ecartPui(double** tab, int n, double a, double b)
@@ -263,7 +263,7 @@ void ecartPui(double** tab, int n, double a, double b)
     moyecart = moyecart + fabs((imagePui(a,b,tab[0][i])-tab[1][i]));
   }
   moyecart = moyecart/n;
-  printf("Pourcentage moyen d'erreur : %f",moyecart);
+  printf("Erreur moyenne : %f",moyecart);
 }
 
 void convertTabtoLatex(double** tab, int n, int m)

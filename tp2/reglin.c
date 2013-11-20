@@ -129,7 +129,7 @@ reglinE(double** tab, int n) //y=c(e^(dx)) <=> ln(y)=ln(c)+xd => c=e^(a0) & d=a1
   c = exp(a0);
   
   //affichage
-  printf("P(x) = %f*exp(%f*x)",c,d);
+  printf("P(x) = %f*exp(%f*x)\n",c,d);
   
   //statistiques
   ecartExpo(tab,n,c,d);
@@ -171,7 +171,8 @@ reglinP(double ** tab, int n) //y=a(x^b) <=> ln(y)=ln(a)+b*ln(x) => a=e^(a0) & b
   a = exp(a0);
   
   //affichage
-  printf("P(x) = %f*x^(%f)",a,b);
+  printf("P(x) = %f*x^(%f)\n",a,b);
+  
   //statistiques
   ecartPui(tab,n,a,b);
   printf("\n");

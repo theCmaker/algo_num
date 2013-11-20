@@ -6,11 +6,13 @@
 #include "newton.h" 
 #include "polynome.h"
 #include "reglin.h"
+#include "useful.h"
 
 int main (int argc, char ** argv)
 {
   int n, j;
   int i=1;
+  char c;
   while (i!=0)
   {
     printf("Menu principal : Interpolation et Approximation\n\n");
@@ -37,7 +39,8 @@ int main (int argc, char ** argv)
     i=1;
     while (i!=0 && i!=9)
     {
-      printf("\nTableau de valeurs :\n");
+      clear(); //nettoyage écran
+      printf("Tableau de valeurs :\n");
       for (i=0; i<2; i++)
       {
 	for (j=0; j<n; j++)
@@ -54,7 +57,7 @@ int main (int argc, char ** argv)
 	}
 	printf("\n");
       }
-      printf("Quelle résolution utiliser ?\n");
+      printf("\nQuelle résolution utiliser ?\n");
       printf("1- Newton\n");
       printf("2- Neuville\n");
       printf("3- Régression Linéaire par une droite\n");
@@ -64,27 +67,34 @@ int main (int argc, char ** argv)
       printf("0- Quitter\n");
       printf("Votre choix : ");
       scanf("%d", &i);
+      c='0';
+      cleanBuffer(); //vidage buffer
       switch (i)
       {
 	case 1:
 	  printf("Résolution par Newton ... \n");
 	  newton(tab,n);
+	  hitToContinue();
 	  break;
 	case 2:
 	  printf("Résolution par Neuville ... \n");
 	  neuville(tab,n);
+	  hitToContinue();
 	  break;
 	case 3:
 	  printf("Résolution par Régression linéaire par une droite ... \n");
 	  reglinD(tab,n);
+	  hitToContinue();
 	  break;
 	case 4:
 	  printf("Résolution par Régression linéaire par une fonction exponentielle... \n");
 	  reglinE(tab,n);
+	  hitToContinue();
 	  break;
 	case 5:
 	  printf("Résolution par Régression linéaire par une fonction puissance... \n");
 	  reglinP(tab,n);
+	  hitToContinue();
 	  break;
       }
       printf("\n\n");
@@ -96,6 +106,7 @@ int main (int argc, char ** argv)
       free(tab[j]);
     }
     free(tab);
+    clear(); //nettoyage écran
   }
   return 0;
 }

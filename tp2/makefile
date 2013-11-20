@@ -1,6 +1,6 @@
 CC=gcc -g
 
-main: main.o neuville.o polynome.o newton.o  reglin.o
+main: main.o neuville.o polynome.o newton.o reglin.o useful.o
 	$(CC) -o $@ $^ -lm
 
 main.o: main.c
@@ -17,6 +17,9 @@ neuville.o: neuville.c
 
 reglin.o: reglin.c
 	$(CC) -c $^ -lm
+
+useful.o: useful.c
+	$(CC) -c $^
 
 clean:
 	rm *~ *.o *.aux *.toc *.log *.bbl *.blg *.gz
