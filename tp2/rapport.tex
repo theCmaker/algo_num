@@ -117,6 +117,7 @@ Votre choix :
 	\lstinputlisting[style=customc]{neuville.c}
     \newpage
     \section{Résultats de tests}
+      
       \begin{table}[h]
 	\centering
 	\begin{tabular}{| c | c | c | c | c |}
@@ -134,12 +135,96 @@ Votre choix :
 
       Méthode de Neuville: $P(x)= -6.000000 + 11.000000 \cdot x- 6.000000 \cdot x^{2}  + 1.000000 \cdot x^{3} $
       
+
+      
       \begin{figure}[h]
 	\centering
 	\includegraphics[scale=0.7]{graphiques/pdf_output/inter_test1.pdf}
 	\caption{Interpolation de Newton et Neuville -- (Tableau \ref{inter_td3_ex3})}
       \end{figure}
       \newpage
+      
+		\begin{table}[h]
+	\centering
+		\begin{tabular}{| c | c | c | c | c | c | c | c | c | c | c | c | c | c | c | c | c | c | c | c | c |}
+	\hline 
+	$x_{i}$ & $0.000000$ & $2.000000$ & $4.000000$ & $6.000000$ & $8.000000$ & $10.000000$ & $12.000000$ & $14.000000$ & $16.000000$ & $18.000000$ & $20.000000$ & $22.000000$ & $24.000000$ & $26.000000$ & $28.000000$ & $30.000000$ & $32.000000$ & $34.000000$ & $36.000000$ & $38.000000$ \\ 
+	\hline 
+	$y_{i}$ & $0.999870$ & $0.999970$ & $1.000000$ & $0.999970$ & $0.999880$ & $0.999730$ & $0.999530$ & $0.999530$ & $0.998970$ & $0.998460$ & $0.998050$ & $0.999751$ & $0.997050$ & $0.996500$ & $0.996640$ & $0.995330$ & $0.994720$ & $0.994720$ & $0.993330$ & $0.993260$ \\ 
+	\hline 
+	\end{tabular}
+	\caption{3.1 Densité de l'eau en fonction de la température}
+	\label{Jeux d'essais interpolation 3.1}
+		\end{table}
+		
+		Méthode de Newton : $P(x)= 0.999870 + 7.693711 \cdot x- 13.276666 \cdot x^{2}  + 9.932303 \cdot x^{3} - 4.345460 \cdot x^{4}  + 1.259124 \cdot x^{5} - 0.258585 \cdot x^{6}  + 0.039240 \cdot x^{7} - 0.004520 \cdot x^{8}  + 0.000402 \cdot x^{9} - 0.000028 \cdot x^{10}  + 0.000002 \cdot x^{11} - 0.000000 \cdot x^{12}  + 0.000000 \cdot x^{13} - 0.000000 \cdot x^{14}  + 0.000000 \cdot x^{15} - 0.000000 \cdot x^{16}  + 0.000000 \cdot x^{17} - 0.000000 \cdot x^{18}  + 0.000000 \cdot x^{19} $
+		
+		Erreur moyenne : $0.000005$
+
+		Méthode de Neuville : $P(x)= 0.999870 + 7.693711 \cdot x- 13.276666 \cdot x^{2}  + 9.932303 \cdot x^{3} - 4.345460 \cdot x^{4}  + 1.259124 \cdot x^{5} - 0.258585 \cdot x^{6}  + 0.039240 \cdot x^{7} - 0.004520 \cdot x^{8}  + 0.000402 \cdot x^{9} - 0.000028 \cdot x^{10}  + 0.000002 \cdot x^{11} - 0.000000 \cdot x^{12}  + 0.000000 \cdot x^{13} - 0.000000 \cdot x^{14}  + 0.000000 \cdot x^{15} - 0.000000 \cdot x^{16}  + 0.000000 \cdot x^{17} - 0.000000 \cdot x^{18}  + 0.000000 \cdot x^{19} $
+		
+		Erreur moyenne : $0.000033$
+		
+% 		\begin{figure}[h]
+% 	\centering
+% 	\includegraphics[scale=0.7]{graphiques/pdf_output/}
+% 	\caption{Interpolation de Newton et Neuville -- (Tableau \ref{Jeux d'essais interpolation 3.1})}
+%       \end{figure}
+        \newpage
+      \begin{table}[h]
+	\centering
+		\begin{tabular}{| c | c | c | c | c | c | c | c | c | c | c | c |}
+	\hline 
+	$x_{i}$ & $10.000000$ & $8.000000$ & $13.000000$ & $9.000000$ & $11.000000$ & $14.000000$ & $6.000000$ & $4.000000$ & $12.000000$ & $7.000000$ & $5.000000$ \\ 
+	\hline 
+	$y_{i}$ & $9.140000$ & $8.140000$ & $8.740000$ & $8.770000$ & $9.260000$ & $8.100000$ & $6.130000$ & $3.100000$ & $9.130000$ & $7.260000$ & $4.740000$ \\ 
+	\hline 
+	\end{tabular}	
+	\caption{3.2.1 Trois séries}
+	\label{Jeux d'essais interpolation 3.2.1}
+		\end{table}
+	
+		Méthode de Newton :$P(x)= -229.550000 + 299.165750 \cdot x- 173.107636 \cdot x^{2}  + 58.546955 \cdot x^{3} - 12.731862 \cdot x^{4}  + 1.859906 \cdot x^{5} - 0.184968 \cdot x^{6}  + 0.012375 \cdot x^{7} - 0.000533 \cdot x^{8}  + 0.000013 \cdot x^{9} - 0.000000 \cdot x^{10} $
+		
+		Erreur moyenne : $0.000000$
+
+		Méthode de Neuville : $P(x)= -229.550000 + 299.165750 \cdot x- 173.107636 \cdot x^{2}  + 58.546955 \cdot x^{3} - 12.731862 \cdot x^{4}  + 1.859906 \cdot x^{5} - 0.184968 \cdot x^{6}  + 0.012375 \cdot x^{7} - 0.000533 \cdot x^{8}  + 0.000013 \cdot x^{9} - 0.000000 \cdot x^{10} $
+		
+		Erreur moyenne : $0.000000$
+		
+% 		\begin{figure}[h]
+% 	\centering
+% 	\includegraphics[scale=0.7]{graphiques/pdf_output/}
+% 	\caption{Interpolation de Newton et Neuville -- (Tableau \ref{Jeux d'essais interpolation 3.2.1})}
+%       \end{figure}
+	      \newpage
+	   \begin{table}[h]
+	\centering
+		\begin{tabular}{| c | c | c | c | c | c | c | c | c | c | c | c |}
+		\hline 
+		$x_{i}$ & $10.000000$ & $8.000000$ & $13.000000$ & $9.000000$ & $11.000000$ & $14.000000$ & $6.000000$ & $4.000000$ & $12.000000$ & $7.000000$ & $5.000000$ \\ 
+		\hline 
+		$y_{i}$ & $7.460000$ & $6.770000$ & $12.740000$ & $7.110000$ & $7.810000$ & $8.840000$ & $6.080000$ & $5.390000$ & $8.150000$ & $6.420000$ & $5.730000$ \\ 
+		\hline 
+		\end{tabular}
+	\caption{3.2.2 Trois séries}
+	\label{Jeux d'essais interpolation 3.2.2}
+		\end{table}
+	
+		Méthode de Newton :$P(x)= -12345.190000 + 16608.066492 \cdot x- 9870.941498 \cdot x^{2}  + 3416.593892 \cdot x^{3} - 763.094009 \cdot x^{4}  + 114.979985 \cdot x^{5} - 11.842442 \cdot x^{6}  + 0.823658 \cdot x^{7} - 0.037039 \cdot x^{8}  + 0.000973 \cdot x^{9} - 0.000011 \cdot x^{10} $
+		
+		Erreur moyenne : $0.000000$
+
+		Méthode de Neuville : $P(x)= -12345.190000 + 16608.066492 \cdot x- 9870.941498 \cdot x^{2}  + 3416.593892 \cdot x^{3} - 763.094009 \cdot x^{4}  + 114.979985 \cdot x^{5} - 11.842442 \cdot x^{6}  + 0.823658 \cdot x^{7} - 0.037039 \cdot x^{8}  + 0.000973 \cdot x^{9} - 0.000011 \cdot x^{10} $
+		
+		Erreur moyenne : $0.000000$
+		
+% 		\begin{figure}[h]
+% 	\centering
+% 	\includegraphics[scale=0.7]{graphiques/pdf_output/}
+% 	\caption{Interpolation de Newton et Neuville -- (Tableau \ref{Jeux d'essais interpolation 3.2.2})}
+%       \end{figure}
+         \newpage
       \begin{table}[h]
 	\centering
 	\begin{tabular}{| c | c | c | c | c | c | c | c | c | c | c | c |}
@@ -150,18 +235,74 @@ Votre choix :
 	  \hline 
 	\end{tabular}
 	\caption{Série1 dépense}
-	\label{exo_tp3_3}
+	\label{Jeux d'essais interpolation 3.3 Série 1}
       \end{table}
       Méthode de Newton : $P(x)= 524166663.148073-8065079.743259 \cdot x + 55479.774423 \cdot x^{2} - 224.689243 \cdot x^{3}  + 0.593281 \cdot x^{4} - 0.001067 \cdot x^{5}  + 0.000001 \cdot x^{6} - 0.000000 \cdot x^{7}  + 0.000000 \cdot x^{8} - 0.000000 \cdot x^{9}  + 0.000000 \cdot x^{10} $
       
+      Erreur moyenne : $0.000046$
+      
       Méthode de Neuville : $P(x)= 524166663.148078-8065079.743259 \cdot x + 55479.774423 \cdot x^{2} - 224.689243 \cdot x^{3}  + 0.593281 \cdot x^{4} - 0.001067 \cdot x^{5}  + 0.000001 \cdot x^{6} - 0.000000 \cdot x^{7}  + 0.000000 \cdot x^{8} - 0.000000 \cdot x^{9}  + 0.000000 \cdot x^{10} $
       
-      Erreur moyenne : $0.000046$
-      \begin{figure}[h]
+      Erreur moyenne : $0.000043$
+      
+%       \begin{figure}[h]
+% 	\centering
+% 	\includegraphics[scale=0.7]{}
+% 	\caption{Interpolation de Newton et Neuville -- (Tableau \ref{Jeux d'essais interpolation 3.3 Série 1})}
+%       \end{figure}
+         \newpage
+   \begin{table}[h]
 	\centering
-	%\includegraphics[scale=0.7]{}
-	\caption{Interpolation de Newton et Neuville -- (Tableau \ref{exo_tp3_3})}
-      \end{figure}
+	\begin{tabular}{| c | c | c | c | c | c | c | c | c | c | c |}
+	\hline 
+	$x_{i}$ & $643.000000$ & $862.000000$ & $524.000000$ & $679.000000$ & $902.000000$ & $918.000000$ & $828.000000$ & $875.000000$ & $809.000000$ & $894.000000$ \\ 
+	\hline 
+	$y_{i}$ & $84.000000$ & $84.000000$ & $82.000000$ & $80.000000$ & $226.000000$ & $260.000000$ & $82.000000$ & $186.000000$ & $77.000000$ & $223.000000$ \\ 
+	\hline 
+	\end{tabular}
+	\caption{Série2 dépense}
+	\label{Jeux d'essais interpolation 3.3 Série 2}
+      \end{table}
+      Méthode de Newton : $P(x)= 264070485740.100494-3124699358.171593 \cdot x + 16351348.965791 \cdot x^{2} - 49678.667726 \cdot x^{3}  + 96.596340 \cdot x^{4} - 0.124686 \cdot x^{5}  + 0.000107 \cdot x^{6} - 0.000000 \cdot x^{7}  + 0.000000 \cdot x^{8} - 0.000000 \cdot x^{9} $
+      
+      Erreur moyenne : $0.005505$
+      
+      Méthode de Neuville : $P(x)= 264070485740.100800-3124699358.171597 \cdot x + 16351348.965791 \cdot x^{2} - 49678.667726 \cdot x^{3}  + 96.596340 \cdot x^{4} - 0.124686 \cdot x^{5}  + 0.000107 \cdot x^{6} - 0.000000 \cdot x^{7}  + 0.000000 \cdot x^{8} - 0.000000 \cdot x^{9} $
+     
+      Erreur moyenne : $0.005585$
+      
+%       \begin{figure}[h]
+% 	\centering
+% 	\includegraphics[scale=0.7]{}
+% 	\caption{Interpolation de Newton et Neuville -- (Tableau \ref{Jeux d'essais interpolation 3.3 Série 2})}
+%       \end{figure}
+      \newpage
+   \begin{table}[h]
+	\centering
+	\begin{tabular}{| c | c | c | c | c | c | c | c | c | c | c | c | c | c | c | c | c | c | c | c | c | c |}
+	\hline 
+	$x_{i}$ & $752.000000$ & $855.000000$ & $871.000000$ & $734.000000$ & $610.000000$ & $582.000000$ & $921.000000$ & $492.000000$ & $569.000000$ & $462.000000$ & $907.000000$ & $643.000000$ & $862.000000$ & $524.000000$ & $679.000000$ & $902.000000$ & $918.000000$ & $828.000000$ & $875.000000$ & $809.000000$ & $894.000000$ \\ 
+	\hline 
+	$y_{i}$ & $85.000000$ & $83.000000$ & $162.000000$ & $79.000000$ & $81.000000$ & $83.000000$ & $281.000000$ & $81.000000$ & $81.000000$ & $80.000000$ & $243.000000$ & $84.000000$ & $84.000000$ & $82.000000$ & $80.000000$ & $226.000000$ & $260.000000$ & $82.000000$ & $186.000000$ & $77.000000$ & $223.000000$ \\ 
+	\hline 
+	\end{tabular}
+	\caption{Série1-2 dépense}
+	\label{Jeux d'essais interpolation 3.3 Série 1 et 2}
+      \end{table}
+      Méthode de Newton : $P(x)= 245839213382200524800.000000-6969795463389496320.000000 \cdot x + 93583577551725008.000000 \cdot x^{2} - 791298544244389.125000 \cdot x^{3}  + 4725727913097.273438 \cdot x^{4} - 21189691764.383732 \cdot x^{5}  + 74020805.461603 \cdot x^{6} - 206287.504897 \cdot x^{7}  + 465.835063 \cdot x^{8} - 0.860816 \cdot x^{9}  + 0.001309 \cdot x^{10} - 0.000002 \cdot x^{11}  + 0.000000 \cdot x^{12} - 0.000000 \cdot x^{13}  + 0.000000 \cdot x^{14} - 0.000000 \cdot x^{15}  + 0.000000 \cdot x^{16} - 0.000000 \cdot x^{17}  + 0.000000 \cdot x^{18} - 0.000000 \cdot x^{19}  + 0.000000 \cdot x^{20} $
+      
+      Erreur moyenne : $21268371516.333332$
+      
+      Méthode de Neuville : $P(x)= 245839213382189940736.000000-6969795463389208576.000000 \cdot x + 93583577551721264.000000 \cdot x^{2} - 791298544244361.000000 \cdot x^{3}  + 4725727913097.125000 \cdot x^{4} - 21189691764.383118 \cdot x^{5}  + 74020805.461601 \cdot x^{6} - 206287.504897 \cdot x^{7}  + 465.835063 \cdot x^{8} - 0.860816 \cdot x^{9}  + 0.001309 \cdot x^{10} - 0.000002 \cdot x^{11}  + 0.000000 \cdot x^{12} - 0.000000 \cdot x^{13}  + 0.000000 \cdot x^{14} - 0.000000 \cdot x^{15}  + 0.000000 \cdot x^{16} - 0.000000 \cdot x^{17}  + 0.000000 \cdot x^{18} - 0.000000 \cdot x^{19}  + 0.000000 \cdot x^{20} $
+      
+      Erreur moyenne : $27563644709.000000$
+      
+%       \begin{figure}[h]
+% 	\centering
+% 	\includegraphics[scale=0.7]{}
+% 	\caption{Interpolation de Newton et Neuville -- (Tableau \ref{Jeux d'essais interpolation 3.3 Série 1 et 2})}
+%       \end{figure}
+      
       \renewcommand{\arraystretch}{2}
       \renewcommand{\arraystretch}{1}
     \newpage
@@ -189,6 +330,185 @@ Votre choix :
 	\includegraphics{graphiques/pdf_output/reglin.pdf}
 	\caption{Régression linéaire -- (Tableau \ref{approx_td3_ex6})}
       \end{figure}
+      \newpage      
+      \begin{table}[h]
+	\centering
+		\begin{tabular}{| c | c | c | c | c | c | c | c | c | c | c | c | c | c | c | c | c | c | c | c | c |}
+	\hline 
+	$x_{i}$ & $0.000000$ & $2.000000$ & $4.000000$ & $6.000000$ & $8.000000$ & $10.000000$ & $12.000000$ & $14.000000$ & $16.000000$ & $18.000000$ & $20.000000$ & $22.000000$ & $24.000000$ & $26.000000$ & $28.000000$ & $30.000000$ & $32.000000$ & $34.000000$ & $36.000000$ & $38.000000$ \\ 
+	\hline 
+	$y_{i}$ & $0.999870$ & $0.999970$ & $1.000000$ & $0.999970$ & $0.999880$ & $0.999730$ & $0.999530$ & $0.999530$ & $0.998970$ & $0.998460$ & $0.998050$ & $0.999751$ & $0.997050$ & $0.996500$ & $0.996640$ & $0.995330$ & $0.994720$ & $0.994720$ & $0.993330$ & $0.993260$ \\ 
+	\hline 
+	\end{tabular}
+	\caption{3.1 Densité de l'eau en fonction de la température}
+	\label{Jeux d'essais approximation 3.0}
+		\end{table}
+	
+	Regression linéaire par une droite : $P(x) = 1.001302 - 0.000186 \cdot x$
+	
+	Erreur moyenne : $0.000665$
+	
+	Regression linéaire par une exponentielle : $P(x) = 1.001308 \cdot \exp(-0.000187 \cdot x) $
+	
+	Erreur moyenne : $0.000667$
+	
+	Regression linéaire par une puissance : Pas de résultat, lors du changement de variable, on calcule $\log_{2}(0)$ qui n'est pas défini.
+	
+	% 		\begin{figure}[h]
+% 	\centering
+% 	\includegraphics[scale=0.7]{graphiques/pdf_output/}
+% 	\caption{Approximation -- (Tableau \ref{Jeux d'essais approximation 3.0})}
+%       \end{figure}
+      \newpage
+		\begin{table}[h]
+	\centering
+		\begin{tabular}{| c | c | c | c | c | c | c | c | c | c | c | c |}
+	\hline 
+	$x_{i}$ & $10.000000$ & $8.000000$ & $13.000000$ & $9.000000$ & $11.000000$ & $14.000000$ & $6.000000$ & $4.000000$ & $12.000000$ & $7.000000$ & $5.000000$ \\ 
+	\hline 
+	$y_{i}$ & $9.140000$ & $8.140000$ & $8.740000$ & $8.770000$ & $9.260000$ & $8.100000$ & $6.130000$ & $3.100000$ & $9.130000$ & $7.260000$ & $4.740000$ \\ 
+	\hline 
+	\end{tabular}	
+	\caption{3.2.1 Trois séries}
+	\label{Jeux d'essais interpolation 3.2.1}
+		\end{table}
+	Regression linéaire par une droite : $P(x) = 3.000909 + 0.500000 \cdot x$
+	
+	Erreur moyenne : $0.967934$
+	
+	Regression linéaire par une exponentielle :$P(x) = 3.417548 \cdot \exp(0.082249 \cdot x)$
+	
+	Erreur moyenne : $1.187786$
+	
+	Regression linéaire par une puissance : $P(x) = 1.453451 \cdot x^{0.749910}$
+	
+	Erreur moyenne : $0.950634$
+	
+% 	\begin{figure}[h]
+% 	\centering
+% 	\includegraphics[scale=0.7]{graphiques/pdf_output/}
+% 	\caption{Approximation -- (Tableau \ref{Jeux d'essais interpolation 3.2.1})}
+%       \end{figure}
+      \newpage
+	   \begin{table}[h]
+	\centering
+		\begin{tabular}{| c | c | c | c | c | c | c | c | c | c | c | c |}
+		\hline 
+		$x_{i}$ & $10.000000$ & $8.000000$ & $13.000000$ & $9.000000$ & $11.000000$ & $14.000000$ & $6.000000$ & $4.000000$ & $12.000000$ & $7.000000$ & $5.000000$ \\ 
+		\hline 
+		$y_{i}$ & $7.460000$ & $6.770000$ & $12.740000$ & $7.110000$ & $7.810000$ & $8.840000$ & $6.080000$ & $5.390000$ & $8.150000$ & $6.420000$ & $5.730000$ \\ 
+		\hline 
+		\end{tabular}
+	\caption{3.2.2 Trois séries}
+	\label{Jeux d'essais interpolation 3.2.2}
+		\end{table}
+	Regression linéaire par une droite : $P(x) = 3.002455 + 0.499727 \cdot x$
+	
+	Erreur moyenne : $0.715967$
+	
+	Regression linéaire par une exponentielle :$P(x) = 4.100273 \cdot \exp(0.063981 \cdot x)$
+	
+	Erreur moyenne : $0.590601$
+	
+	Regression linéaire par une puissance :$P(x) = 2.478570 \cdot x^{0.507328}$
+	
+	Erreur moyenne : $0.682932$
+		
+		% 	\begin{figure}[h]
+% 	\centering
+% 	\includegraphics[scale=0.7]{graphiques/pdf_output/}
+% 	\caption{Approximation -- (Tableau \ref{Jeux d'essais interpolation 3.2.1})}
+%       \end{figure}
+      \newpage
+     \begin{table}[h]
+	\centering
+	\begin{tabular}{| c | c | c | c | c | c | c | c | c | c | c | c |}
+	  \hline 
+	  $x_{i}$ & $752$ & $855$ & $871$ & $734$ & $610$ & $582$ & $921$ & $492$ & $569$ & $462$ & $907 $ \\ 
+	  \hline 
+	  $y_{i}$ & $85$ & $83$ & $162$ & $79$ & $81$ & $83$ & $281$ & $81$ & $81$ & $80$ & $243 $ \\ 
+	  \hline 
+	\end{tabular}
+	\caption{Série1 dépense}
+	\label{Jeux d'essais approximation 3.3 Série 1}
+      \end{table}
+	Regression linéaire par une droite :$ P(x) =  - 98.368005 + 0.312192 \cdot x$
+	
+	Erreur moyenne : $38.488186$
+	
+	Regression linéaire par une exponentielle :$P(x) = 24.011644 \cdot \exp(0.002124 \cdot x)$
+	
+	Erreur moyenne : $33.486916$
+	
+	Regression linéaire par une puissance :$P(x) = 0.015258 \cdot x^{1.356482}$
+	
+	Erreur moyenne : $36.660388$
+      
+%       \begin{figure}[h]
+% 	\centering
+% 	\includegraphics[scale=0.7]{}
+% 	\caption{Approximation -- (Tableau \ref{Jeux d'essais approximation 3.3 Série 1})}
+%       \end{figure}
+      \newpage
+   \begin{table}[h]
+	\centering
+	\begin{tabular}{| c | c | c | c | c | c | c | c | c | c | c |}
+	\hline 
+	$x_{i}$ & $643.000000$ & $862.000000$ & $524.000000$ & $679.000000$ & $902.000000$ & $918.000000$ & $828.000000$ & $875.000000$ & $809.000000$ & $894.000000$ \\ 
+	\hline 
+	$y_{i}$ & $84.000000$ & $84.000000$ & $82.000000$ & $80.000000$ & $226.000000$ & $260.000000$ & $82.000000$ & $186.000000$ & $77.000000$ & $223.000000$ \\ 
+	\hline 
+	\end{tabular}
+	\caption{Série2 dépense}
+	\label{Jeux d'essais approximation 3.3 Série 2}
+      \end{table}
+	Regression linéaire par une droite :$P(x) =  - 164.266162 + 0.381480 \cdot x$
+	
+	Erreur moyenne : $46.455702$
+	
+	Regression linéaire par une exponentielle :$P(x) = 14.780629 \cdot \exp(0.002657 \cdot x)$
+	
+	Erreur moyenne : $45.099159$
+	
+	Regression linéaire par une puissance :$P(x) = 0.000785  \cdot x^{1.793989}$
+	
+	Erreur moyenne : $47.682118$
+      
+%       \begin{figure}[h]
+% 	\centering
+% 	\includegraphics[scale=0.7]{}
+% 	\caption{Approximation-- (Tableau \ref{Jeux d'essais approximation 3.3 Série 2})}
+%       \end{figure}
+      \newpage
+   \begin{table}[h]
+	\centering
+	\begin{tabular}{| c | c | c | c | c | c | c | c | c | c | c | c | c | c | c | c | c | c | c | c | c | c |}
+	\hline 
+	$x_{i}$ & $752.000000$ & $855.000000$ & $871.000000$ & $734.000000$ & $610.000000$ & $582.000000$ & $921.000000$ & $492.000000$ & $569.000000$ & $462.000000$ & $907.000000$ & $643.000000$ & $862.000000$ & $524.000000$ & $679.000000$ & $902.000000$ & $918.000000$ & $828.000000$ & $875.000000$ & $809.000000$ & $894.000000$ \\ 
+	\hline 
+	$y_{i}$ & $85.000000$ & $83.000000$ & $162.000000$ & $79.000000$ & $81.000000$ & $83.000000$ & $281.000000$ & $81.000000$ & $81.000000$ & $80.000000$ & $243.000000$ & $84.000000$ & $84.000000$ & $82.000000$ & $80.000000$ & $226.000000$ & $260.000000$ & $82.000000$ & $186.000000$ & $77.000000$ & $223.000000$ \\ 
+	\hline 
+	\end{tabular}
+	\caption{Série1-2 dépense}
+	\label{Jeux d'essais interpolation 3.3 Série 1 et 2}
+      \end{table}
+	Regression linéaire par une droite :$P(x) =  - 112.658491 + 0.324356 \cdot x$
+	
+	Erreur moyenne : $43.378231$
+	
+	Reression linéaire par une exponentielle :$P(x) = 21.399929\cdot \exp(0.002238 \cdot x)$
+	
+	Erreur moyenne : $40.094599$
+	
+	Regression linéaire par une puissance :$P(x) = 0.007872 \cdot x^{1.453059}$
+	
+	Erreur moyenne : $42.696155$
+      
+%       \begin{figure}[h]
+% 	\centering
+% 	\includegraphics[scale=0.7]{}
+% 	\caption{Approximation -- (Tableau \ref{Jeux d'essais interpolation 3.3 Série 1 et 2})}
+%       \end{figure}
   \chapter{Conclusion}
 
 \end{document}

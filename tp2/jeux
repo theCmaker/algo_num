@@ -1,0 +1,277 @@
+3.1 Densité de l'eau en fonction de la température
+
+0
+0.99987
+2
+0.99997
+4
+1.00000
+6
+0.99997
+8
+0.99988
+10
+0.99973
+12
+0.99953
+14
+0.99953
+16
+0.99897
+18
+0.99846
+20
+0.99805
+22
+0.999751
+24
+0.99705
+26
+0.99650
+28
+0.99664
+30
+0.99533
+32
+0.99472
+34
+0.99472
+36
+0.99333
+38
+0.99326
+
+
+ Newton : Erreur moyenne : 0.000005
+ Neuville : Erreur moyenne : 0.000033
+ ReglinD : P(x) = 1.001302 - 0.000186 * x
+			  Erreur moyenne : 0.000665
+ ReglinExpo: P(x) = 1.001308*exp(-0.000187*x)
+				Erreur moyenne : 0.000667
+ ReglinPui : P(x) = -nan*x^(-nan)
+				Erreur moyenne : nan  Normal car on calcule log(0).
+
+
+
+
+
+3.2 Trois séries
+
+S1
+
+10
+9.14
+8
+8.14
+13
+8.74
+9
+8.77
+11
+9.26
+14
+8.1
+6
+6.13
+4
+3.1
+12
+9.13
+7
+7.26
+5
+4.74
+
+Newton : Erreur moyenne : 0.000000
+Neuvile : Erreur moyenne : 0.000000
+ReglinD : P(x) = 3.000909 + 0.500000 * x
+				Erreur moyenne : 0.967934
+ReglinExpo : P(x) = 3.417548*exp(0.082249*x)
+				Erreur moyenne : 1.187786
+ReglinPui : P(x) = 1.453451*x^(0.749910)
+				Erreur moyenne : 0.950634
+
+
+S2
+
+10
+7.46
+8
+6.77
+13
+12.74
+9
+7.11
+11
+7.81
+14
+8.84
+6
+6.08
+4
+5.39
+12
+8.15
+7
+6.42
+5
+5.73
+
+Newton : Erreur moyenne : 0.000000
+Neuville: Erreur moyenne : 0.000000
+ReglinD: P(x) = 3.002455 + 0.499727 * x
+			Erreur moyenne : 0.715967
+ReglinExpo:P(x) = 4.100273*exp(0.063981*x)
+			Erreur moyenne : 0.590601
+ReglinPui:P(x) = 2.478570*x^(0.507328)
+			Erreur moyenne : 0.682932
+
+
+S3
+
+8
+6.58
+8
+5.76
+8
+7.71
+8
+8.84
+8
+8.47
+8
+7.04
+8
+5.25
+19
+12.5
+8
+5.56
+8
+7.91
+8
+6.89
+
+
+
+3.3 Dépenses mensuelles et revenues
+
+Série 1
+
+752
+85
+855
+83
+871
+162
+734
+79
+610
+81
+582
+83
+921
+281
+492
+81
+569
+81
+462
+80
+907
+243
+
+Newton : Erreur moyenne : 0.000046
+Neuville: Erreur moyenne : 0.000043
+ReglinD: P(x) =  - 98.368005 + 0.312192 * x
+			Erreur moyenne : 38.488186
+ReglinExpo:P(x) = 24.011644*exp(0.002124*x)
+			Erreur moyenne : 33.486916
+ReglinPui:P(x) = 0.015258*x^(1.356482)
+			Erreur moyenne : 36.660388
+
+Série 2
+
+643
+84
+862
+84
+524
+82
+679
+80
+902
+226
+918
+260
+828
+82
+875
+186
+809
+77
+894
+223
+
+Newton : Erreur moyenne : 0.005505
+Neuville:Erreur moyenne : 0.005585
+ReglinD:P(x) =  - 164.266162 + 0.381480 * x
+		Erreur moyenne : 46.455702
+ReglinExpo:P(x) = 14.780629*exp(0.002657*x)
+		Erreur moyenne : 45.099159
+ReglinPui:P(x) = 0.000785*x^(1.793989)
+		Erreur moyenne : 47.682118
+
+Série 1 et 2
+
+752
+85
+855
+83
+871
+162
+734
+79
+610
+81
+582
+83
+921
+281
+492
+81
+569
+81
+462
+80
+907
+243
+643
+84
+862
+84
+524
+82
+679
+80
+902
+226
+918
+260
+828
+82
+875
+186
+809
+77
+894
+223
+
+Newton : Erreur moyenne : 21268371516.333332
+Neuville: Erreur moyenne : 27563644709.000000
+ReglinD:P(x) =  - 112.658491 + 0.324356 * x
+		Erreur moyenne : 43.378231
+ReglinExpo:P(x) = 21.399929*exp(0.002238*x)
+		Erreur moyenne : 40.094599
+ReglinPui:P(x) = 0.007872*x^(1.453059)
+		Erreur moyenne : 42.696155
