@@ -60,9 +60,9 @@ int main (int argc, char ** argv)
       printf("\nQuelle résolution utiliser ?\n");
       printf("1- Newton\n");
       printf("2- Neuville\n");
-      printf("3- Régression Linéaire par une droite\n");
-      printf("4- Régression Linéaire par une fonction exponentielle\n");
-      printf("5- Régression Linéaire par une fonction puissance\n");
+      printf("3- Régression Linéaire\n");
+      printf("4- Approximation par une fonction exponentielle\n");
+      printf("5- Approximation par une fonction puissance\n");
       printf("9- Nouvelle série de points (Menu principal)\n");
       printf("0- Quitter\n");
       printf("Votre choix : ");
@@ -82,17 +82,17 @@ int main (int argc, char ** argv)
 	  hitToContinue();
 	  break;
 	case 3:
-	  printf("Résolution par Régression linéaire par une droite ... \n");
+	  printf("Résolution par Régression linéaire ... \n");
 	  reglinD(tab,n);
 	  hitToContinue();
 	  break;
 	case 4:
-	  printf("Résolution par Régression linéaire par une fonction exponentielle... \n");
+	  printf("Résolution par Approximation par une fonction exponentielle... \n");
 	  reglinE(tab,n);
 	  hitToContinue();
 	  break;
 	case 5:
-	  printf("Résolution par Régression linéaire par une fonction puissance... \n");
+	  printf("Résolution par Approximation par une fonction puissance... \n");
 	  reglinP(tab,n);
 	  hitToContinue();
 	  break;
