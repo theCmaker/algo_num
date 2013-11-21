@@ -132,15 +132,23 @@ Votre choix :
 	  \caption{Série 1}
 	  \label{inter_td3_ex3}
 	\end{table}
-
-	Méthode de Newton: $P(x)= -6.00 + 11.00 \cdot x- 6.00 \cdot x^{2}  + 1.00 \cdot x^{3} $
-
-	Méthode de Neuville: $P(x)= -6.00 + 11.00 \cdot x- 6.00 \cdot x^{2}  + 1.00 \cdot x^{3} $
+	
+	On obtient alors :\\ \\
+	\textbf{Méthode de Newton :}\\
+	$P(x)= -6.00 + 11.00 \cdot x- 6.00 \cdot x^{2}  + 1.00 \cdot x^{3} $\\
+	Erreur : $0$
+	\newline
+	\newline
+	\textbf{Méthode de Neuville :}\\
+	$P(x)= -6.00 + 11.00 \cdot x- 6.00 \cdot x^{2}  + 1.00 \cdot x^{3} $\\
+	Erreur : $0$
+	\newline
+	\newline
 	
 	\begin{figure}[h]
 	  \centering
 	  \includegraphics[scale=0.7]{graphiques/pdf_output/inter_test1.pdf}
-	  \caption{Interpolation de Newton et Neuville -- (Tableau \ref{inter_td3_ex3})}
+	  \caption{Interpolations de Newton et Neuville -- (Tableau \ref{inter_td3_ex3})}
 	\end{figure}
       \newpage
       
@@ -164,18 +172,22 @@ Votre choix :
 	  \caption{Mesures}
 	  \label{inter_tp2_ex1_densite}
 	\end{table}
-	  
-	  Méthode de Newton : $P(x)= 0.999870 + 7.693711 \cdot x- 13.276666 \cdot x^{2}  + 9.932303 \cdot x^{3} - 4.345460 \cdot x^{4}  + 1.259124 \cdot x^{5} - 0.258585 \cdot x^{6}  + 0.039240 \cdot x^{7} - 0.004520 \cdot x^{8}  + 0.000402 \cdot x^{9} - 0.000028 \cdot x^{10}  + 0.000002 \cdot x^{11} - 0 \cdot x^{12}  + 0 \cdot x^{13} - 0 \cdot x^{14}  + 0 \cdot x^{15} - 0 \cdot x^{16}  + 0 \cdot x^{17} - 0 \cdot x^{18}  + 0 \cdot x^{19} $
-	  
-	  Erreur moyenne : $0.000005$
-
-	  Méthode de Neuville : $P(x)= 0.999870 + 7.693711 \cdot x- 13.276666 \cdot x^{2}  + 9.932303 \cdot x^{3} - 4.345460 \cdot x^{4}  + 1.259124 \cdot x^{5} - 0.258585 \cdot x^{6}  + 0.039240 \cdot x^{7} - 0.004520 \cdot x^{8}  + 0.000402 \cdot x^{9} - 0.000028 \cdot x^{10}  + 0.000002 \cdot x^{11} - 0 \cdot x^{12}  + 0 \cdot x^{13} - 0 \cdot x^{14}  + 0 \cdot x^{15} - 0 \cdot x^{16}  + 0 \cdot x^{17} - 0 \cdot x^{18}  + 0 \cdot x^{19} $
-	  
-	  Erreur moyenne : $0.000033$
+	
+	On obtient alors :\\ \\
+	\textbf{Méthode de Newton :}\\
+	$P(x) \approx 0.999870 + 7.693711 \cdot x - 13.276666 \cdot x^{2}  + 9.932303 \cdot x^{3} - 4.345460 \cdot x^{4}  + 1.259124 \cdot x^{5} - 0.258585 \cdot x^{6}  + 0.039240 \cdot x^{7} - 0.004520 \cdot x^{8}  + 0.000402 \cdot x^{9} - 0.000028 \cdot x^{10}  + 0.000002 \cdot x^{11} - 0.000000 \cdot x^{12}  + 0.000000 \cdot x^{13} - 0.000000 \cdot x^{14}  + 0.000000 \cdot x^{15} - 0.000000 \cdot x^{16}  + 0.000000 \cdot x^{17} - 0.000000 \cdot x^{18}  + 0.000000 \cdot x^{19} $\\
+	Erreur : $0.000002166566117323$
+	\newline
+	\newline
+	\textbf{Méthode de Neuville :}\\
+	$P(x) \approx 0.999870 + 7.693711 \cdot x- 13.276666 \cdot x^{2}  + 9.932303 \cdot x^{3} - 4.345460 \cdot x^{4}  + 1.259124 \cdot x^{5} - 0.258585 \cdot x^{6}  + 0.039240 \cdot x^{7} - 0.004520 \cdot x^{8}  + 0.000402 \cdot x^{9} - 0.000028 \cdot x^{10}  + 0.000002 \cdot x^{11} - 0.000000 \cdot x^{12}  + 0.000000 \cdot x^{13} - 0.000000 \cdot x^{14}  + 0.000000 \cdot x^{15} - 0.000000 \cdot x^{16}  + 0.000000 \cdot x^{17} - 0.000000 \cdot x^{18}  + 0.000000 \cdot x^{19} $\\
+	Erreur : $0.000028505775100296$
+	\newline
+	\newline
 		  
-	  \begin{figure}[h]
+	\begin{figure}[h]
 	  \centering
-  % 	\includegraphics[scale=0.7]{graphiques/pdf_output/}
+	  \includegraphics{graphiques/pdf_output/inter_tp2_ex1.pdf}
 	  \caption{Interpolation de Newton et Neuville -- (Tableau \ref{inter_tp2_ex1_densite})}
 	\end{figure}
       \newpage
@@ -197,53 +209,61 @@ Votre choix :
 	  \caption{Trois séries S1, S2, S3}
 	  \label{inter_tp2_ex2_3series}
 	\end{table}
-	Série 1 :
-	\newline
-	Méthode de Newton :$P(x)= -229.550000 + 299.165750 \cdot x- 173.107636 \cdot x^{2}  + 58.546955 \cdot x^{3} - 12.731862 \cdot x^{4}  + 1.859906 \cdot x^{5} - 0.184968 \cdot x^{6}  + 0.012375 \cdot x^{7} - 0.000533 \cdot x^{8}  + 0.000013 \cdot x^{9} - 0 \cdot x^{10} $
-	\newline
-	Erreur moyenne : $0$
-	\newline
-	\newline
-	Méthode de Neuville : $P(x)= -229.550000 + 299.165750 \cdot x- 173.107636 \cdot x^{2}  + 58.546955 \cdot x^{3} - 12.731862 \cdot x^{4}  + 1.859906 \cdot x^{5} - 0.184968 \cdot x^{6}  + 0.012375 \cdot x^{7} - 0.000533 \cdot x^{8}  + 0.000013 \cdot x^{9} - 0 \cdot x^{10} $
-	\newline
-	Erreur moyenne : $0$
+	On obtient alors :\\ \\
+	\underline{\textbf{Série 1 :}} \\ \\
+	\textbf{Méthode de Newton :}\\
+	$P(x) \approx -229.550000 + 299.165750 \cdot x- 173.107636 \cdot x^{2}  + 58.546955 \cdot x^{3} - 12.731862 \cdot x^{4}  + 1.859906 \cdot x^{5} - 0.184968 \cdot x^{6}  + 0.012375 \cdot x^{7} - 0.000533 \cdot x^{8}  + 0.000013 \cdot x^{9} - 0.000000 \cdot x^{10} $\\
+	Erreur : $0.000000000016217532$
 	\newline
 	\newline
-	\newline
-	Série 2 :
-	\newline
-	Méthode de Newton :$P(x)= -12345.190000 + 16608.066492 \cdot x- 9870.941498 \cdot x^{2}  + 3416.593892 \cdot x^{3} - 763.094009 \cdot x^{4}  + 114.979985 \cdot x^{5} - 11.842442 \cdot x^{6}  + 0.823658 \cdot x^{7} - 0.037039 \cdot x^{8}  + 0.000973 \cdot x^{9} - 0.000011 \cdot x^{10} $
-	\newline
-	Erreur moyenne : $0$
-	\newline
-	\newline
-	Méthode de Neuville : $P(x)= -12345.190000 + 16608.066492 \cdot x- 9870.941498 \cdot x^{2}  + 3416.593892 \cdot x^{3} - 763.094009 \cdot x^{4}  + 114.979985 \cdot x^{5} - 11.842442 \cdot x^{6}  + 0.823658 \cdot x^{7} - 0.037039 \cdot x^{8}  + 0.000973 \cdot x^{9} - 0.000011 \cdot x^{10} $
-	\newline
-	Erreur moyenne : $0$
+	\textbf{Méthode de Neuville :}\\
+	$P(x) \approx -229.550000 + 299.165750 \cdot x- 173.107636 \cdot x^{2}  + 58.546955 \cdot x^{3} - 12.731862 \cdot x^{4}  + 1.859906 \cdot x^{5} - 0.184968 \cdot x^{6}  + 0.012375 \cdot x^{7} - 0.000533 \cdot x^{8}  + 0.000013 \cdot x^{9} - 0.000000 \cdot x^{10} $\\
+	Erreur : $0.000000000012119518$
 	\newline
 	\newline
 	\newline
-	Série 3 :
+	\underline{\textbf{Série 2 :}} \\ \\
+	\textbf{Méthode de Newton :}\\
+	$P(x) \approx -12345.190000 + 16608.066492 \cdot x- 9870.941498 \cdot x^{2}  + 3416.593892 \cdot x^{3} - 763.094009 \cdot x^{4}  + 114.979985 \cdot x^{5} - 11.842442 \cdot x^{6}  + 0.823658 \cdot x^{7} - 0.037039 \cdot x^{8}  + 0.000973 \cdot x^{9} - 0.000011 \cdot x^{10} $\\
+	Erreur : $0.000000000774325735$
 	\newline
-	Méthode de Newton : $P(x)= -568559.640000 + 739678.381270 \cdot x- 424130.450858 \cdot x^{2}  + 141275.523224 \cdot x^{3} - 30298.693006 \cdot x^{4}  + 4375.222059 \cdot x^{5} - 431.155992 \cdot x^{6}  + 28.652640 \cdot x^{7} - 1.229803 \cdot x^{8}  + 0.030806 \cdot x^{9} - 0.000342 \cdot x^{10} $
 	\newline
-	Erreur moyenne : $0$
+	\textbf{Méthode de Neuville :}\\
+	$P(x) \approx -12345.190000 + 16608.066492 \cdot x- 9870.941498 \cdot x^{2}  + 3416.593892 \cdot x^{3} - 763.094009 \cdot x^{4}  + 114.979985 \cdot x^{5} - 11.842442 \cdot x^{6}  + 0.823658 \cdot x^{7} - 0.037039 \cdot x^{8}  + 0.000973 \cdot x^{9} - 0.000011 \cdot x^{10} $\\
+	Erreur : $0.000000001033081661$
 	\newline
 	\newline
-	Méthode de Neuville : $P(x)= -568559.640000 + 739678.381270 \cdot x- 424130.450858 \cdot x^{2}  + 141275.523224 \cdot x^{3} - 30298.693006 \cdot x^{4}  + 4375.222059 \cdot x^{5} - 431.155992 \cdot x^{6}  + 28.652640 \cdot x^{7} - 1.229803 \cdot x^{8}  + 0.030806 \cdot x^{9} - 0.000342 \cdot x^{10} $
 	\newline
-	Erreur moyenne : $0$
+	\underline{\textbf{Série 3 :}} \\ \\
+	\textbf{Méthode de Newton :}\\
+	$P(x) \approx -568559.640000 + 739678.381270 \cdot x- 424130.450858 \cdot x^{2}  + 141275.523224 \cdot x^{3} - 30298.693006 \cdot x^{4}  + 4375.222059 \cdot x^{5} - 431.155992 \cdot x^{6}  + 28.652640 \cdot x^{7} - 1.229803 \cdot x^{8}  + 0.030806 \cdot x^{9} - 0.000342 \cdot x^{10} $\\
+	Erreur : $0.000000081067879843$
+	\newline
+	\newline
+	\textbf{Méthode de Neuville :}\\
+	$P(x) \approx -568559.640000 + 739678.381270 \cdot x- 424130.450858 \cdot x^{2}  + 141275.523224 \cdot x^{3} - 30298.693006 \cdot x^{4}  + 4375.222059 \cdot x^{5} - 431.155992 \cdot x^{6}  + 28.652640 \cdot x^{7} - 1.229803 \cdot x^{8}  + 0.030806 \cdot x^{9} - 0.000342 \cdot x^{10} $\\
+	Erreur : $0.000000035876804073$
 	\newpage
 	\begin{figure}[h]
 	  \centering
-  % 	\includegraphics[scale=0.7]{graphiques/pdf_output/}
-	  \caption{Interpolation de Newton et Neuville -- (Tableau \ref{inter_tp2_ex2_3series})}
+  	\includegraphics[scale=0.5]{graphiques/pdf_output/inter_tp2_ex2_1.pdf}
+	  \caption{Interpolations de Newton et Neuville -- Série 1 (Tableau \ref{inter_tp2_ex2_3series})}
+	\end{figure}
+	\begin{figure}[h]
+	  \centering
+	  \includegraphics[scale=0.5]{graphiques/pdf_output/inter_tp2_ex2_2.pdf}
+	  \caption{Interpolations de Newton et Neuville -- Série 2 (Tableau \ref{inter_tp2_ex2_3series})}
+	\end{figure}
+	\newpage
+	\begin{figure}[h]
+	  \centering
+ 	  \includegraphics[scale=0.5]{graphiques/pdf_output/inter_tp2_ex2_3.pdf}
+	  \caption{Interpolations de Newton et Neuville -- Série 3 (Tableau \ref{inter_tp2_ex2_3series})}
 	\end{figure}
       \newpage
-      
       \subsection{Dépenses et Revenus}
       \begin{table}[h]
-	\centering
+% 	\centering
 	\begin{tabular}{| c | c | c | c | c | c | c | c | c | c | c | c |}
 	  \hline 
 	  $x_{i}$ (R) & $752$ & $855$ & $871$ & $734$ & $610$ & $582$ & $921$ & $492$ & $569$ & $462$ & $907 $ \\ 
@@ -251,12 +271,7 @@ Votre choix :
 	  $y_{i}$ (D) & $85$ & $83$ & $162$ & $79$ & $81$ & $83$ & $281$ & $81$ & $81$ & $80$ & $243 $ \\ 
 	  \hline 
 	\end{tabular}
-	\caption{Série 1}
-	\label{inter_tp2_ex3_depenses}
-      \end{table}
-      
-      \begin{table}[h]
-	\centering
+	\newline
 	\begin{tabular}{| c | c | c | c | c | c | c | c | c | c | c |}
 	\hline 
 	$x_{i}$ (R) & $643$ & $862$ & $524$ & $679$ & $902$ & $918$ & $828$ & $875$ & $809$ & $894$ \\ 
@@ -264,38 +279,61 @@ Votre choix :
 	$y_{i}$ (D) & $84$ & $84$ & $82$ & $80$ & $226$ & $260$ & $82$ & $186$ & $77$ & $223$ \\ 
 	\hline 
 	\end{tabular}
-	\caption{Série 2}
-	\label{inter_tp2_ex3_depenses_2}
+	\caption{Série non triée}
+	\label{inter_tp2_ex3_depenses}
       \end{table}
       
-      Série 1:
-      \newline
-      Méthode de Newton : $P(x)= 524166663.148073-8065079.743259 \cdot x + 55479.774423 \cdot x^{2} - 224.689243 \cdot x^{3}  + 0.593281 \cdot x^{4} - 0.001067 \cdot x^{5}  + 0.01 \cdot x^{6} - 0.00 \cdot x^{7}  + 0.00 \cdot x^{8} - 0.00 \cdot x^{9}  + 0.00 \cdot x^{10} $
-      \newline
-      Erreur moyenne : $0.000046$
-      \newline
-      \newline
-      Méthode de Neuville : $P(x)= 524166663.148078-8065079.743259 \cdot x + 55479.774423 \cdot x^{2} - 224.689243 \cdot x^{3}  + 0.593281 \cdot x^{4} - 0.001067 \cdot x^{5}  + 0.000001 \cdot x^{6} - 0 \cdot x^{7}  + 0 \cdot x^{8} - 0 \cdot x^{9}  + 0 \cdot x^{10} $
-      \newline
-      Erreur moyenne : $0.000043$
-      \newline
-      \newline
-      \newline
-      Série 2 :
-      \newline
-      Méthode de Newton : $P(x)= 264070485740.100494-3124699358.171593 \cdot x + 16351348.965791 \cdot x^{2} - 49678.667726 \cdot x^{3}  + 96.596340 \cdot x^{4} - 0.124686 \cdot x^{5}  + 0.000107 \cdot x^{6} - 0 \cdot x^{7}  + 0 \cdot x^{8} - 0 \cdot x^{9} $
-      \newline
-      Erreur moyenne : $0.005505$
-      \newline
-      \newline
-      Méthode de Neuville : $P(x)= 264070485740.100800-3124699358.171597 \cdot x + 16351348.965791 \cdot x^{2} - 49678.667726 \cdot x^{3}  + 96.596340 \cdot x^{4} - 0.124686 \cdot x^{5}  + 0.000107 \cdot x^{6} - 0 \cdot x^{7}  + 0 \cdot x^{8} - 0 \cdot x^{9} $
-      \newline
-      Erreur moyenne : $0.005585$
+      \begin{table}[h]
+	\centering
+	\begin{tabular}{| c | c | c | c | c | c | c | c | c | c | c | c | c | c | c |}
+	  \hline 
+	  $x_{i}$ (R) & $752$ & $855$ & $828$ & $734$ & $809$ & $610$ & $582$ & $492$ & $569$ & $462$ & $643$ & $862$ & $524$ & $679$ \\ 
+	  \hline 
+	  $y_{i}$ (D) & $85$ & $83$ & $82$ & $79$ & $77$ & $81$ & $83$ & $81$ & $81$ & $80$ & $84$ & $84$ & $82$ & $80$ \\ 
+	  \hline 
+	\end{tabular}
+	\caption{Série triée : Partie Basse}
+	\label{inter_tp2_ex3_depenses_bas}
+      \end{table}
+      \begin{table}[h]
+	\centering
+	\begin{tabular}{| c | c | c | c | c | c | c | c |}
+	  \hline 
+	  $x_{i}$ (R) & $902$ & $918$ & $871$ & $875$ & $921$ & $907$ & $894$ \\ 
+	  \hline 
+	  $y_{i}$ (D) & $226$ & $260$ & $162$ & $186$ & $281$ & $243$ & $223$ \\ 
+	  \hline 
+	\end{tabular}
+	\caption{Série triée : Partie Haute}
+	\label{inter_tp2_ex3_depenses_haut}
+      \end{table}
+      On obtient alors :\\ \\
+      \underline{\textbf{Partie Basse :}} \\ \\
+      \textbf{Méthode de Newton :}\\
+	$P(x) \approx 73581192209.962601-1459287367.863513 \cdot x + 13300351.970502 \cdot x^{2} - 73765.523297 \cdot x^{3}  + 277.759281 \cdot x^{4} - 0.749863 \cdot x^{5}  + 0.001493 \cdot x^{6} - 0.000002 \cdot x^{7}  + 0.000000 \cdot x^{8} - 0.000000 \cdot x^{9}  + 0.000000 \cdot x^{10} - 0.000000 \cdot x^{11}  + 0.000000 \cdot x^{12} - 0.000000 \cdot x^{13} $\\
+	Erreur : $0.018460432587224723$
+	\newline
+	\newline
+	\textbf{Méthode de Neuville :}\\
+	$P(x) \approx 73581192209.952133-1459287367.863373 \cdot x + 13300351.970501 \cdot x^{2} - 73765.523297 \cdot x^{3}  + 277.759281 \cdot x^{4} - 0.749863 \cdot x^{5}  + 0.001493 \cdot x^{6} - 0.000002 \cdot x^{7}  + 0.000000 \cdot x^{8} - 0.000000 \cdot x^{9}  + 0.000000 \cdot x^{10} - 0.000000 \cdot x^{11}  + 0.000000 \cdot x^{12} - 0.000000 \cdot x^{13} $\\
+	Erreur : $0.192499821369502971$
+	\newline
+	\newline
+	\newline
+	\underline{\textbf{Partie Haute :}} \\ \\
+	\textbf{Méthode de Newton :}\\
+	$P(x) \approx 621022623331.547363-4157904770.816573 \cdot x + 11598209.746191 \cdot x^{2} - 17253.085748 \cdot x^{3}  + 14.435304 \cdot x^{4} - 0.006441 \cdot x^{5}  + 0.000001 \cdot x^{6} $\\
+	Erreur : $0.000429349286215646$
+	\newline
+	\newline
+	\textbf{Méthode de Neuville :}\\
+	$P(x) \approx 621022623331.548340-4157904770.816572 \cdot x + 11598209.746191 \cdot x^{2} - 17253.085748 \cdot x^{3}  + 14.435304 \cdot x^{4} - 0.006441 \cdot x^{5}  + 0.000001 \cdot x^{6} $\\
+	Erreur : $0.002443850040435791$
       \newpage
       \begin{figure}[h]
 	\centering
-% 	\includegraphics[scale=0.7]{}
-	\caption{Interpolation de Newton et Neuville -- (Tableaux \ref{inter_tp2_ex3_depenses} \& \ref{inter_tp2_ex3_depenses_2})}
+	\includegraphics[scale=0.85]{graphiques/pdf_output/inter_tp2_ex3.pdf}
+	\caption{Interpolation de Newton et Neuville -- (Tableaux \ref{inter_tp2_ex3_depenses_bas} \& \ref{inter_tp2_ex3_depenses_haut})}
       \end{figure}
     \newpage
     \section{Comparaison}
@@ -479,10 +517,33 @@ Votre choix :
       
       \subsection{Série chronologique avec accroissement exponentiel}
       
+	\begin{table}[h]
+	  \centering
+	  \begin{tabular}{| c | c | c | c | c | c | c | c | c | c | c |}
+	    \hline 
+	    $x_{i}$ & $88$ & $89$ & $90$ & $91$ & $92$ & $93$ & $94$ & $95$ & $96$ & $97$ \\ 
+	    \hline 
+	    $y_{i}$ & $5.89$ & $6.77$ & $7.97$ & $9.11$ & $10.56$ & $12.27$ & $13.92$ & $15.72$ & $17.91$ & $22.13$ \\ 
+	    \hline 
+	  \end{tabular}
+	  \caption{Série}
+	  \label{approx_tp2_ex4}
+	\end{table}
       \newpage
       
       \subsection{Vérification de la loi de Pareto}
-
+	\begin{table}[h]
+	  \centering
+	  \begin{tabular}{| c | c | c | c | c | c | c | c |}
+	      \hline 
+	      $x_{i}$ & $20$ & $30$ & $40$ & $50$ & $100$ & $300$ & $500$ \\ 
+	      \hline 
+	      $y_{i}$ & $352$ & $128$ & $62.3$ & $35.7$ & $6.3$ & $0.4$ & $0.1$ \\ 
+	      \hline 
+	  \end{tabular}
+	  \caption{Relation entre revenu et nombre de personnes ayant un revenu supérieur}
+	  \label{approx_tp2_ex5}
+	\end{table}
   \chapter{Conclusion}
 
 \end{document}

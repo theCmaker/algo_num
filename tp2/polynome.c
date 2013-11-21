@@ -87,21 +87,21 @@ void afficherPoly(polynome* P, char* mode, ...)
     va_list ap;
     va_start(ap,mode);
     f = va_arg(ap,FILE*);
-    fprintf(f,"$P(x)= ");
+    fprintf(f,"$P(x) \\approx ");
     for(i=0; i<c; i++)
     {
       if(P->poln[i] > 0)
       {
 	if(i != 0) { fprintf(f," + "); }
-	if(i == 0) { fprintf(f,"%20.18f",P->poln[i]); }
-	else if(i == 1) { fprintf(f,"%20.18f \\cdot x",P->poln[i]); }
-	else { fprintf(f,"%20.18f \\cdot x^{%d} ", P->poln[i],i); }
+	if(i == 0) { fprintf(f,"%.6f",P->poln[i]); }
+	else if(i == 1) { fprintf(f,"%.6f \\cdot x",P->poln[i]); }
+	else { fprintf(f,"%.6f \\cdot x^{%d} ", P->poln[i],i); }
       }
       if(P->poln[i] < 0)
       {
-	if(i == 0) { fprintf(f,"-%20.18f", -(P->poln[i])); }
-	else if(i == 1) { fprintf(f,"-%20.18f \\cdot x", -(P->poln[i])); }
-	else { fprintf(f,"- %20.18f \\cdot x^{%d} ", -(P->poln[i]), i); }
+	if(i == 0) { fprintf(f,"-%.6f", -(P->poln[i])); }
+	else if(i == 1) { fprintf(f,"-%.6f \\cdot x", -(P->poln[i])); }
+	else { fprintf(f,"- %.6f \\cdot x^{%d} ", -(P->poln[i]), i); }
       }
     }
     fprintf(f,"$\n\n");
