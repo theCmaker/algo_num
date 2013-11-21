@@ -68,16 +68,16 @@ void afficherPoly(polynome* P, char* mode, ...)
       if(P->poln[i] > 0) 
       {
 	if(i != 0) { printf(" + "); }
-	if(i == 0) { printf("%e",P->poln[i]); }
-	else if(i == 1) { printf("%e * x",P->poln[i]); }
-	else { printf("%e * x^%d", P->poln[i],i); }
+	if(i == 0) { printf("%20.200f",P->poln[i]); }
+	else if(i == 1) { printf("%20.200f * x",P->poln[i]); }
+	else { printf("%20.200f * x^%d", P->poln[i],i); }
       }
       if(P->poln[i] < 0) 
       {
 	printf(" - ");
-	if(i == 0) { printf("%e",-(P->poln[i])); }
-	else if(i == 1) { printf("%e * x",-(P->poln[i])); }
-	else { printf("%e * x^%d", -(P->poln[i]), i); }
+	if(i == 0) { printf("%20.200f",-(P->poln[i])); }
+	else if(i == 1) { printf("%20.200f * x",-(P->poln[i])); }
+	else { printf("%20.200f * x^%d", -(P->poln[i]), i); }
       }
     }
     printf("\n");
@@ -93,15 +93,15 @@ void afficherPoly(polynome* P, char* mode, ...)
       if(P->poln[i] > 0)
       {
 	if(i != 0) { fprintf(f," + "); }
-	if(i == 0) { fprintf(f,"%f",P->poln[i]); }
-	else if(i == 1) { fprintf(f,"%f \\cdot x",P->poln[i]); }
-	else { fprintf(f,"%f \\cdot x^{%d} ", P->poln[i],i); }
+	if(i == 0) { fprintf(f,"%20.18f",P->poln[i]); }
+	else if(i == 1) { fprintf(f,"%20.18f \\cdot x",P->poln[i]); }
+	else { fprintf(f,"%20.18f \\cdot x^{%d} ", P->poln[i],i); }
       }
       if(P->poln[i] < 0)
       {
-	if(i == 0) { fprintf(f,"-%f", -(P->poln[i])); }
-	else if(i == 1) { fprintf(f,"-%f \\cdot x", -(P->poln[i])); }
-	else { fprintf(f,"- %f \\cdot x^{%d} ", -(P->poln[i]), i); }
+	if(i == 0) { fprintf(f,"-%20.18f", -(P->poln[i])); }
+	else if(i == 1) { fprintf(f,"-%20.18f \\cdot x", -(P->poln[i])); }
+	else { fprintf(f,"- %20.18f \\cdot x^{%d} ", -(P->poln[i]), i); }
       }
     }
     fprintf(f,"$\n\n");
@@ -239,7 +239,7 @@ void ecartPoly(double** tab, int n, polynome* P)
     moyecart = moyecart + fabs((imagePoly(P,tab[0][i])-tab[1][i]));
   }
   moyecart = moyecart/n;
-  printf("Erreur moyenne : %f",moyecart);
+  printf("Erreur moyenne : %20.18f",moyecart);
 }
 
 void ecartExpo(double** tab, int n, double c, double d)
@@ -251,7 +251,7 @@ void ecartExpo(double** tab, int n, double c, double d)
     moyecart = moyecart + fabs((imageExpo(c,d,tab[0][i])-tab[1][i]));
   }
   moyecart = moyecart/n;
-  printf("Erreur moyenne : %f",moyecart);
+  printf("Erreur moyenne : %20.18f",moyecart);
 }
 
 void ecartPui(double** tab, int n, double a, double b)
@@ -263,7 +263,7 @@ void ecartPui(double** tab, int n, double a, double b)
     moyecart = moyecart + fabs((imagePui(a,b,tab[0][i])-tab[1][i]));
   }
   moyecart = moyecart/n;
-  printf("Erreur moyenne : %f",moyecart);
+  printf("Erreur moyenne : %20.18f",moyecart);
 }
 
 void convertTabtoLatex(double** tab, int n, int m)
