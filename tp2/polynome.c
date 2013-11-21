@@ -68,16 +68,16 @@ void afficherPoly(polynome* P, char* mode, ...)
       if(P->poln[i] > 0) 
       {
 	if(i != 0) { printf(" + "); }
-	if(i == 0) { printf("%f",P->poln[i]); }
-	else if(i == 1) { printf("%f * x",P->poln[i]); }
-	else { printf("%f * x^%d", P->poln[i],i); }
+	if(i == 0) { printf("%e",P->poln[i]); }
+	else if(i == 1) { printf("%e * x",P->poln[i]); }
+	else { printf("%e * x^%d", P->poln[i],i); }
       }
       if(P->poln[i] < 0) 
       {
 	printf(" - ");
-	if(i == 0) { printf("%f",-(P->poln[i])); }
-	else if(i == 1) { printf("%f * x",-(P->poln[i])); }
-	else { printf("%f * x^%d", -(P->poln[i]), i); }
+	if(i == 0) { printf("%e",-(P->poln[i])); }
+	else if(i == 1) { printf("%e * x",-(P->poln[i])); }
+	else { printf("%e * x^%d", -(P->poln[i]), i); }
       }
     }
     printf("\n");
