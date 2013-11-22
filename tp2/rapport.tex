@@ -106,9 +106,45 @@ Quelle résolution utiliser ?
 Votre choix :
     \end{lstlisting}
   \chapter{Interpolation}
+  	\noindent L'interpolation, en analyse numérique, est un ensemble de méthode permettant d'obtenir une équation mathématique passant par tous les points d'une liste données.
+  	\newline
+  	Pour cette partie, les équations mathématiques recherchées sont des polynômes.
+  	\newline
+  	
+  	\underline{Notation pour la suite :}
+  	\vspace{0.1 cm}
+  	\begin{itemize}
+  	\item{La liste comporte $N$ éléments $(x_{i},y_{i})$.}
+  	\item{Les polynômes recherchés sont de la forme $P_{N-1}(x)= \sum_{i=0}^{N-1} a_{i} \cdot x^{i}$.}
+  	\end{itemize}
     \section{Méthode de Newton}
       \subsection{Présentation}
-	
+	    \noindent	La forme du polynôme par la méthode de Newton est la suivante : 
+    	
+    	$P_{N-1}(x)= \sum_{i=0}^{N-1} \left( a_{i} \cdot \prod_{j=1}^{j=i} (x-x_{j}) \right)$ \\
+    		Pour se faire , on utilise une méthode de recherche de coefficients récursive appelée la méthode des \textit{différences divisées}. Le calcul des valeurs des différences divisées se fait à l'aide d'une fonction : 
+    	
+    	La différence divisée de degré $0$ est :
+    	
+    	
+    	 $\forall i=1,\ldots, N :  \boldsymbol{\bigtriangledown}^{0}y_{i} = y_{i} $
+    	 
+    	 La différence divisée de degré $k$ est : 
+    	 
+    	 $\forall i=k+1,\ldots,N : \boldsymbol{\bigtriangledown}^{k}y_{i} = \frac{\bigtriangledown^{k-1}y_{i}-\bigtriangledown^{k-1}y_{k}}{x_{i}-x{k}}$
+    	 \newline
+    	 Ensuite, on a directement les coefficients du polynôme de Newton par la relation 
+    	 
+    	 $\forall i=1,\ldots,N-1 : a_{i} = \boldsymbol{\bigtriangledown}^{i}y_{(i+1)}$
+    	 \newline
+    	 
+    	\noindent Enfin, on peut retrouver la forme développée du polynôme à l'aide de la relation :
+    	 
+    	 $\forall i=0,\ldots,N : P_{i}(x) = \left\{
+  \begin{array}{l l}
+    a_{N-1} & \quad \text{si $i$=0}\\
+    a_{N-1-i} + (x-x_{N-i}) \cdot P_{i-1}(x) & \quad \text{sinon}
+  \end{array} \right. $
       \subsection{Programme}
 	\lstinputlisting[style=customc]{newton.c}
     \newpage
