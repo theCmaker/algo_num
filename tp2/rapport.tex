@@ -115,13 +115,13 @@ Votre choix :
   	\vspace{0.1 cm}
   	\begin{itemize}
   	\item{La liste comporte $N$ éléments $(x_{i},y_{i})$.}
-  	\item{Les polynômes recherchés sont de la forme $P_{N-1}(x)= \sum_{i=0}^{N-1} a_{i} \cdot x^{i}$.}
+  	\item{Les polynômes recherchés sont de la forme \[P_{N-1}(x)= \sum_{i=0}^{N-1} a_{i} \cdot x^{i}\].}
   	\end{itemize}
     \section{Méthode de Newton}
       \subsection{Présentation}
 	    \noindent	La forme du polynôme par la méthode de Newton est la suivante : 
     	
-    	$P_{N-1}(x)= \sum_{i=0}^{N-1} \left( a_{i} \cdot \prod_{j=1}^{j=i} (x-x_{j}) \right)$ \\
+    	\[P_{N-1}(x)= \sum_{i=0}^{N-1} \left( a_{i} \cdot \prod_{j=1}^{j=i} (x-x_{j}) \right)\] \\
     		Pour se faire , on utilise une méthode de recherche de coefficients récursive appelée la méthode des \textit{différences divisées}. Le calcul des valeurs des différences divisées se fait à l'aide d'une fonction : 
     	
     	La différence divisée de degré $0$ est :
@@ -150,7 +150,11 @@ Votre choix :
     \newpage
     \section{Méthode de Neuville}
       \subsection{Présentation}
+	La méthode permet d'exprimer le polynôme $P_{N-1}[x_{1},\ldots,x_{N}]$ sur les points $\{1,\ldots,N\}$ en fonction des polynômes $P_{N-2}[x_{1},\ldots,x_{N-1}]$ et $P_{N-2}[x_{2},\ldots,x_{N}]$ sur l'ensemble des points $\{1,\ldots,N-1\}$ et $\{2,\ldots,N\}$.
 	
+	L'expression est donnée sous la forme suivante : 
+	
+	$\forall x, \forall k=2,\ldots,N-1 : P_{k}[x_{i},\ldots,x_{i+k}](x) = \frac{(x-x_{i+k}) \cdot P_{k-1}[x_{i},\ldots,x_{i+k-1}(x) + (x_{i}-x) \cdot P_{k-1}[x_{i+1},\ldots,x_{i+k}(x)}{x_{i}-x{i+k}} $ 
       \subsection{Programme}
 	\lstinputlisting[style=customc]{neuville.c}
     \newpage
@@ -374,7 +378,33 @@ Votre choix :
     \newpage
     \section{Comparaison}
   \chapter{Approximation}
+  	Contrairement aux interpolations, les équations obtenues ne passent pas forcément par les $N$ points. On cherche uniquement à minimiser la distance moyenne entre les $N$ points mesurés et les points de la courbe. Cette méthode est appelée la \textit{méthodes des moindres carrés}.
     \section{Régression linéaire}
+    La régression linéaire est un cas particulier de la méthode des moindres carrés. L'équation recherchée ici est une droite d'équation $y=a_{0} + a_{1} \cdot x$. On obtient alors le système :
+    
+    \begin{equation}
+    \begin{bmatrix}
+    \overset{i=N}{\underset{i=1}{\sum x_{i}^{0}}} & \overset{i=N}{\underset{i=1}{\sum x_{i}^{1}}} \\
+    \overset{i=N}{\underset{i=1}{\sum x_{i}^{1}}} & \overset{i=N}{\underset{i=1}{\sum x_{i}^{2}}} \\
+    \end{bmatrix}
+    \cdot
+    \begin{bmatrix}
+    a_{0} \\
+    a_{1} \\
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+    \overset{i=N}{\underset{i=1}{\sum y_{i} x_{i}^{0}}} \\
+    \overset{i=N}{\underset{i=1}{\sum y_{i} x_{i}^{0}}} \\
+    \end{bmatrix}
+    \end{equation}
+    
+    On a enfin une expression de $a_{0}$ et $a_{1}$ :
+    
+    $a_{1} = \frac{\bar{yx}-\bar{x}\bar{y}}{\bar{x^{2}}-(\bar{x})^2}$
+    
+    \vspace{0.1 cm}
+    $a_{0} = \bar{y} - a_{1} \cdot \bar{x}$
       \subsection{Présentation}
       \subsection{Programme}
 	\lstinputlisting[style=customc]{reglin.c}
