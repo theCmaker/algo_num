@@ -150,18 +150,20 @@ Votre choix :
     	\[P_{N-1}(x)= \sum_{i=0}^{N-1} \left( a_{i} \cdot \prod_{j=1}^{i} (x-x_{j}) \right)\] \\
 	Pour ce faire, on utilise une méthode de recherche de coefficients récursive appelée méthode des \textit{différences divisées}. Le calcul des valeurs des différences divisées se fait à l'aide de fonctions : \\
     	
-    	\noindent La différence divisée de degré $0$ est : $\nabla^{0}_{y_{i}} = y_{i} ,\forall i=1, \cdots, N.$\\
+    	\noindent La différence divisée de degré $0$ est : $\forall i \in \{1, \cdots, N\}$, \indent $\nabla^{0}_{y_{i}} = y_{i}$.\\
     	 
-	\noindent La différence divisée de degré $k$ est : $\nabla^{k}_{y_{i}} = \frac{\nabla^{k-1}_{y_{i}}-\nabla^{k-1}_{y_{k}}}{x_{i}-x_{k}}, \forall i = k+1, \cdots, N.$\\
+	\noindent La différence divisée de degré $k$ est : $\forall i \in \{k+1,\cdots,N\}$, \indent $\nabla^{k}_{y_{i}} = \frac{\nabla^{k-1}_{y_{i}}-\nabla^{k-1}_{y_{k}}}{x_{i}-x_{k}}$.\\
     	 
-    	\noindent Ensuite, on a directement les coefficients du polynôme de Newton par la relation $a_{i} = \nabla^{i}_{y_{(i+1)}}, \forall i=1, \cdots, N-1$\\
+    	\noindent Ensuite, on a directement les coefficients du polynôme de Newton par la relation\\
+    	$ \forall i \in \{1, \cdots, N-1\}$, \indent $a_{i} = \nabla^{i}_{y_{(i+1)}}$.\\
     	 
-    	\noindent Enfin, on peut retrouver la forme développée du polynôme à l'aide de la relation suivante :\\ \\ 
+    	\noindent Enfin, on peut retrouver la forme développée du polynôme à l'aide de la relation suivante :\\ \\
+    	$\forall i \in \{0,\cdots,N\}$, \indent
     	$P_{i}(x) = \left\{
 	\begin{array}{l l}
 	  a_{N-1} & \quad \text{si $i$=0}\\
 	  a_{N-1-i} + (x-x_{N-i}) \cdot P_{i-1}(x) & \quad \text{sinon}
-	\end{array} \right. $, $\forall i=0, \cdots, N$ 
+	\end{array} \right. $. 
       \subsection{Programme}
 	\lstinputlisting[style=customc]{newton.c}
     \newpage
@@ -427,7 +429,7 @@ Votre choix :
 	  a_{0} = \overline{y} - a_{1} \cdot \overline{x}
 	\end{displaymath}
       \subsection{Programme}
-	\lstinputlisting[style=customc, lastline=77]{reglin.c}
+	\lstinputlisting[style=customc, lastline=79]{reglin.c}
     \newpage
     \section{Ajustement exponentiel}
       \subsection{Présentation}
@@ -437,7 +439,7 @@ Votre choix :
 	$Y=a_{0} + a_{1}x$ avec $Y=\ln(y)$, $a_{0}=\ln(c)$ et $a_{1}=d$.\\
 	Finalement, on obtient $c=e^{a_0}$ et $d=a_1$.
       \subsection{Programme}
-	\lstinputlisting[style=customc, firstline=78, lastline=118, firstnumber=78]{reglin.c}
+	\lstinputlisting[style=customc, firstline=80, lastline=120, firstnumber=80]{reglin.c}
     \newpage
     \section{Ajustement de type ``puissance"}
       \subsection{Présentation}
@@ -447,7 +449,7 @@ Votre choix :
 	$Y=a_{0} + a_{1}X$ avec $Y=\ln(y)$, $X=\ln(x)$, $a_{0}=\ln(a)$, et $a_{1}=b$.\\
 	Finalement, on obtient $a=e^{a_0}$ et $b=a_1$.
       \subsection{Programme}
-	\lstinputlisting[style=customc, firstline=120, firstnumber=120]{reglin.c}
+	\lstinputlisting[style=customc, firstline=122, firstnumber=122]{reglin.c}
     \newpage
     \section{Résultats de tests}
       \subsection{Exemple tiré d'un TD}
