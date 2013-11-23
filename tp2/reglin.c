@@ -4,31 +4,7 @@
 #include <math.h>
 #include "polynome.h"
 
-void mapping(double** from, double** to, int n, char* fn)
-{
-  int i, j;
-  if (strcmp(fn,"exponentielle")==0)
-  {
-    for (j=0; j<n; j++)
-    {
-      to[0][j]=from[0][j];
-    }
-    for (j=0; j<n; j++)
-    {
-      to[1][j]=log(from[1][j]);
-    }
-  }
-  else if (strcmp(fn,"puissance")==0)
-  {
-    for (i=0; i<2; i++)
-    {
-      for (j=0; j<n; j++)
-      {
-	to[i][j]=log(from[i][j]);
-      }
-    }
-  }
-}
+void mapping(double** from, double** to, int n, char* fn);
 
 double moyenneElements(double** tab,int l, int n)
 {
@@ -77,7 +53,7 @@ reglinD(double** tab, int n)
   double a0 = 0;
   double a1 = 0;
   double xb, yb, xcb, xyb; // b pour barre et c pour carre
-  printf("Nous cherchons le polynome de degré 1 sous la forme a0 + a1*x.\n");
+  printf("Nous cherchons le Polynome de degré 1 sous la forme a0 + a1*x.\n");
   
   //calculs
   xb = moyenneElements(tab,0,n);
@@ -88,7 +64,7 @@ reglinD(double** tab, int n)
   a1 = (xyb-xb*yb)/(xcb-pow(xb,2));
   a0 = yb-xb*a1;
 
-  // creation et affichage du polynome
+  // creation et affichage
   polynome *P = creerPoly(2,"valeur",a0,a1);
   menuAffichage(P);
   
@@ -146,10 +122,7 @@ reglinE(double** tab, int n) //y=c(e^(dx)) <=> ln(y)=ln(c)+xd => c=e^(a0) & d=a1
 reglinP(double ** tab, int n) //y=a(x^b) <=> ln(y)=ln(a)+b*ln(x) => a=e^(a0) & b=a1
 {
   int i;
-  double a = 0.;
-  double b = 0.;
-  double a0 = 0.;
-  double a1 = 0.;
+  double a = 0.;  double b = 0.;  double a0 = 0.;  double a1 = 0.;
   double xb, yb, xcb, xyb; // b pour barre et c pour carre
   double** t = (double**) malloc(2*sizeof(double*)); // contiendra le mapping de tab
   for(i=0;i<2;i++)
@@ -183,4 +156,18 @@ reglinP(double ** tab, int n) //y=a(x^b) <=> ln(y)=ln(a)+b*ln(x) => a=e^(a0) & b
     free(t[i]);
   }
   free(t);
+}
+
+void mapping(double** from, double** to, int n, char* fn)
+{
+  int i, j;
+  if (strcmp(fn,"exponentielle")==0)
+  {
+    for (j=0; j<n; j++){to[0][j]=from[0][j];}
+    for (j=0; j<n; j++){to[1][j]=log(from[1][j]);}
+  }
+  else if (strcmp(fn,"puissance")==0)
+  {
+    for (i=0; i<2; i++){for (j=0; j<n; j++){to[i][j]=log(from[i][j]);}}
+  }
 }

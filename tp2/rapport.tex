@@ -45,6 +45,7 @@
 \lstdefinestyle{customc}{
    belowcaptionskip=1\baselineskip,
    breaklines=true,
+   otherkeywords={polynome},
    frame=L,
    xleftmargin=\parindent,
    language=C,
@@ -87,11 +88,11 @@ basicstyle=\ttfamily,
 
   \chapter{Préambule}
     \section{Structure du programme}
-    Nous avons conçu un programme principal avec menus, présenté sous la forme suivante :
-    \begin{lstlisting}[style=apercu, name=Menu Principal]
+      Nous avons conçu un programme principal avec menus, présenté sous la forme suivante :
+      \begin{lstlisting}[style=apercu, name=Menu Principal]
 Menu principal : Interpolation et Approximation
 
-Entrez n le nombre de points : 2
+Entrez n le nombre de points : 
 %*\textit{(Saisie de la série de points...)}*)
 
 %*\textit{(Affichage du tableau correspondant...)}*)
@@ -104,57 +105,73 @@ Quelle résolution utiliser ?
 9- Nouvelle série de points (Menu principal)
 0- Quitter
 Votre choix :
-    \end{lstlisting}
+      \end{lstlisting}
+      
+      Au lancement, le programme demande la saisie des valeurs, qu'il stocke dans un tableau, puis affiche le menu. Après chaque résolution, il est possible de réutiliser le jeu de données (chaque méthode qui doit modifier les valeurs utilise un duplicata). \\
+      
+      Le menu principal est codé dans le fichier source \verb"main.c". Les méthodes sont codées dans des fichiers individuels à l'exception des méthodes d'approximation qui sont toutes codées dans le même fichier puisqu'elles présentent de nombreuses similarités. Les prototypes des fonctions sont écrits dans les headers correspondants. Enfin, un fichier source présenté en annexe page \pageref{fonctionspolynome} regroupe toutes les fonctions de manipulation de polynômes.\\
+      La liste de tous ces fichiers est présentée figure \ref{arborescence}.\\
+      
+      Le stockage des valeurs se fait en double précision (type \verb"double", 64 bits) afin d'obtenir des résultats suffisamment précis pour tracer les courbes.\\
+      Et nos fonctions utilisent une structure de polynôme (composée du degré et des coefficients), présentée figure \ref{structpoly}, pour faciliter la compréhension du code.\\
+      
+      \lstinputlisting[style=customc, name=Structure de Polynôme, label=structpoly, firstline=4, lastline=8, firstnumber=4]{polynome.h}
+      \newpage
+      \textbf{Note :} Pour des raisons de lisibilité, les polynômes résultats sont arrondis dans ce rapport. En revanche, les graphiques sont tracés avec les valeurs calculées par la machine (précision maximale possible pour le type de données).\\
+      Les écarts donnés sont calculés par la machine juste après la résolution (on calcule la distance moyenne entre les points et la courbe).\\
+      Les arrondis affichés dans le rapport sont retournés à la demande par le programme, au format \LaTeX, dans un fichier intitulé \verb"resultat".
+      
+      \lstinputlisting[style=apercu, name=Arborescence des fichiers \lstinline"C" et \lstinline"makefile", label=arborescence]{arborescence}
+      
+    \section{Compilation et Logiciels utilisés}
+      \noindent La compilation est gérée par un \verb"makefile".\\
+      Le compilateur utilisé est \verb"GCC".
+      Il suffit de taper \verb"make" pour lancer la compilation, puis \verb"./main" pour lancer le programme.\\
+      Pour nettoyer les fichiers temporaires, il faudra taper \verb"make clean".\\
+      Ce \verb"makefile" permet également de générer ce rapport ainsi que quelques fichiers qui y sont intégrés.\\ \\
+      Les représentations graphiques sont générées avec \verb"Asymptote", générateur vectoriel de graphiques.\\
+      Les polynômes résultats sont vérifiés avec \verb"GeoGebra", qui permet ensuite de générer une trame de fichier source pour \verb"Asymptote".
   \chapter{Interpolation}
-  	\noindent L'interpolation, en analyse numérique, est un ensemble de méthode permettant d'obtenir une équation mathématique passant par tous les points d'une liste données.
-  	\newline
-  	Pour cette partie, les équations mathématiques recherchées sont des polynômes.
-  	\newline
-  	
-  	\underline{Notation pour la suite :}
-  	\vspace{0.1 cm}
-  	\begin{itemize}
-  	\item{La liste comporte $N$ éléments $(x_{i},y_{i})$.}
-  	\item{Les polynômes recherchés sont de la forme \[P_{N-1}(x)= \sum_{i=0}^{N-1} a_{i} \cdot x^{i}\].}
-  	\end{itemize}
+    \noindent L'interpolation, en analyse numérique, est un ensemble de méthodes permettant d'obtenir une équation mathématique passant par tous les points d'une liste donnée.
+    \newline
+    Pour cette partie, les équations mathématiques recherchées sont des polynômes.
+    \newline
+    
+    \underline{Notation pour la suite :}
+    \vspace{0.1 cm}
+    \begin{itemize}
+      \item{La liste comporte $N$ éléments $(x_{i},y_{i})$.}
+      \item{Les polynômes recherchés sont de la forme \[P_{N-1}(x)= \sum_{i=0}^{N-1} (a_{i} \cdot x^{i})\].}
+    \end{itemize}
     \section{Méthode de Newton}
       \subsection{Présentation}
-	    \noindent	La forme du polynôme par la méthode de Newton est la suivante : 
+	\noindent La forme du polynôme par la méthode de Newton est la suivante : 
     	
-    	\[P_{N-1}(x)= \sum_{i=0}^{N-1} \left( a_{i} \cdot \prod_{j=1}^{j=i} (x-x_{j}) \right)\] \\
-    		Pour se faire , on utilise une méthode de recherche de coefficients récursive appelée la méthode des \textit{différences divisées}. Le calcul des valeurs des différences divisées se fait à l'aide d'une fonction : 
+    	\[P_{N-1}(x)= \sum_{i=0}^{N-1} \left( a_{i} \cdot \prod_{j=1}^{i} (x-x_{j}) \right)\] \\
+	Pour ce faire, on utilise une méthode de recherche de coefficients récursive appelée méthode des \textit{différences divisées}. Le calcul des valeurs des différences divisées se fait à l'aide de fonctions : \\
     	
-    	La différence divisée de degré $0$ est :
-    	
-    	
-    	 $\forall i=1,\ldots, N :  \boldsymbol{\bigtriangledown}^{0}y_{i} = y_{i} $
+    	\noindent La différence divisée de degré $0$ est : $\nabla^{0}_{y_{i}} = y_{i} ,\forall i=1, \cdots, N.$\\
     	 
-    	 La différence divisée de degré $k$ est : 
+	\noindent La différence divisée de degré $k$ est : $\nabla^{k}_{y_{i}} = \frac{\nabla^{k-1}_{y_{i}}-\nabla^{k-1}_{y_{k}}}{x_{i}-x_{k}}, \forall i = k+1, \cdots, N.$\\
     	 
-    	 $\forall i=k+1,\ldots,N : \boldsymbol{\bigtriangledown}^{k}y_{i} = \frac{\bigtriangledown^{k-1}y_{i}-\bigtriangledown^{k-1}y_{k}}{x_{i}-x{k}}$
-    	 \newline
-    	 Ensuite, on a directement les coefficients du polynôme de Newton par la relation 
+    	\noindent Ensuite, on a directement les coefficients du polynôme de Newton par la relation $a_{i} = \nabla^{i}_{y_{(i+1)}}, \forall i=1, \cdots, N-1$\\
     	 
-    	 $\forall i=1,\ldots,N-1 : a_{i} = \boldsymbol{\bigtriangledown}^{i}y_{(i+1)}$
-    	 \newline
-    	 
-    	\noindent Enfin, on peut retrouver la forme développée du polynôme à l'aide de la relation :
-    	 
-    	 $\forall i=0,\ldots,N : P_{i}(x) = \left\{
-  \begin{array}{l l}
-    a_{N-1} & \quad \text{si $i$=0}\\
-    a_{N-1-i} + (x-x_{N-i}) \cdot P_{i-1}(x) & \quad \text{sinon}
-  \end{array} \right. $
+    	\noindent Enfin, on peut retrouver la forme développée du polynôme à l'aide de la relation suivante :\\ \\ 
+    	$P_{i}(x) = \left\{
+	\begin{array}{l l}
+	  a_{N-1} & \quad \text{si $i$=0}\\
+	  a_{N-1-i} + (x-x_{N-i}) \cdot P_{i-1}(x) & \quad \text{sinon}
+	\end{array} \right. $, $\forall i=0, \cdots, N$ 
       \subsection{Programme}
 	\lstinputlisting[style=customc]{newton.c}
     \newpage
     \section{Méthode de Neuville}
       \subsection{Présentation}
-	La méthode permet d'exprimer le polynôme $P_{N-1}[x_{1},\ldots,x_{N}]$ sur les points $\{1,\ldots,N\}$ en fonction des polynômes $P_{N-2}[x_{1},\ldots,x_{N-1}]$ et $P_{N-2}[x_{2},\ldots,x_{N}]$ sur l'ensemble des points $\{1,\ldots,N-1\}$ et $\{2,\ldots,N\}$.
+	Cette méthode permet d'exprimer le polynôme $P_{N-1}[x_{1},\cdots,x_{N}]$ sur les points $\{1,\cdots,N\}$ en fonction des polynômes $P_{N-2}[x_{1},\cdots,x_{N-1}]$ et $P_{N-2}[x_{2},\cdots,x_{N}]$ sur l'ensemble des points $\{1,\cdots,N-1\}$ et $\{2,\cdots,N\}$.\\
 	
-	L'expression est donnée sous la forme suivante : 
+	\noindent L'expression est donnée sous la forme suivante : 
 	
-	$\forall x, \forall k=2,\ldots,N-1 : P_{k}[x_{i},\ldots,x_{i+k}](x) = \frac{(x-x_{i+k}) \cdot P_{k-1}[x_{i},\ldots,x_{i+k-1}(x) + (x_{i}-x) \cdot P_{k-1}[x_{i+1},\ldots,x_{i+k}(x)}{x_{i}-x{i+k}} $ 
+	$P_{k}[x_{i},\cdots,x_{i+k}](x) = \frac{(x-x_{i+k}) \cdot P_{k-1}[x_{i},\cdots,x_{i+k-1}](x) + (x_{i}-x) \cdot P_{k-1}[x_{i+1},\cdots,x_{i+k}](x)}{x_{i}-x{i+k}}, \forall x, \forall k=2,\cdots,N-1$ 
       \subsection{Programme}
 	\lstinputlisting[style=customc]{neuville.c}
     \newpage
@@ -173,13 +190,12 @@ Votre choix :
 	  \label{inter_td3_ex3}
 	\end{table}
 	
-	On obtient alors :\\ \\
-	\textbf{Méthode de Newton :}\\
+	\noindent\textbf{Méthode de Newton :}\\
 	$P(x)= -6.00 + 11.00 \cdot x- 6.00 \cdot x^{2}  + 1.00 \cdot x^{3} $\\
 	Erreur : $0$
 	\newline
-	\newline
-	\textbf{Méthode de Neuville :}\\
+	
+	\noindent\textbf{Méthode de Neuville :}\\
 	$P(x)= -6.00 + 11.00 \cdot x- 6.00 \cdot x^{2}  + 1.00 \cdot x^{3} $\\
 	Erreur : $0$
 	\newline
@@ -213,13 +229,12 @@ Votre choix :
 	  \label{inter_tp2_ex1_densite}
 	\end{table}
 	
-	On obtient alors :\\ \\
-	\textbf{Méthode de Newton :}\\
+	\noindent\textbf{Méthode de Newton :}\\
 	$P(x) \approx 0.999870 + 7.693711 \cdot x - 13.276666 \cdot x^{2}  + 9.932303 \cdot x^{3} - 4.345460 \cdot x^{4}  + 1.259124 \cdot x^{5} - 0.258585 \cdot x^{6}  + 0.039240 \cdot x^{7} - 0.004520 \cdot x^{8}  + 0.000402 \cdot x^{9} - 0.000028 \cdot x^{10}  + 0.000002 \cdot x^{11} - 0.000000 \cdot x^{12}  + 0.000000 \cdot x^{13} - 0.000000 \cdot x^{14}  + 0.000000 \cdot x^{15} - 0.000000 \cdot x^{16}  + 0.000000 \cdot x^{17} - 0.000000 \cdot x^{18}  + 0.000000 \cdot x^{19} $\\
 	Erreur : $0.000002166566117323$
 	\newline
-	\newline
-	\textbf{Méthode de Neuville :}\\
+	
+	\noindent\textbf{Méthode de Neuville :}\\
 	$P(x) \approx 0.999870 + 7.693711 \cdot x- 13.276666 \cdot x^{2}  + 9.932303 \cdot x^{3} - 4.345460 \cdot x^{4}  + 1.259124 \cdot x^{5} - 0.258585 \cdot x^{6}  + 0.039240 \cdot x^{7} - 0.004520 \cdot x^{8}  + 0.000402 \cdot x^{9} - 0.000028 \cdot x^{10}  + 0.000002 \cdot x^{11} - 0.000000 \cdot x^{12}  + 0.000000 \cdot x^{13} - 0.000000 \cdot x^{14}  + 0.000000 \cdot x^{15} - 0.000000 \cdot x^{16}  + 0.000000 \cdot x^{17} - 0.000000 \cdot x^{18}  + 0.000000 \cdot x^{19} $\\
 	Erreur : $0.000028505775100296$
 	\newline
@@ -249,8 +264,9 @@ Votre choix :
 	  \caption{Trois séries S1, S2, S3}
 	  \label{inter_tp2_ex2_3series}
 	\end{table}
-	On obtient alors :\\ \\
-	\underline{\textbf{Série 1 :}} \\ \\
+	
+	
+	\noindent \underline{\textbf{Série 1 :}} \\ \\
 	\textbf{Méthode de Newton :}\\
 	$P(x) \approx -229.550000 + 299.165750 \cdot x- 173.107636 \cdot x^{2}  + 58.546955 \cdot x^{3} - 12.731862 \cdot x^{4}  + 1.859906 \cdot x^{5} - 0.184968 \cdot x^{6}  + 0.012375 \cdot x^{7} - 0.000533 \cdot x^{8}  + 0.000013 \cdot x^{9} - 0.000000 \cdot x^{10} $\\
 	Erreur : $0.000000000016217532$
@@ -261,8 +277,8 @@ Votre choix :
 	Erreur : $0.000000000012119518$
 	\newline
 	\newline
-	\newline
-	\underline{\textbf{Série 2 :}} \\ \\
+	
+	\noindent\underline{\textbf{Série 2 :}} \\ \\
 	\textbf{Méthode de Newton :}\\
 	$P(x) \approx -12345.190000 + 16608.066492 \cdot x- 9870.941498 \cdot x^{2}  + 3416.593892 \cdot x^{3} - 763.094009 \cdot x^{4}  + 114.979985 \cdot x^{5} - 11.842442 \cdot x^{6}  + 0.823658 \cdot x^{7} - 0.037039 \cdot x^{8}  + 0.000973 \cdot x^{9} - 0.000011 \cdot x^{10} $\\
 	Erreur : $0.000000000774325735$
@@ -273,8 +289,8 @@ Votre choix :
 	Erreur : $0.000000001033081661$
 	\newline
 	\newline
-	\newline
-	\underline{\textbf{Série 3 :}} \\ \\
+	
+	\noindent\underline{\textbf{Série 3 :}} \\ \\
 	\textbf{Méthode de Newton :}\\
 	$P(x) \approx -568559.640000 + 739678.381270 \cdot x- 424130.450858 \cdot x^{2}  + 141275.523224 \cdot x^{3} - 30298.693006 \cdot x^{4}  + 4375.222059 \cdot x^{5} - 431.155992 \cdot x^{6}  + 28.652640 \cdot x^{7} - 1.229803 \cdot x^{8}  + 0.030806 \cdot x^{9} - 0.000342 \cdot x^{10} $\\
 	Erreur : $0.000000081067879843$
@@ -347,8 +363,9 @@ Votre choix :
 	\caption{Série triée : Partie Haute}
 	\label{inter_tp2_ex3_depenses_haut}
       \end{table}
-      On obtient alors :\\ \\
-      \underline{\textbf{Partie Basse :}} \\ \\
+      
+      
+      \noindent\underline{\textbf{Partie Basse :}} \\ \\
       \textbf{Méthode de Newton :}\\
 	$P(x) \approx 73581192209.962601-1459287367.863513 \cdot x + 13300351.970502 \cdot x^{2} - 73765.523297 \cdot x^{3}  + 277.759281 \cdot x^{4} - 0.749863 \cdot x^{5}  + 0.001493 \cdot x^{6} - 0.000002 \cdot x^{7}  + 0.000000 \cdot x^{8} - 0.000000 \cdot x^{9}  + 0.000000 \cdot x^{10} - 0.000000 \cdot x^{11}  + 0.000000 \cdot x^{12} - 0.000000 \cdot x^{13} $\\
 	Erreur : $0.018460432587224723$
@@ -359,8 +376,8 @@ Votre choix :
 	Erreur : $0.192499821369502971$
 	\newline
 	\newline
-	\newline
-	\underline{\textbf{Partie Haute :}} \\ \\
+	
+	\noindent\underline{\textbf{Partie Haute :}} \\ \\
 	\textbf{Méthode de Newton :}\\
 	$P(x) \approx 621022623331.547363-4157904770.816573 \cdot x + 11598209.746191 \cdot x^{2} - 17253.085748 \cdot x^{3}  + 14.435304 \cdot x^{4} - 0.006441 \cdot x^{5}  + 0.000001 \cdot x^{6} $\\
 	Erreur : $0.000429349286215646$
@@ -378,39 +395,59 @@ Votre choix :
     \newpage
     \section{Comparaison}
   \chapter{Approximation}
-  	Contrairement aux interpolations, les équations obtenues ne passent pas forcément par les $N$ points. On cherche uniquement à minimiser la distance moyenne entre les $N$ points mesurés et les points de la courbe. Cette méthode est appelée la \textit{méthodes des moindres carrés}.
+    Contrairement aux interpolations, les équations obtenues ne passent pas forcément par les $N$ points. On cherche uniquement à minimiser la distance moyenne entre les $N$ points mesurés et la courbe. Cette méthode est appelée \textit{méthode des moindres carrés}.
     \section{Régression linéaire}
-    La régression linéaire est un cas particulier de la méthode des moindres carrés. L'équation recherchée ici est une droite d'équation $y=a_{0} + a_{1} \cdot x$. On obtient alors le système :
-    
-    \begin{equation}
-    \begin{bmatrix}
-    \overset{i=N}{\underset{i=1}{\sum x_{i}^{0}}} & \overset{i=N}{\underset{i=1}{\sum x_{i}^{1}}} \\
-    \overset{i=N}{\underset{i=1}{\sum x_{i}^{1}}} & \overset{i=N}{\underset{i=1}{\sum x_{i}^{2}}} \\
-    \end{bmatrix}
-    \cdot
-    \begin{bmatrix}
-    a_{0} \\
-    a_{1} \\
-    \end{bmatrix}
-    =
-    \begin{bmatrix}
-    \overset{i=N}{\underset{i=1}{\sum y_{i} x_{i}^{0}}} \\
-    \overset{i=N}{\underset{i=1}{\sum y_{i} x_{i}^{0}}} \\
-    \end{bmatrix}
-    \end{equation}
-    
-    On a enfin une expression de $a_{0}$ et $a_{1}$ :
-    
-    $a_{1} = \frac{\bar{yx}-\bar{x}\bar{y}}{\bar{x^{2}}-(\bar{x})^2}$
-    
-    \vspace{0.1 cm}
-    $a_{0} = \bar{y} - a_{1} \cdot \bar{x}$
       \subsection{Présentation}
+	La régression linéaire est un cas particulier de la méthode des moindres carrés. L'équation recherchée ici est une droite d'équation $y=a_{0} + a_{1} \cdot x$. On obtient alors le système :
+	
+	\begin{equation*}
+	  \begin{bmatrix}
+	    \overset{N}{\underset{i=1}{\sum}} x_{i}^{0} & \overset{N}{\underset{i=1}{\sum}} x_{i}^{1} \\
+	    \overset{N}{\underset{i=1}{\sum}} x_{i}^{1} & \overset{N}{\underset{i=1}{\sum}} x_{i}^{2} \\
+	  \end{bmatrix}
+	  \cdot
+	  \begin{bmatrix}
+	    a_{0} \\
+	    a_{1} \\
+	  \end{bmatrix}
+	  =
+	  \begin{bmatrix}
+	    \overset{N}{\underset{i=1}{\sum}} y_{i} x_{i}^{0} \\
+	    \overset{N}{\underset{i=1}{\sum}} y_{i} x_{i}^{1} \\
+	  \end{bmatrix}
+	\end{equation*}
+	
+	On a enfin une expression de $a_{0}$ et $a_{1}$ :
+	
+	\begin{displaymath}
+	  a_{1} = \frac{\overline{yx}-\overline{x}\overline{y}}{\overline{x^{2}}-(\overline{x})^2}
+	\end{displaymath}
+	\vspace{0.1 cm}
+	\begin{displaymath}
+	  a_{0} = \overline{y} - a_{1} \cdot \overline{x}
+	\end{displaymath}
       \subsection{Programme}
-	\lstinputlisting[style=customc]{reglin.c}
+	\lstinputlisting[style=customc, lastline=77]{reglin.c}
+    \newpage
     \section{Ajustement exponentiel}
-    
+      \subsection{Présentation}
+	\noindent On doit trouver une équation sous la forme $y=c e^{dx}$.\\
+	On a donc  $\ln (y)=\ln(c)+dx\ln(e)\Leftrightarrow \ln(y)=\ln(c)+dx$.\\
+	Cela revient à effectuer une régression linéaire sous la forme :\\
+	$Y=a_{0} + a_{1}x$ avec $Y=\ln(y)$, $a_{0}=\ln(c)$ et $a_{1}=d$.\\
+	Finalement, on obtient $c=e^{a_0}$ et $d=a_1$.
+      \subsection{Programme}
+	\lstinputlisting[style=customc, firstline=78, lastline=118, firstnumber=78]{reglin.c}
+    \newpage
     \section{Ajustement de type ``puissance"}
+      \subsection{Présentation}
+	\noindent On doit trouver une équation sous la forme $y=a x^{b}$.\\
+	On a donc $\ln(y)=\ln(a) + b\ln(x)$.\\
+	Cela revient à effectuer une régression linéaire sous la forme : \\
+	$Y=a_{0} + a_{1}X$ avec $Y=\ln(y)$, $X=\ln(x)$, $a_{0}=\ln(a)$, et $a_{1}=b$.\\
+	Finalement, on obtient $a=e^{a_0}$ et $b=a_1$.
+      \subsection{Programme}
+	\lstinputlisting[style=customc, firstline=120, firstnumber=120]{reglin.c}
     \newpage
     \section{Résultats de tests}
       \subsection{Exemple tiré d'un TD}
@@ -611,6 +648,13 @@ Votre choix :
 	  \label{approx_tp2_ex5}
 	\end{table}
   \chapter{Conclusion}
+  
+  \chapter{Annexe}
+    \section{Menu principal}
+      \lstinputlisting[style=customc]{main.c}
+    \section{Fonctions associées au calcul polynômial}
+      \lstinputlisting[style=customc]{polynome.h}
+      \lstinputlisting[style=customc, label=fonctionspolynome]{polynome.c}
 
 \end{document}
 
