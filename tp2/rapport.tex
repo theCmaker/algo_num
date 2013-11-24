@@ -396,9 +396,18 @@ Votre choix :
       \end{figure}
     \newpage
     \section{Comparaison}
+      Les méthodes d'interpolation permettent d'obtenir d'excellents résultats, avec des écarts particulièrement faibles, mais il est important de noter que ce sont des méthodes coûteuses en mémoire, et sensibles à la précision (raisons pour lesquelles nous avons choisi le compromis entre la précision et l'espace mémoire : un stockage double-précision 64 bits).\\ \\
+      
+      Pour $N$ points, la méthode de Newton nécessitera $12 N^{2}+32N+56$ octets environ, et la méthode de Neuville nécessitera $4 N^{3} + 6 N^{2} + 30N +40$ octets environ. Il est donc évident que la quantité de mémoire croîtra très rapidement dès que le nombre de points augmentera.\\ \\
+      
+      La précision entre en compte dans les calculs car on recherche un polynôme dont le degré est fonction du nombre de points. Par conséquent, si les valeurs données en abscisse sont importantes et la précision des coefficients des grandes puissances trop faible, on aura des écarts très importants. Aussi nous avons choisi d'afficher les coefficients retournés par la machine de la manière la plus précise possible (plus d'une centaine de décimales) pour obtenir des résultats stables et des courbes correctes correspondant à l'écart calculé.\\ \\
+      
+      Les méthodes d'interpolation sont également coûteuses en calculs, elles passent par de nombreuses boucles et étapes intermédiaires, on a une complexité globale en $O(n^2)$pour chacune de ces deux méthodes, elles sont donc peu efficaces en rapidité de calcul. \\
+      Finalement, on peut conclure que ces méthodes sont à restreindre à certains cadres d'utilisation, c'est-à-dire la recherche d'un polynôme absolument, ou bien la nécessité de passer par toute une liste de points tant qu'elle n'est pas trop conséquente. Sinon, il existe d'autres méthodes d'interpolation (interpolation polynômiale par segment / spline, ...), et des méthodes d'approximation qui permettent d'obtenir une équation dont la courbe s'approche des points considérés.
+      
   \chapter{Approximation}
     Contrairement aux interpolations, les équations obtenues ne passent pas forcément par les $N$ points. On cherche uniquement à minimiser la distance moyenne entre les $N$ points mesurés et la courbe. Cette méthode est appelée \textit{méthode des moindres carrés}.\\
-    Note : On n'aura donc pas à considérer une précision très importante pour comparer les tests, puisqu'il s'agit d'approximation, ce qui implique des écarts relativement importants.
+    Note : On n'aura donc pas systématiquement à considérer une précision très importante pour comparer les tests, puisqu'il s'agit d'approximation, ce qui implique des écarts relativement importants.
     \section{Régression linéaire}
       \subsection{Présentation}
 	La régression linéaire est un cas particulier de la méthode des moindres carrés. L'équation recherchée ici est une droite d'équation $y=a_{0} + a_{1} \cdot x$. On obtient alors le système :
@@ -482,7 +491,7 @@ Votre choix :
 	Erreur : $0.23913$
 	\newline
 	
-	On notera que pour ce jeu de points, c'est l'ajustement de type ``puissance" qui est le plus approprié puisque l'erreur est la plus faible parmi les trois méthodes.
+	On notera que pour ce jeu de points, c'est l'ajustement de type ``puissance" qui est le plus approprié puisque l'erreur est la plus faible, et de loin, parmi les trois méthodes.
 	\begin{figure}[h]
 	  \centering
 	  \includegraphics[scale=0.8]{graphiques/pdf_output/reglin.pdf}
@@ -557,7 +566,7 @@ Votre choix :
 	
 	On notera aussi que la série $S^{(2)}$ possède un point isolé $(13,12.74)$, et que tous les autres points semblent appartenir à la même droite. Ce point a tendance à ``tirer" la droite vers le haut et donc à augmenter l'écart qui aurait pu être obtenu en l'absence de ce point.\\ \\
 	
-	Les ajustements de types exponentiel et ``puissance" donnent des écarts variables. Par exemple, il vaudra mieux approximer la série $S^{(1)}$ par puissance ou par régression, et la série $S^{(2)}$ avec un ajustement exponentiel. La série $S^{(3)}$ est composée d'un nuage de points, tout comme celle du test précédent (Anscombe), et les résultats montrent pour ces deux séries que des approximations par régression linéaire ou par ajustement ``puissance" sont plus appropriés que l'ajustement exponentiel.
+	Les ajustements de types exponentiel et ``puissance" donnent des écarts variables. Par exemple, il vaudra mieux approximer la série $S^{(1)}$ par puissance ou par régression, et la série $S^{(2)}$ avec un ajustement exponentiel. La série $S^{(3)}$ est composée d'un nuage de points, tout comme celle du test précédent (Anscombe), et les résultats montrent pour ces deux séries que des approximations par régression linéaire et parfois par ajustement ``puissance" selon la disposition des points sont plus appropriés que l'ajustement exponentiel.
 	
 	\newpage
 	\begin{figure}[h!]
@@ -644,8 +653,9 @@ Votre choix :
 	\noindent\underline{\textbf{Partie Haute :}} \\ \\
 	\textbf{Régression Linéaire :}\\
 	$P(x) = -1632.996024 + 2.069334\cdot x$\\
-	Erreur : $6.422749$
+	Erreur : $6.422749$\\
 	
+	Ici, on constate de nouveau qu'une analyse préalable des points permet d'obtenir de meilleurs résultats. En effet, $\sfrac{2}{3}$ de ces points semblent appartenir à une droite horizontale, ce qui justifie le fait de scinder la série en deux sous-séries. Par conséquent, l'erreur obtenue pour chacune d'entre-elles est nettement plus faible. On peut ensuite considérer que la fonction qui régit la relation entre ces points change au-delà d'un certain seuil. En l'occurence, il s'agirait d'un seuil de revenus.
 	\newpage
         \begin{figure}[h]
 	  \centering
@@ -668,6 +678,15 @@ Votre choix :
 	  \label{approx_tp2_ex4}
 	\end{table}
 	
+	Dans le plan, ces points semblent appartenir à une courbe de type exponentiel, ce que justifient les résultats et le graphique suivants.
+	
+	\noindent\underline{\textbf{Ajustement exponentiel :}}\\ \\
+	$P(x) = 0.000020877531085468\cdot e^{0.142674561175619524\cdot x}$\\
+	Erreur : $0.222680$
+	\newline
+	On notera une erreur particulièrement faible, le type exponentiel est donc celui convient le mieux à ce jeu de points. \\
+	Cependant, on ne peut pas se contenter d'une faible précision. En effet, il faut dans ce cas au minimum une précision de $10^{-5}$ pour avoir une courbe exponentielle.
+	\newline
 	\begin{figure}[h]
 	  \centering
 	  \includegraphics[scale=0.75]{graphiques/pdf_output/reglin_tp2_ex4.pdf}
@@ -689,11 +708,25 @@ Votre choix :
 	  \label{approx_tp2_ex5}
 	\end{table}
 	
+	Loi de Pareto : \textit{Entre le revenu $x$ et le nombre $y$ de personnes ayant un revenu supérieur à $x$, il existe une relation du type :} \[ y=\frac{A}{x^{a}}=Ax^{-a} \]\\
+	\textit{où $a$ et $A$ sont des constantes positives caractéristiques de la région considérée et de la période étudiée.}\\
+	
+	\noindent\underline{\textbf{Ajustement ``puissance" :}}\\ \\
+	$P(x) = 696600.116557\cdot x^{-2.527189}$\\
+	Erreur : $1.179858$
+	\newline
 	\begin{figure}[h]
 	  \centering
 	  \includegraphics[scale=0.75]{graphiques/pdf_output/reglin_tp2_ex5.pdf}
 	  \caption{Approximation par une fonction de type ``puissance" (Tableau \ref{approx_tp2_ex5})}
         \end{figure}
+        
+        D'après les résultats, on aurait $a\approx2.527189$ et $A\approx696600.116557$ pour ce jeu de données et en effet, les constantes sont positives, comme l'indique la loi de Pareto.
+        
+        On notera que ce type de courbe est plus approprié qu'un autre, et que l'erreur est faible au regard de la valeur moyenne des ordonnées : $\approx 83.5$.
+    \section{Comparaison}
+      On pourra remarquer que la qualité des résultats par approximation est variable et dépend en grande partie des données. Par conséquent, une analyse préalable semble pertinente pour déterminer l'approximation la plus adaptée, et éventuellement pour éliminer des points pouvant être le résultat d'erreurs de mesure.\\ \\
+      Dans le cas d'un nuage de points, une régression linéaire donnera la plupart du temps de meilleurs résultats.
   \chapter{Conclusion}
   
   \chapter{Annexe}
