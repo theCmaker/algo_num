@@ -7,9 +7,7 @@
 void neuville (double ** tab, int n)
 {
   int i, k;
-  polynome* pol1=(polynome*) malloc(sizeof(polynome));  
-  polynome* pol2=(polynome*) malloc(sizeof(polynome));
-  polynome* pol3=(polynome*) malloc(sizeof(polynome));
+  polynome* pol1; polynome* pol2; polynome* pol3;
   polynome*** t= (polynome***) malloc(n*sizeof(polynome**));
   for (i=0; i<n; i++)
   {
@@ -25,10 +23,11 @@ void neuville (double ** tab, int n)
   {
     for (i=k; i<n; i++)
     {
+      pol1=(polynome*) malloc(sizeof(polynome)); pol2=(polynome*) malloc(sizeof(polynome));
       pol1=creerPoly(2, "valeur", tab[0][i-k], -1.); pol2=mulPoly(pol1,t[i][k-1]);
-      free(pol1->poln); free(pol1);
+      free(pol1->poln); free(pol1); pol1=(polynome*) malloc(sizeof(polynome)); pol3=(polynome*) malloc(sizeof(polynome));
       pol1=creerPoly(2,"valeur", -(tab[0][i]), 1.); pol3=mulPoly(pol1, t[i-1][k-1]);
-      free(pol1->poln); free(pol1);
+      free(pol1->poln); free(pol1); pol1=(polynome*) malloc(sizeof(polynome));
       pol1=addPoly(pol3, pol2);
       t[i][k]=mulSPoly((1/((tab[0][i-k])-(tab[0][i]))),pol1);
       free(pol1->poln); free(pol2->poln); free(pol3->poln); free(pol1); free(pol2); free(pol3);
