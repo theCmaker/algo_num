@@ -9,7 +9,7 @@ void clear()
 
 void cleanBuffer()
 {
-  char c='0';
+  char c=getchar();
   while (c!='\n' && c!=EOF)
   {
     c=getchar();
@@ -18,8 +18,6 @@ void cleanBuffer()
 
 void hitToContinue()
 {
-  cleanBuffer();
   printf("Appuyez sur une touche pour continuer. ");
-  getchar();
   cleanBuffer();
 }

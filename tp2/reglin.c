@@ -105,7 +105,7 @@ reglinE(double** tab, int n) //y=c(e^(dx)) <=> ln(y)=ln(c)+xd => c=e^(a0) & d=a1
   c = exp(a0);
   
   //affichage
-  printf("P(x) = %20.18f*exp(%20.18f*x)\n",c,d);
+  printf("P(x) = %.18f*exp(%.18f*x)\n",c,d);
   
   //statistiques
   ecartExpo(tab,n,c,d);
@@ -144,7 +144,7 @@ reglinP(double ** tab, int n) //y=a(x^b) <=> ln(y)=ln(a)+b*ln(x) => a=e^(a0) & b
   a = exp(a0);
   
   //affichage
-  printf("P(x) = %20.18f*x^(%20.18f)\n",a,b);
+  printf("P(x) = %.18f*x^(%.18f)\n",a,b);
   
   //statistiques
   ecartPui(tab,n,a,b);

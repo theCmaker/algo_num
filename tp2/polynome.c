@@ -4,6 +4,7 @@
 #include <stdarg.h>
 #include <string.h>
 #include "polynome.h"
+#include "useful.h"
 
 polynome* creerPoly(int c,char* mode, ...)
 {
@@ -43,13 +44,14 @@ void menuAffichage(polynome* P)
   int choix; // permet de choisir les options voulues
   printf("Voulez-vous afficher le polynome dans la sortie standard (1-Oui *-Non) ? ");
   scanf("%d",&choix);
+  cleanBuffer();
   if(choix ==1)
   {
     afficherPoly(P,"console");
   }
   else
   {
-	  afficherPoly(P,"console");
+    afficherPoly(P,"console");
     afficherPoly(P,"latex",fichier);
   }
   fclose(fichier);
@@ -239,7 +241,7 @@ void ecartPoly(double** tab, int n, polynome* P)
     moyecart = moyecart + fabs((imagePoly(P,tab[0][i])-tab[1][i]));
   }
   moyecart = moyecart/n;
-  printf("Erreur moyenne : %20.18f",moyecart);
+  printf("Erreur moyenne : %.18f",moyecart);
 }
 
 void ecartExpo(double** tab, int n, double c, double d)
@@ -251,7 +253,7 @@ void ecartExpo(double** tab, int n, double c, double d)
     moyecart = moyecart + fabs((imageExpo(c,d,tab[0][i])-tab[1][i]));
   }
   moyecart = moyecart/n;
-  printf("Erreur moyenne : %20.18f",moyecart);
+  printf("Erreur moyenne : %.18f",moyecart);
 }
 
 void ecartPui(double** tab, int n, double a, double b)
@@ -263,7 +265,7 @@ void ecartPui(double** tab, int n, double a, double b)
     moyecart = moyecart + fabs((imagePui(a,b,tab[0][i])-tab[1][i]));
   }
   moyecart = moyecart/n;
-  printf("Erreur moyenne : %20.18f",moyecart);
+  printf("Erreur moyenne : %.18f",moyecart);
 }
 
 void convertTabtoLatex(double** tab, int n, int m)

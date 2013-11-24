@@ -337,7 +337,7 @@ Votre choix :
 	$y_{i}$ (D) & $84$ & $84$ & $82$ & $80$ & $226$ & $260$ & $82$ & $186$ & $77$ & $223$ \\ 
 	\hline 
 	\end{tabular}
-	\caption{Série non triée}
+	\caption{Série non-triée}
 	\label{inter_tp2_ex3_depenses}
       \end{table}
       
@@ -397,7 +397,8 @@ Votre choix :
     \newpage
     \section{Comparaison}
   \chapter{Approximation}
-    Contrairement aux interpolations, les équations obtenues ne passent pas forcément par les $N$ points. On cherche uniquement à minimiser la distance moyenne entre les $N$ points mesurés et la courbe. Cette méthode est appelée \textit{méthode des moindres carrés}.
+    Contrairement aux interpolations, les équations obtenues ne passent pas forcément par les $N$ points. On cherche uniquement à minimiser la distance moyenne entre les $N$ points mesurés et la courbe. Cette méthode est appelée \textit{méthode des moindres carrés}.\\
+    Note : On n'aura donc pas à considérer une précision très importante pour comparer les tests, puisqu'il s'agit d'approximation, ce qui implique des écarts relativement importants.
     \section{Régression linéaire}
       \subsection{Présentation}
 	La régression linéaire est un cas particulier de la méthode des moindres carrés. L'équation recherchée ici est une droite d'équation $y=a_{0} + a_{1} \cdot x$. On obtient alors le système :
@@ -419,7 +420,7 @@ Votre choix :
 	  \end{bmatrix}
 	\end{equation*}
 	
-	On a enfin une expression de $a_{0}$ et $a_{1}$ :
+	On a enfin une expression pour $a_{0}$ et $a_{1}$ :
 	
 	\begin{displaymath}
 	  a_{1} = \frac{\overline{yx}-\overline{x}\overline{y}}{\overline{x^{2}}-(\overline{x})^2}
@@ -462,12 +463,29 @@ Votre choix :
 	    $y_{i}$ & $0.49$ & $1.6$ & $3.36$ & $6.44$ & $10.16$ \\ 
 	    \hline 
 	  \end{tabular}
-	  \caption{Série 1}
+	  \caption{Exemple}
 	  \label{approx_td3_ex6}
 	\end{table}
+	
+	\noindent \textbf{Régression linéaire : } \\
+	$P(x) = 4.836x - 2.844$\\
+	Erreur : $0.732$
+	\newline
+	\newline
+	\textbf{Ajustement par une fonction exponentielle :}\\
+	$P(x) = 0.299115x \times e^{1.491228x}$\\
+	Erreur : $0.758042$
+	\newline
+	\newline
+	\textbf{Ajustement par une fonction ``puissance" :}\\
+	$P(x) = 1.70314\times x^{1.88175}$\\
+	Erreur : $0.23913$
+	\newline
+	
+	On notera que pour ce jeu de points, c'est l'ajustement de type ``puissance" qui est le plus approprié puisque l'erreur est la plus faible parmi les trois méthodes.
 	\begin{figure}[h]
 	  \centering
-	  \includegraphics{graphiques/pdf_output/reglin.pdf}
+	  \includegraphics[scale=0.8]{graphiques/pdf_output/reglin.pdf}
 	  \caption{Régression linéaire -- (Tableau \ref{approx_td3_ex6})}
 	\end{figure}
       \newpage
@@ -484,6 +502,15 @@ Votre choix :
 	  \caption{Série dûe à Anscombe}
 	  \label{approx_tp2_ex1}
 	\end{table}
+	
+	\begin{tabular}{l | l | l}
+	\noindent \textbf{Régression linéaire : } & \noindent \textbf{Ajustement exponentiel} & \noindent \textbf{Ajustement ``puissance"} \\
+	$P(x) = 0.500091x + 3.000091$ & $P(x) = 3.804664 \cdot e^{0.071377\cdot x}$ & $P(x) = 2.020991 \cdot x^{0.599390}$\\
+	Erreur : $0.837405$ & Erreur : $0.933867$ & Erreur : $0.827968$ \\
+	\end{tabular}
+	\vspace{1cm}
+	
+	Note : Un ajustement de type ``puissance" permet d'obtenir une précision de $0.827968$, ce qui est très proche de celle obtenue ici. L'ajustement exponentiel est moins adapté.
 	\begin{figure}[h]
 	  \centering
 	  \includegraphics{graphiques/pdf_output/reglin_tp2_ex1.pdf}
@@ -509,55 +536,51 @@ Votre choix :
 	  \caption{3 séries $S^{(1)}$, $S^{(2)}$ et $S^{(3)}$ comparées à Anscombe}
 	  \label{approx_tp2_ex2}
 	\end{table}
-	Série (1) :
-	\newline
-	Regression linéaire par une droite : $P(x) = 3.000909 + 0.500000 \cdot x$
-	\newline
-	Erreur moyenne : $0.967934$
-	\newline
-	\newline
-	Série (2) :
-	\newline
-	Regression linéaire par une droite : $P(x) = 3.002455 + 0.499727 \cdot x$
-	\newline
-	Erreur moyenne : $0.715967$
+	\begin{tabular}{l | l | l}
+	  \noindent \underline{\textbf{Série 1 :}}  & \noindent\underline{\textbf{Série 2 :}} & \noindent\underline{\textbf{Série 3 :}} \\
+	  \textbf{Régression linéaire : } & \textbf{Régression linéaire : } & \textbf{Régression linéaire : } \\
+	  $P(x) = 3.000909 + 0.500000 \cdot x$ & $P(x) = 3.002455 + 0.499727 \cdot x$ & $P(x) = 9.231364 - 0.192273 \cdot x $\\
+	  Erreur : $0.967934$ & Erreur : $0.715967$ & Erreur : $0.902727$ \\
+	  & &\\
+	  \textbf{Ajustement exponentiel : } & \textbf{Ajustement exponentiel : } & \textbf{Ajustement exponentiel : } \\
+	  $P(x) = 3.417548 \cdot e^{0.082249 \cdot x}$ & $P(x) = 4.100273 \cdot e^{0.063981 \cdot x}$ & $P(x) = 8.564272 \cdot e^{-0.017989\cdot x}$\\
+	  Erreur : $1.187786$ & Erreur : $0.590601$ & Erreur : $1.468203$\\
+	  & & \\
+	  \textbf{Ajustement ``puissance" : } & \textbf{Ajustement ``puissance" : } & \textbf{Ajustement ``puissance" : } \\
+	  $P(x) = 1.453451 \cdot x^{0.749910}$ & $P(x) = 2.478570 \cdot x^{0.507328}$ & $P(x) = 10.959075\cdot x^{-0.192021}$ \\
+	  Erreur : $0.950634$ & Erreur : $0.682932$ & Erreur : $1.463448$ \\
+	  
+	\end{tabular}
+	\vspace{1cm}
 	
-	\begin{figure}[h]
+	Pour la régression linéaire, il est important de remarquer que les deux premières séries donnent des équations de droites similaires et comparables à celle de la série d'Anscombe, tandis que la dernière varie complètement. On peut expliquer ceci par la présence de ``points isolés" ($(4,12.50)$ pour la série $S^{(3)}$) qui influent sur le calcul de l'équation. Ainsi on obtient des équations similaires pour des séries de points très différentes.\\ \\
+	
+	On notera aussi que la série $S^{(2)}$ possède un point isolé $(13,12.74)$, et que tous les autres points semblent appartenir à la même droite. Ce point a tendance à ``tirer" la droite vers le haut et donc à augmenter l'écart qui aurait pu être obtenu en l'absence de ce point.\\ \\
+	
+	Les ajustements de types exponentiel et ``puissance" donnent des écarts variables. Par exemple, il vaudra mieux approximer la série $S^{(1)}$ par puissance ou par régression, et la série $S^{(2)}$ avec un ajustement exponentiel. La série $S^{(3)}$ est composée d'un nuage de points, tout comme celle du test précédent (Anscombe), et les résultats montrent pour ces deux séries que des approximations par régression linéaire ou par ajustement ``puissance" sont plus appropriés que l'ajustement exponentiel.
+	
+	\newpage
+	\begin{figure}[h!]
 	  \centering
-	  \includegraphics{graphiques/pdf_output/reglin_tp2_ex2_1.pdf}
+	  \includegraphics[scale=0.75]{graphiques/pdf_output/reglin_tp2_ex2_1.pdf}
 	  \caption{Régression linéaire -- (Tableau \ref{approx_tp2_ex2})}
 	\end{figure}
-	\newpage
-        Regression linéaire par une exponentielle :$P(x) = 3.417548 \cdot \exp(0.082249 \cdot x)$
-        
-        Erreur moyenne : $1.187786$
 
-        Regression linéaire par une exponentielle :$P(x) = 4.100273 \cdot \exp(0.063981 \cdot x)$
-        
-        Erreur moyenne : $0.590601$
-
-	\begin{figure}[h]
+	\begin{figure}[h!]
 	  \centering
-	  \includegraphics{graphiques/pdf_output/reglin_tp2_ex2_2.pdf}
+	  \includegraphics[scale=0.75]{graphiques/pdf_output/reglin_tp2_ex2_2.pdf}
 	  \caption{Approximation par ajustement exponentiel -- (Tableau \ref{approx_tp2_ex2})}
 	\end{figure}
 	\newpage
-        Regression linéaire par une puissance : $P(x) = 1.453451 \cdot x^{0.749910}$
-        
-        Erreur moyenne : $0.950634$
-
-        Regression linéaire par une puissance :$P(x) = 2.478570 \cdot x^{0.507328}$
-        
-        Erreur moyenne : $0.682932$
-	\begin{figure}[h]
+	\begin{figure}[h!]
 	  \centering
-	  \includegraphics{graphiques/pdf_output/reglin_tp2_ex2_3.pdf}
+	  \includegraphics[scale=0.75]{graphiques/pdf_output/reglin_tp2_ex2_3.pdf}
 	  \caption{Approximation par ajustement ``puissance" -- (Tableau \ref{approx_tp2_ex2})}
 	\end{figure}
       \newpage
       \subsection{Dépenses mensuelles et revenus}
 	\begin{table}[h]
-	  \centering
+% 	  \centering
 	  \begin{tabular}{| c | c | c | c | c | c | c | c | c | c | c | c |}
 	    \hline 
 	    $x_{i}$ (R) & $752$ & $855$ & $871$ & $734$ & $610$ & $582$ & $921$ & $492$ & $569$ & $462$ & $907 $ \\ 
@@ -565,63 +588,73 @@ Votre choix :
 	    $y_{i}$ (D) & $85$ & $83$ & $162$ & $79$ & $81$ & $83$ & $281$ & $81$ & $81$ & $80$ & $243 $ \\ 
 	    \hline 
 	  \end{tabular}
-	  \caption{Série 1}
-	  \label{approx_tp2_ex3_1}
+	  \newline
+	  \begin{tabular}{| c | c | c | c | c | c | c | c | c | c | c |}
+	    \hline 
+	    $x_{i}$ (R) & $643$ & $862$ & $524$ & $679$ & $902$ & $918$ & $828$ & $875$ & $809$ & $894$ \\ 
+	    \hline 
+	    $y_{i}$ (D) & $84$ & $84$ & $82$ & $80$ & $226$ & $260$ & $82$ & $186$ & $77$ & $223$ \\ 
+	    \hline 
+	  \end{tabular}
+	  \caption{Série non-triée}
+	  \label{approx_tp2_ex3_depenses}
+	\end{table}
+	
+	Comme pour l'interpolation, on peut trier les séries :
+	
+	\begin{table}[h]
+	  \centering
+	  \begin{tabular}{| c | c | c | c | c | c | c | c | c | c | c | c | c | c | c |}
+	    \hline 
+	    $x_{i}$ (R) & $752$ & $855$ & $828$ & $734$ & $809$ & $610$ & $582$ & $492$ & $569$ & $462$ & $643$ & $862$ & $524$ & $679$ \\ 
+	    \hline 
+	    $y_{i}$ (D) & $85$ & $83$ & $82$ & $79$ & $77$ & $81$ & $83$ & $81$ & $81$ & $80$ & $84$ & $84$ & $82$ & $80$ \\ 
+	    \hline 
+	  \end{tabular}
+	  \caption{Série triée : Partie Basse}
+	  \label{approx_tp2_ex3_depenses_bas}
 	\end{table}
 	\begin{table}[h]
 	  \centering
-	  \begin{tabular}{| c | c | c | c | c | c | c | c | c | c | c |}
-	  \hline 
-	  $x_{i}$ (R) & $643$ & $862$ & $524$ & $679$ & $902$ & $918$ & $828$ & $875$ & $809$ & $894$ \\ 
-	  \hline 
-	  $y_{i}$ (D) & $84$ & $84$ & $82$ & $80$ & $226$ & $260$ & $82$ & $186$ & $77$ & $223$ \\ 
-	  \hline 
+	  \begin{tabular}{| c | c | c | c | c | c | c | c |}
+	    \hline 
+	    $x_{i}$ (R) & $902$ & $918$ & $871$ & $875$ & $921$ & $907$ & $894$ \\ 
+	    \hline 
+	    $y_{i}$ (D) & $226$ & $260$ & $162$ & $186$ & $281$ & $243$ & $223$ \\ 
+	    \hline 
 	  \end{tabular}
-	  \caption{Série 2}
-	  \label{approx_tp2_ex3_2}
+	  \caption{Série triée : Partie Haute}
+	  \label{approx_tp2_ex3_depenses_haut}
 	\end{table}
-	Série 1 :
-	\newline
-	Regression linéaire par une droite :$ P(x) =  - 98.368005 + 0.312192 \cdot x$
-	\newline
-	Erreur moyenne : $38.488186$
-	\newline
-	\newline
-	Regression linéaire par une exponentielle :$P(x) = 24.011644 \cdot \exp(0.002124 \cdot x)$
-	\newline
-	Erreur moyenne : $33.486916$
+	
+	\noindent\underline{\textbf{Valeurs non-triées :}} \\ \\
+	\textbf{Régression Linéaire :}\\
+	$P(x) = - 112.658491 + 0.324356\cdot x$\\
+	Erreur : $43.378231$
 	\newline
 	\newline
-	Regression linéaire par une puissance :$P(x) = 0.015258 \cdot x^{1.356482}$
-	\newline
-	Erreur moyenne : $36.660388$
-	\newline 
-	\newline
-	\newline
-	Série 2 :
-	\newline
-	Regression linéaire par une droite :$P(x) =  - 164.266162 + 0.381480 \cdot x$
-	\newline
-	Erreur moyenne : $46.455702$
+	
+	\noindent\underline{\textbf{Partie Basse :}} \\ \\
+	\textbf{Régression Linéaire :}\\
+	$P(x) = 80.112013 + 0.002173\cdot x$\\
+	Erreur : $1.607015$
 	\newline
 	\newline
-	Regression linéaire par une exponentielle :$P(x) = 14.780629 \cdot \exp(0.002657 \cdot x)$
-	\newline
-	Erreur moyenne : $45.099159$
-	\newline
-	\newline
-	Regression linéaire par une puissance :$P(x) = 0.000785  \cdot x^{1.793989}$
-	\newline
-	Erreur moyenne : $47.682118$
-  %       \begin{figure}[h]
-  % 	\centering
-  % 	\includegraphics[scale=0.7]{}
-  % 	\caption{Approximation -- (Tableau \ref{Jeux d'essais approximation 3.3 Série 1})}
-  %       \end{figure}
+	
+	\noindent\underline{\textbf{Partie Haute :}} \\ \\
+	\textbf{Régression Linéaire :}\\
+	$P(x) = -1632.996024 + 2.069334\cdot x$\\
+	Erreur : $6.422749$
+	
+	\newpage
+        \begin{figure}[h]
+	  \centering
+	  \includegraphics[scale=0.75]{graphiques/pdf_output/reglin_tp2_ex3.pdf}
+	  \caption{Régression Linéaire (Tableaux \ref{approx_tp2_ex3_depenses} à \ref{approx_tp2_ex3_depenses_haut})}
+        \end{figure}
+      
       \newpage
-      
       \subsection{Série chronologique avec accroissement exponentiel}
-      
 	\begin{table}[h]
 	  \centering
 	  \begin{tabular}{| c | c | c | c | c | c | c | c | c | c | c |}
@@ -634,8 +667,14 @@ Votre choix :
 	  \caption{Série}
 	  \label{approx_tp2_ex4}
 	\end{table}
-      \newpage
+	
+	\begin{figure}[h]
+	  \centering
+	  \includegraphics[scale=0.75]{graphiques/pdf_output/reglin_tp2_ex4.pdf}
+	  \caption{Approximation par une fonction exponentielle (Tableau \ref{approx_tp2_ex4})}
+        \end{figure}
       
+      \newpage
       \subsection{Vérification de la loi de Pareto}
 	\begin{table}[h]
 	  \centering
@@ -649,6 +688,12 @@ Votre choix :
 	  \caption{Relation entre revenu et nombre de personnes ayant un revenu supérieur}
 	  \label{approx_tp2_ex5}
 	\end{table}
+	
+	\begin{figure}[h]
+	  \centering
+	  \includegraphics[scale=0.75]{graphiques/pdf_output/reglin_tp2_ex5.pdf}
+	  \caption{Approximation par une fonction de type ``puissance" (Tableau \ref{approx_tp2_ex5})}
+        \end{figure}
   \chapter{Conclusion}
   
   \chapter{Annexe}
@@ -659,74 +704,3 @@ Votre choix :
       \lstinputlisting[style=customc, label=fonctionspolynome]{polynome.c}
 
 \end{document}
-
-
-      
-%       \newpage      
-%       \begin{table}[h]
-% 	\centering
-% 		\begin{tabular}{| c | c | c | c | c | c | c | c | c | c | c | c | c | c | c | c | c | c | c | c | c |}
-% 	\hline 
-% 	$x_{i}$ & $0$ & $2$ & $4$ & $6$ & $8$ & $10$ & $12$ & $14$ & $16$ & $18$ & $20$ & $22$ & $24$ & $26$ & $28$ & $30$ & $32$ & $34$ & $36$ & $38$ \\ 
-% 	\hline 
-% 	$y_{i}$ & $0.999870$ & $0.999970$ & $1$ & $0.999970$ & $0.999880$ & $0.999730$ & $0.999530$ & $0.999530$ & $0.998970$ & $0.998460$ & $0.998050$ & $0.999751$ & $0.997050$ & $0.996500$ & $0.996640$ & $0.995330$ & $0.994720$ & $0.994720$ & $0.993330$ & $0.993260$ \\ 
-% 	\hline 
-% 	\end{tabular}
-% 	\caption{3.1 Densité de l'eau en fonction de la température}
-% 	%\label{Jeux d'essais approximation 3.0}
-% 		\end{table}
-% 	
-% 	Regression linéaire par une droite : $P(x) = 1.001302 - 0.000186 \cdot x$
-% 	
-% 	Erreur moyenne : $0.000665$
-% 	
-% 	Regression linéaire par une exponentielle : $P(x) = 1.001308 \cdot \exp(-0.000187 \cdot x) $
-% 	
-% 	Erreur moyenne : $0.000667$
-% 	
-% 	Regression linéaire par une puissance : Pas de résultat, lors du changement de variable, on calcule $\log_{2}(0)$ qui n'est pas défini.
-	
-	% 		\begin{figure}[h]
-% 	\centering
-% 	\includegraphics[scale=0.7]{graphiques/pdf_output/}
-% 	\caption{Approximation -- (Tableau \ref{Jeux d'essais approximation 3.0})}
-%       \end{figure}
-%       \newpage
-      
-%       \begin{figure}[h]
-% 	\centering
-% 	\includegraphics[scale=0.7]{}
-% 	\caption{Approximation-- (Tableau \ref{Jeux d'essais approximation 3.3 Série 2})}
-%       \end{figure}
-
-
-%       \newpage
-%       \begin{table}[h]
-% 	\centering
-% 	\begin{tabular}{| c | c | c | c | c | c | c | c | c | c | c | c | c | c | c | c | c | c | c | c | c | c |}
-% 	  \hline 
-% 	  $x_{i}$ & $752$ & $855$ & $871$ & $734$ & $610$ & $582$ & $921$ & $492$ & $569$ & $462$ & $907$ & $643$ & $862$ & $524$ & $679$ & $902$ & $918$ & $828$ & $875$ & $809$ & $894$ \\ 
-% 	  \hline 
-% 	  $y_{i}$ & $85$ & $83$ & $162$ & $79$ & $81$ & $83$ & $281$ & $81$ & $81$ & $80$ & $243$ & $84$ & $84$ & $82$ & $80$ & $226$ & $260$ & $82$ & $186$ & $77$ & $223$ \\ 
-% 	  \hline 
-% 	\end{tabular}
-% 	\caption{Série1-2 dépense}
-% 	%\label{Jeux d'essais interpolation 3.3 Série 1 et 2}
-%       \end{table}
-% 	Regression linéaire par une droite :$P(x) =  - 112.658491 + 0.324356 \cdot x$
-% 	
-% 	Erreur moyenne : $43.378231$
-% 	
-% 	Reression linéaire par une exponentielle :$P(x) = 21.399929\cdot \exp(0.002238 \cdot x)$
-% 	
-% 	Erreur moyenne : $40.094599$
-% 	
-% 	Regression linéaire par une puissance :$P(x) = 0.007872 \cdot x^{1.453059}$
-% 	
-% 	Erreur moyenne : $42.696155$
-%       
-%       \begin{figure}[h]
-% 	\centering
-% 	\includegraphics[scale=0.7]{}
-% 	\caption{Approximation -- (Tableau \ref{Jeux d'essais interpolation 3.3 Série 1 et 2})}
-%       \end{figure}

@@ -53,7 +53,7 @@ int main (int argc, char ** argv)
 	  {
 	    printf(" y ");
 	  }
-	  printf("| %+.5f ", tab[i][j]);
+	  printf("| %+4.5f ", tab[i][j]);
 	}
 	printf("\n");
       }
