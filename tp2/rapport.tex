@@ -163,7 +163,8 @@ Votre choix :
 	\begin{array}{l l}
 	  a_{N-1} & \quad \text{si $i$=0}\\
 	  a_{N-1-i} + (x-x_{N-i}) \cdot P_{i-1}(x) & \quad \text{sinon}
-	\end{array} \right. $. 
+	\end{array} \right. $.
+      \newpage
       \subsection{Programme}
 	\lstinputlisting[style=customc]{newton.c}
     \newpage
@@ -173,7 +174,7 @@ Votre choix :
 	
 	\noindent L'expression est donnée sous la forme suivante : 
 	
-	$P_{k}[x_{i},\cdots,x_{i+k}](x) = \frac{(x-x_{i+k}) \cdot P_{k-1}[x_{i},\cdots,x_{i+k-1}](x) + (x_{i}-x) \cdot P_{k-1}[x_{i+1},\cdots,x_{i+k}](x)}{x_{i}-x{i+k}}, \forall x, \forall k=2,\cdots,N-1$ 
+	$P_{k}[x_{i},\cdots,x_{i+k}](x) = \frac{(x-x_{i+k}) \cdot P_{k-1}[x_{i},\cdots,x_{i+k-1}](x) + (x_{i}-x) \cdot P_{k-1}[x_{i+1},\cdots,x_{i+k}](x)}{x_{i}-x_{i+k}}, \forall x, \forall k=2,\cdots,N-1$ 
       \subsection{Programme}
 	\lstinputlisting[style=customc]{neuville.c}
     \newpage
