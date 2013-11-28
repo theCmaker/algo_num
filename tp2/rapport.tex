@@ -98,7 +98,7 @@ Entrez n le nombre de points :
 %*\textit{(Affichage du tableau correspondant...)}*)
 Quelle résolution utiliser ?
 1- Newton
-2- Neuville
+2- Neville
 3- Régression Linéaire
 4- Approximation par une fonction exponentielle
 5- Approximation par une fonction "puissance"
@@ -168,7 +168,7 @@ Votre choix :
       \subsection{Programme}
 	\lstinputlisting[style=customc]{newton.c}
     \newpage
-    \section{Méthode de Neuville}
+    \section{Méthode de Neville}
       \subsection{Présentation}
 	Cette méthode permet d'exprimer le polynôme $P_{N-1}[x_{1},\cdots,x_{N}]$ sur les points $\{1,\cdots,N\}$ en fonction des polynômes $P_{N-2}[x_{1},\cdots,x_{N-1}]$ et $P_{N-2}[x_{2},\cdots,x_{N}]$ sur l'ensemble des points $\{1,\cdots,N-1\}$ et $\{2,\cdots,N\}$.\\
 	
@@ -176,7 +176,7 @@ Votre choix :
 	
 	$P_{k}[x_{i},\cdots,x_{i+k}](x) = \frac{(x-x_{i+k}) \cdot P_{k-1}[x_{i},\cdots,x_{i+k-1}](x) + (x_{i}-x) \cdot P_{k-1}[x_{i+1},\cdots,x_{i+k}](x)}{x_{i}-x_{i+k}}, \forall x, \forall k=2,\cdots,N-1$ 
       \subsection{Programme}
-	\lstinputlisting[style=customc]{neuville.c}
+	\lstinputlisting[style=customc]{neville.c}
     \newpage
     \section{Résultats de tests}
       \subsection{Exemple tiré d'un TD}
@@ -198,7 +198,7 @@ Votre choix :
 	Erreur : $0$
 	\newline
 	
-	\noindent\textbf{Méthode de Neuville :}\\
+	\noindent\textbf{Méthode de Neville :}\\
 	$P(x)= -6.00 + 11.00 \cdot x- 6.00 \cdot x^{2}  + 1.00 \cdot x^{3} $\\
 	Erreur : $0$
 	\newline
@@ -207,7 +207,7 @@ Votre choix :
 	\begin{figure}[h]
 	  \centering
 	  \includegraphics[scale=0.7]{graphiques/pdf_output/inter_test1.pdf}
-	  \caption{Interpolations de Newton et Neuville -- (Tableau \ref{inter_td3_ex3})}
+	  \caption{Interpolations de Newton et Neville -- (Tableau \ref{inter_td3_ex3})}
 	\end{figure}
       \newpage
       
@@ -237,7 +237,7 @@ Votre choix :
 	Erreur : $0.000002166566117323$
 	\newline
 	
-	\noindent\textbf{Méthode de Neuville :}\\
+	\noindent\textbf{Méthode de Neville :}\\
 	$P(x) \approx 0.999870 + 7.693711 \cdot x- 13.276666 \cdot x^{2}  + 9.932303 \cdot x^{3} - 4.345460 \cdot x^{4}  + 1.259124 \cdot x^{5} - 0.258585 \cdot x^{6}  + 0.039240 \cdot x^{7} - 0.004520 \cdot x^{8}  + 0.000402 \cdot x^{9} - 0.000028 \cdot x^{10}  + 0.000002 \cdot x^{11} - 0.000000 \cdot x^{12}  + 0.000000 \cdot x^{13} - 0.000000 \cdot x^{14}  + 0.000000 \cdot x^{15} - 0.000000 \cdot x^{16}  + 0.000000 \cdot x^{17} - 0.000000 \cdot x^{18}  + 0.000000 \cdot x^{19} $\\
 	Erreur : $0.000028505775100296$
 	\newline
@@ -246,7 +246,7 @@ Votre choix :
 	\begin{figure}[h]
 	  \centering
 	  \includegraphics{graphiques/pdf_output/inter_tp2_ex1.pdf}
-	  \caption{Interpolation de Newton et Neuville -- (Tableau \ref{inter_tp2_ex1_densite})}
+	  \caption{Interpolation de Newton et Neville -- (Tableau \ref{inter_tp2_ex1_densite})}
 	\end{figure}
       \newpage
     
@@ -275,7 +275,7 @@ Votre choix :
 	Erreur : $0.000000000016217532$
 	\newline
 	\newline
-	\textbf{Méthode de Neuville :}\\
+	\textbf{Méthode de Neville :}\\
 	$P(x) \approx -229.550000 + 299.165750 \cdot x- 173.107636 \cdot x^{2}  + 58.546955 \cdot x^{3} - 12.731862 \cdot x^{4}  + 1.859906 \cdot x^{5} - 0.184968 \cdot x^{6}  + 0.012375 \cdot x^{7} - 0.000533 \cdot x^{8}  + 0.000013 \cdot x^{9} - 0.000000 \cdot x^{10} $\\
 	Erreur : $0.000000000012119518$
 	\newline
@@ -287,7 +287,7 @@ Votre choix :
 	Erreur : $0.000000000774325735$
 	\newline
 	\newline
-	\textbf{Méthode de Neuville :}\\
+	\textbf{Méthode de Neville :}\\
 	$P(x) \approx -12345.190000 + 16608.066492 \cdot x- 9870.941498 \cdot x^{2}  + 3416.593892 \cdot x^{3} - 763.094009 \cdot x^{4}  + 114.979985 \cdot x^{5} - 11.842442 \cdot x^{6}  + 0.823658 \cdot x^{7} - 0.037039 \cdot x^{8}  + 0.000973 \cdot x^{9} - 0.000011 \cdot x^{10} $\\
 	Erreur : $0.000000001033081661$
 	\newline
@@ -299,25 +299,25 @@ Votre choix :
 	Erreur : $0.000000081067879843$
 	\newline
 	\newline
-	\textbf{Méthode de Neuville :}\\
+	\textbf{Méthode de Neville :}\\
 	$P(x) \approx -568559.640000 + 739678.381270 \cdot x- 424130.450858 \cdot x^{2}  + 141275.523224 \cdot x^{3} - 30298.693006 \cdot x^{4}  + 4375.222059 \cdot x^{5} - 431.155992 \cdot x^{6}  + 28.652640 \cdot x^{7} - 1.229803 \cdot x^{8}  + 0.030806 \cdot x^{9} - 0.000342 \cdot x^{10} $\\
 	Erreur : $0.000000035876804073$
 	\newpage
 	\begin{figure}[h]
 	  \centering
   	\includegraphics[scale=0.5]{graphiques/pdf_output/inter_tp2_ex2_1.pdf}
-	  \caption{Interpolations de Newton et Neuville -- Série 1 (Tableau \ref{inter_tp2_ex2_3series})}
+	  \caption{Interpolations de Newton et Neville -- Série 1 (Tableau \ref{inter_tp2_ex2_3series})}
 	\end{figure}
 	\begin{figure}[h]
 	  \centering
 	  \includegraphics[scale=0.5]{graphiques/pdf_output/inter_tp2_ex2_2.pdf}
-	  \caption{Interpolations de Newton et Neuville -- Série 2 (Tableau \ref{inter_tp2_ex2_3series})}
+	  \caption{Interpolations de Newton et Neville -- Série 2 (Tableau \ref{inter_tp2_ex2_3series})}
 	\end{figure}
 	\newpage
 	\begin{figure}[h]
 	  \centering
  	  \includegraphics[scale=0.5]{graphiques/pdf_output/inter_tp2_ex2_3.pdf}
-	  \caption{Interpolations de Newton et Neuville -- Série 3 (Tableau \ref{inter_tp2_ex2_3series})}
+	  \caption{Interpolations de Newton et Neville -- Série 3 (Tableau \ref{inter_tp2_ex2_3series})}
 	\end{figure}
       \newpage
       \subsection{Dépenses et Revenus}
@@ -374,7 +374,7 @@ Votre choix :
 	Erreur : $0.018460432587224723$
 	\newline
 	\newline
-	\textbf{Méthode de Neuville :}\\
+	\textbf{Méthode de Neville :}\\
 	$P(x) \approx 73581192209.952133-1459287367.863373 \cdot x + 13300351.970501 \cdot x^{2} - 73765.523297 \cdot x^{3}  + 277.759281 \cdot x^{4} - 0.749863 \cdot x^{5}  + 0.001493 \cdot x^{6} - 0.000002 \cdot x^{7}  + 0.000000 \cdot x^{8} - 0.000000 \cdot x^{9}  + 0.000000 \cdot x^{10} - 0.000000 \cdot x^{11}  + 0.000000 \cdot x^{12} - 0.000000 \cdot x^{13} $\\
 	Erreur : $0.192499821369502971$
 	\newline
@@ -386,20 +386,20 @@ Votre choix :
 	Erreur : $0.000429349286215646$
 	\newline
 	\newline
-	\textbf{Méthode de Neuville :}\\
+	\textbf{Méthode de Neville :}\\
 	$P(x) \approx 621022623331.548340-4157904770.816572 \cdot x + 11598209.746191 \cdot x^{2} - 17253.085748 \cdot x^{3}  + 14.435304 \cdot x^{4} - 0.006441 \cdot x^{5}  + 0.000001 \cdot x^{6} $\\
 	Erreur : $0.002443850040435791$
       \newpage
       \begin{figure}[h]
 	\centering
 	\includegraphics[scale=0.85]{graphiques/pdf_output/inter_tp2_ex3.pdf}
-	\caption{Interpolation de Newton et Neuville -- (Tableaux \ref{inter_tp2_ex3_depenses_bas} \& \ref{inter_tp2_ex3_depenses_haut})}
+	\caption{Interpolation de Newton et Neville -- (Tableaux \ref{inter_tp2_ex3_depenses_bas} \& \ref{inter_tp2_ex3_depenses_haut})}
       \end{figure}
     \newpage
     \section{Comparaison}
       Les méthodes d'interpolation permettent d'obtenir d'excellents résultats, avec des écarts particulièrement faibles, mais il est important de noter que ce sont des méthodes coûteuses en mémoire, et sensibles à la précision (raisons pour lesquelles nous avons choisi le compromis entre la précision et l'espace mémoire : un stockage double-précision 64 bits).\\ \\
       
-      Pour $N$ points, la méthode de Newton nécessitera $12 N^{2}+32N+56$ octets environ, et la méthode de Neuville nécessitera $4 N^{3} + 6 N^{2} + 30N +40$ octets environ. Il est donc évident que la quantité de mémoire croîtra très rapidement dès que le nombre de points augmentera.\\ \\
+      Pour $N$ points, la méthode de Newton nécessitera $12 N^{2}+32N+56$ octets environ, et la méthode de Neville nécessitera $4 N^{3} + 6 N^{2} + 30N +40$ octets environ. Il est donc évident que la quantité de mémoire croîtra très rapidement dès que le nombre de points augmentera.\\ \\
       
       La précision entre en compte dans les calculs car on recherche un polynôme dont le degré est fonction du nombre de points. Par conséquent, si les valeurs données en abscisse sont importantes et la précision des coefficients des grandes puissances trop faible, on aura des écarts très importants. Aussi nous avons choisi d'afficher les coefficients retournés par la machine de la manière la plus précise possible (plus d'une centaine de décimales) pour obtenir des résultats stables et des courbes correctes correspondant à l'écart calculé.\\ \\
       
@@ -433,7 +433,7 @@ Votre choix :
 	On a enfin une expression pour $a_{0}$ et $a_{1}$ :
 	
 	\begin{displaymath}
-	  a_{1} = \frac{\overline{yx}-\overline{x}\overline{y}}{\overline{x^{2}}-(\overline{x})^2}
+	  a_{1} = \frac{\overline{yx}-\overline{x}\cdot\overline{y}}{\overline{x^{2}}-(\overline{x})^2}
 	\end{displaymath}
 	\vspace{0.1 cm}
 	\begin{displaymath}
@@ -729,7 +729,14 @@ Votre choix :
       On pourra remarquer que la qualité des résultats par approximation est variable et dépend en grande partie des données. Par conséquent, une analyse préalable semble pertinente pour déterminer l'approximation la plus adaptée, et éventuellement pour éliminer des points pouvant être le résultat d'erreurs de mesure.\\ \\
       Dans le cas d'un nuage de points, une régression linéaire donnera la plupart du temps de meilleurs résultats.
   \chapter{Conclusion}
-  
+    Le but des méthodes d'interpolation et d'approximation est d'obtenir une fonction mathématique dont la courbe passe au mieux par une série de points.\\
+    
+    Les interpolations de Newton et Neville retournent des résultats très précis (les erreurs de calcul de la machine sont particulièrement faibles), mais sont couteuses en mémoire et en calculs. De surcroît, la qualité des résultats est altérée lorsque le nombre de points augmente (effectivement, le degré augmente, la précision aussi, et la machine ne permet pas le calcul en précision infinie). Leur complexité moyenne est $O(n^2)$.\\
+    
+    Lorsque ces interpolations ne permettent pas d'obtenir un résultat satisfaisant, on peut avoir recours à d'autres méthodes plus adaptées, ou bien se contenter de résultats moins fiables mais plus faciles à obtenir.\\
+    
+    Les méthodes d'approximation abordées dans ce rapport permettent d'obtenir des résultats approchés, mais nécessitent une étude préalable des séries de points telle que le type de la fonction idéale, la vérification de la qualité des mesures (passant notamment par une suppression des points aberrants) ou la segmentation en sous-séries.\\
+    
   \chapter{Annexe}
     \section{Menu principal}
       \lstinputlisting[style=customc]{main.c}

@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
-#include "neuville.h" 
+#include "neville.h" 
 #include "newton.h" 
 #include "polynome.h"
 #include "reglin.h"
@@ -34,8 +34,6 @@ int main (int argc, char ** argv)
       printf("Entrez y[%d] : ", i+1);
       scanf("%lf", &tab[1][i]);
     }
-    //fonction temporaire, utile uniquement pour la rédaction du rapport
-    convertTabtoLatex(tab,n,1);
     i=1;
     while (i!=0 && i!=9)
     {
@@ -59,7 +57,7 @@ int main (int argc, char ** argv)
       }
       printf("\nQuelle résolution utiliser ?\n");
       printf("1- Newton\n");
-      printf("2- Neuville\n");
+      printf("2- Neville\n");
       printf("3- Régression Linéaire\n");
       printf("4- Approximation par une fonction exponentielle\n");
       printf("5- Approximation par une fonction puissance\n");
@@ -77,8 +75,8 @@ int main (int argc, char ** argv)
 	  hitToContinue();
 	  break;
 	case 2:
-	  printf("Résolution par Neuville ... \n");
-	  neuville(tab,n);
+	  printf("Résolution par Neville ... \n");
+	  neville(tab,n);
 	  hitToContinue();
 	  break;
 	case 3:
