@@ -1,0 +1,7 @@
+main.c
+matrices.c
+polynome.c
+leverrier.h
+matrices.h
+polynome.h
+makefile
