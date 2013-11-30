@@ -9,11 +9,13 @@
 void leverrier(double** A, int n)
 {
   int i, j;
-  double somme;
+  double tempo;
   double* coeffs=(double*) malloc ((n+1)*sizeof(double)); //tableau coeffs
   double* traces=(double*) malloc(n*sizeof(double)); //tableau traces
   double** tmp;
   polynome* p=(polynome*) malloc(sizeof(polynome));
+  
+  //On remplit notre tableau contenant les traces 
   for (i=1; i<=n; i++)
   {
     tmp=puissanceMatrice(A, n, i);
@@ -22,19 +24,35 @@ void leverrier(double** A, int n)
     {free(tmp[j]);}
     free(tmp);
   }
+  
+  //On remplit le tableau des coefficients
   coeffs[0]=pow(-1.0,n);
-  for (i=1; i<=n; i++)
+  for(i=1; i<=n; i++)
   {
-    somme=0;
-    for (j=0; j<i; j++)
-    {
-      somme=somme+coeffs[i]*traces[i-j-1];
-    }
-    coeffs[i]=(-1/i)*somme;
+	  for(j=0;j<i;j++)
+	  {
+		coeffs[i] = coeffs[i] - coeffs[j]*traces[i-j-1];
+	  }
+	  coeffs[i] = coeffs[i]/i;
   }
-  p=creerPoly(n, "tableau", coeffs);
+  //On inverse le tableau des coefficients
+  for(i=0;i<=(n/2)-1;i++)
+  {
+	tempo = coeffs[i];
+	coeffs[i] = coeffs[n-i];
+	coeffs[n-i] = tempo;
+  }
+  p=creerPoly(n+1, "tableau", coeffs);
   menuAffichage(p);
   
   //liberation memoire
+  //libération du tableau de trace
+
+  free(traces);
+  free(coeffs);
+  //libération du polynome
+  free(p->poln);
+  free(p);
+  
    //----- For you my rubber duck ! 
 }
