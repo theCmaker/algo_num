@@ -1,22 +1,8 @@
 CC=gcc -g
+FichierC= main.c leverrier.c polynome.c matrices.c useful.c
 
-main: main.o leverrier.o polynome.o useful.o matrices.o
+main: $(FichierC)
 	$(CC) -o $@ $^ -lm
-
-main.o: main.c
-	$(CC) -c $^ -lm
-
-polynome.o: polynome.c
-	$(CC) -c $^ -lm
-
-leverrier.o: leverrier.c
-	$(CC) -c $^ -lm
-
-useful.o: useful.c
-	$(CC) -c $^
-
-matrices.o: matrices.c
-	$(CC) -c $^ -lm
 
 clean:
 	rm *~ *.o *.aux *.toc *.log *.bbl *.blg *.gz
