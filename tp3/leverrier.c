@@ -26,21 +26,25 @@ void leverrier(double** A, int n)
   }
   
   //On remplit le tableau des coefficients
+  for(i=0; i<=n; i++)
+  {
+    coeffs[i]=0;
+  }
   coeffs[0]=pow(-1.0,n);
   for(i=1; i<=n; i++)
   {
-	  for(j=0;j<i;j++)
-	  {
-		coeffs[i] = coeffs[i] - coeffs[j]*traces[i-j-1];
-	  }
-	  coeffs[i] = coeffs[i]/i;
+    for(j=0;j<i;j++)
+    {
+      coeffs[i] = coeffs[i] - coeffs[j]*traces[i-j-1];
+    }
+    coeffs[i] = coeffs[i]/i;
   }
   //On inverse le tableau des coefficients
   for(i=0;i<=(n/2)-1;i++)
   {
-	tempo = coeffs[i];
-	coeffs[i] = coeffs[n-i];
-	coeffs[n-i] = tempo;
+    tempo = coeffs[i];
+    coeffs[i] = coeffs[n-i];
+    coeffs[n-i] = tempo;
   }
   p=creerPoly(n+1, "tableau", coeffs);
   menuAffichage(p);
