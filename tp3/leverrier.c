@@ -51,9 +51,7 @@ void leverrier(double** A, int n)
   
   //liberation memoire
   //libération du tableau de trace
-  for(i=0;i<n;i++) {free(traces[i]);}
   free(traces);
-  for(i=0;i<n;i++) {free(coeffs[i]);}
   free(coeffs);
   //libération du polynome
   free(p->poln);
