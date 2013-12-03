@@ -57,5 +57,4 @@ void leverrier(double** A, int n)
   free(p->poln);
   free(p);
   
-   //----- For you my rubber duck ! 
 }

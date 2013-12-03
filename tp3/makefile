@@ -1,8 +1,15 @@
 CC=gcc -g
-FichierC= main.c leverrier.c polynome.c matrices.c useful.c
 
-main: $(FichierC)
+OBJS=main.o leverrier.o polynome.o matrices.o useful.o
+
+SUFFIXES ?= .c .o #pour reconnaître les extensions comme suffixe
+.SUFFIXES: $(SUFFIXES) .
+
+main: $(OBJS)
 	$(CC) -o $@ $^ -lm
+
+.c.o: #règle implicite -> dérive les .c vers des .o avec la règle définie dessous
+	$(CC) -c $*.c
 
 clean:
 	rm *~ *.o *.aux *.toc *.log *.bbl *.blg *.gz
