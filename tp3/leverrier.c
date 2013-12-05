@@ -13,7 +13,7 @@ void leverrier(double** A, int n)
   double* coeffs=(double*) malloc ((n+1)*sizeof(double)); //tableau coeffs
   double* traces=(double*) malloc(n*sizeof(double)); //tableau traces
   double** tmp;
-  polynome* p=(polynome*) malloc(sizeof(polynome));
+  polynome* p;
   
   //On remplit notre tableau contenant les traces 
   for (i=1; i<=n; i++)
@@ -56,5 +56,91 @@ void leverrier(double** A, int n)
   //libération du polynome
   free(p->poln);
   free(p);
+}
+
+void leverrierA(double** A, int n)
+{
+  int i, j;
+  double tempo;
+  double* coeffs=(double*) malloc ((n+1)*sizeof(double)); //tableau coeffs
+  double** Ak=(double**) malloc (n*sizeof(double*));
+  double** tmp;
+  double** B=(double**) malloc (n*sizeof(double*));
+  double** I=(double**) malloc (n*sizeof(double*));
+  polynome* p;
   
+  for (i=0; i<n; i++)
+  {
+    Ak[i]=(double*) malloc (n*sizeof(double));
+    I[i]=(double*) malloc (n*sizeof(double));
+    B[i]=(double*) malloc (n*sizeof(double));
+  }
+  
+  //Création matrice identité, initialisation de B et copie de A
+  for (i=0; i<n; i++)
+  {
+    for (j=0; j<n; j++)
+    {
+      Ak[i][j]=A[i][j];
+      if (i==j) 
+      {
+	I[i][j]=1; 
+	B[i][j]=1;
+      }
+      else 
+      {
+	I[i][j]=0; 
+	B[i][j]=0;
+      }
+    }
+  }
+  
+  //On remplit le tableau des coefficients
+  for(i=0; i<=n; i++)
+  {
+    coeffs[i]=0;
+  }
+  
+  coeffs[0]=1;
+  
+  
+  for(i=1; i<=n; i++)
+  {
+    Ak=produitMatriciel(B,A,n,n,n);
+    coeffs[i]=trace(Ak,n)/i;
+    tmp=produitSMatriciel(I,n,n,coeffs[i]);
+    for(j=0;j<n;j++)
+    {
+      free(B[j]);
+    }
+    free(B);
+    B=difference(Ak,tmp,n,n);
+    for(j=0;j<n;j++)
+    {
+      free(Ak[j]);
+      free(tmp[j]);
+    }
+    free(tmp); free(Ak);
+  }
+  
+  //On inverse le tableau des coefficients
+  for(i=0;i<=(n/2)-1;i++)
+  {
+    tempo = coeffs[i];
+    coeffs[i] = coeffs[n-i];
+    coeffs[n-i] = tempo;
+  }
+  p=creerPoly(n+1, "tableau", coeffs);
+  menuAffichage(p);
+  
+  //liberation memoire
+  for (i=0; i<n; i++)
+  {
+    free(B[i]);
+  }
+  free(B);
+  free(coeffs);
+  //libération du polynome
+  free(p->poln);
+  free(p);
 }

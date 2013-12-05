@@ -1,7 +1,13 @@
+leverrier.c
 main.c
 matrices.c
 polynome.c
+puissancesIt.c
+useful.c
+file.h
 leverrier.h
 matrices.h
 polynome.h
+puissancesIt.h
+useful.h
 makefile

@@ -149,6 +149,28 @@ double ** produitMatriciel(double** a, double** b, int n, int m, int o)
   return c;
 }
 
+double** produitSMatriciel(double** a, int n, int m, double s)
+{
+  int i, j;
+  
+  double** c=(double**) malloc(n*sizeof(double*));
+  for (i=0; i<n; i++)
+  {
+    c[i]=(double*) malloc(m*sizeof(double));
+  }
+  
+  //Calcul de la matrice résultat c=ab
+  for (i=0; i<n; i++)
+  {
+    for (j=0; j<m; j++)
+    {
+      c[i][j]=s*a[i][j];
+    }
+  }
+  
+  return c;
+}
+
 double ** difference (double** a, double** b, int n, int m)
 {
   int i, j;

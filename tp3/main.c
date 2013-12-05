@@ -14,6 +14,6 @@ int main (int argc, char ** argv)
   printf("Dimension : ");
   scanf("%d", &n);
   A=creerRemplirMatrice(n,n);
-  leverrier(A,n);
+  leverrierA(A,n);
   return 0;
 }
