@@ -1,0 +1,3 @@
+#ifndef PUISSANCES_ITEREES_H__
+#define PUISSANCES_ITEREES_H__
+#endif
