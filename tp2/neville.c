@@ -23,11 +23,10 @@ void neville (double ** tab, int n)
   {
     for (i=k; i<n; i++)
     {
-      pol1=(polynome*) malloc(sizeof(polynome)); pol2=(polynome*) malloc(sizeof(polynome));
       pol1=creerPoly(2, "valeur", tab[0][i-k], -1.); pol2=mulPoly(pol1,t[i][k-1]);
-      free(pol1->poln); free(pol1); pol1=(polynome*) malloc(sizeof(polynome)); pol3=(polynome*) malloc(sizeof(polynome));
+      free(pol1->poln); free(pol1); 
       pol1=creerPoly(2,"valeur", -(tab[0][i]), 1.); pol3=mulPoly(pol1, t[i-1][k-1]);
-      free(pol1->poln); free(pol1); pol1=(polynome*) malloc(sizeof(polynome));
+      free(pol1->poln); free(pol1);
       pol1=addPoly(pol3, pol2);
       t[i][k]=mulSPoly((1/((tab[0][i-k])-(tab[0][i]))),pol1);
       free(pol1->poln); free(pol2->poln); free(pol3->poln); free(pol1); free(pol2); free(pol3);
@@ -42,7 +41,7 @@ void neville (double ** tab, int n)
   //libération mémoire
   for(i=0;i<n;i++)
   {
-    for(k=0;k<i;k++)
+    for(k=0;k<=i;k++)
     { free(t[i][k]->poln); free(t[i][k]); }
     free(t[i]);
   }
