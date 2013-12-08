@@ -107,7 +107,7 @@ void leverrierA(double** A, int n)
   for(i=1; i<=n; i++)
   {
     Ak=produitMatriciel(B,A,n,n,n);
-    coeffs[i]=trace(Ak,n)/i;
+    coeffs[i]=-trace(Ak,n)/i;
     tmp=produitSMatriciel(I,n,n,coeffs[i]);
     for(j=0;j<n;j++)
     {

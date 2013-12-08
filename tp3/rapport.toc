@@ -1,0 +1,13 @@
+\select@language {french}
+\contentsline {chapter}{\numberline {1}Pr\IeC {\'e}ambule}{2}
+\contentsline {section}{\numberline {1.1}Structure du programme}{2}
+\contentsline {section}{\numberline {1.2}Compilation et logiciels utilis\IeC {\'e}s}{3}
+\contentsline {chapter}{\numberline {2}Polyn\IeC {\^o}me caract\IeC {\'e}ristique}{4}
+\contentsline {section}{\numberline {2.1}M\IeC {\'e}thode de Leverrier}{4}
+\contentsline {subsection}{\numberline {2.1.1}Pr\IeC {\'e}sentation}{4}
+\contentsline {subsection}{\numberline {2.1.2}Programme}{4}
+\contentsline {section}{\numberline {2.2}M\IeC {\'e}thode de Leverrier am\IeC {\'e}lior\IeC {\'e}e}{5}
+\contentsline {subsection}{\numberline {2.2.1}Pr\IeC {\'e}sentation}{5}
+\contentsline {subsection}{\numberline {2.2.2}Programme}{5}
+\contentsline {section}{\numberline {2.3}R\IeC {\'e}sultat des tests}{6}
+\contentsline {subsection}{\numberline {2.3.1}Matrices compagnons}{6}

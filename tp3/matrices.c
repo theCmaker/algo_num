@@ -289,3 +289,24 @@ double** puissanceMatrice(double** mat, int n, int e)
 	}
 	return resultat;
 }
+
+void convertMattoLatex(double** mat, int n, int m)
+{
+  FILE* fichier = fopen("resultat","a+");
+  int i,j;
+  //déclaration de l'environnement et de n+1 colonnes
+  fprintf(fichier,"\\begin{equation*}\n\\begin{pmatrix}\n");
+  
+  //remplissage des cases
+  for(i=0;i<n;i++)
+  {
+  for(j=0;j<m;j++)
+  {
+    if(j!=(n-1)) {fprintf(fichier,"%f & ",mat[i][j]);}
+    else {fprintf(fichier,"%f ",mat[i][j]);}
+  }
+  fprintf(fichier,"\\\\ \n");
+  }
+  fprintf(fichier,"\\end{pmatrix}\n\\label{}\n\\end{equation*}\n");
+  fclose(fichier);
+}
