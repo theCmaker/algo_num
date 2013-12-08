@@ -10,4 +10,3 @@
 \contentsline {subsection}{\numberline {2.2.1}Pr\IeC {\'e}sentation}{5}
 \contentsline {subsection}{\numberline {2.2.2}Programme}{5}
 \contentsline {section}{\numberline {2.3}R\IeC {\'e}sultat des tests}{6}
-\contentsline {subsection}{\numberline {2.3.1}Matrices compagnons}{6}

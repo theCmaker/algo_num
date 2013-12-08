@@ -110,6 +110,16 @@ De plus, les méthodes de leverrier utilisent une structure de polynôme (compos
   \chapter{Polynôme caractéristique}
     \section{Méthode de Leverrier}
       \subsection{Présentation}
+      
+      La méthode de Leverrier permet de déterminer le polynôme caractéristique d'une matrice $A \in M_{n,n}(\Re)$ c'est-à-dire le déterminant $|A-\lambda I_n| = P(\lambda)$ où $I_n$ est la matrice identité. Le but est donc de déterminer les coefficients $a_i$ du polynome $P(\lambda) = a_n + a_{n-1}\lambda + \dots + a_{0}\lambda^n$.\\
+      
+      Pour les trouver, on définit d'abord $S_p = Tr(A^p)$ puis on applique les identités de Newton l'aide de la formule suivante : \\ \\
+      $\forall p \in \{1,\cdots,n\}$, \indent
+      $\left\{
+      \begin{array}{l }
+	a_{0} = (-1)^n \\
+	a_{p} = -\frac{{\overset{p-1}{\underset{i=0}{\sum}}} a_{i} \cdot S_{p-1}} {p} \\
+	\end{array} \right.$
       \subsection{Programme}
 	\lstinputlisting[style=customc, firstline=9,lastline=59, firstnumber=9]{leverrier.c}
     \section{Méthode de Leverrier améliorée}
@@ -117,6 +127,5 @@ De plus, les méthodes de leverrier utilisent une structure de polynôme (compos
       \subsection{Programme}
 	\lstinputlisting[style=customc, firstline=61,lastline=146, firstnumber=61]{leverrier.c}
     \section{Résultat des tests}
-      \subsection{Matrices compagnons}
 
 \end{document}
