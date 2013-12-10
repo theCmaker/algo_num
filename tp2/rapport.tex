@@ -301,7 +301,9 @@ Votre choix :
 	\newline
 	\textbf{Méthode de Neville :}\\
 	$P(x) \approx -568559.640000 + 739678.381270 \cdot x- 424130.450858 \cdot x^{2}  + 141275.523224 \cdot x^{3} - 30298.693006 \cdot x^{4}  + 4375.222059 \cdot x^{5} - 431.155992 \cdot x^{6}  + 28.652640 \cdot x^{7} - 1.229803 \cdot x^{8}  + 0.030806 \cdot x^{9} - 0.000342 \cdot x^{10} $\\
-	Erreur : $0.000000035876804073$
+	Erreur : $0.000000035876804073$\\
+	\\ \\
+	Sur les graphiques suivants, la courbe du polynôme obtenu par la méthode de Newton est tracée en rouge et celle de la méthode de Neville en bleu.
 	\newpage
 	\begin{figure}[h]
 	  \centering
@@ -319,6 +321,7 @@ Votre choix :
  	  \includegraphics[scale=0.5]{graphiques/pdf_output/inter_tp2_ex2_3.pdf}
 	  \caption{Interpolations de Newton et Neville -- Série 3 (Tableau \ref{inter_tp2_ex2_3series})}
 	\end{figure}
+	Pour tous ces graphiques, on notera que le polynôme obtenu est en effet correct, mais que l'affichage du résultat par la machine doit être suffisamment précis (Certains coefficients semblent être nuls, ce n'est pas le cas, uniquement leur arrondi est nul. Lorsqu'un coefficient est nul, le programme ne l'affiche pas).
       \newpage
       \subsection{Dépenses et Revenus}
       \begin{table}[h]
@@ -393,13 +396,15 @@ Votre choix :
       \begin{figure}[h]
 	\centering
 	\includegraphics[scale=0.85]{graphiques/pdf_output/inter_tp2_ex3.pdf}
-	\caption{Interpolation de Newton et Neville -- (Tableaux \ref{inter_tp2_ex3_depenses_bas} \& \ref{inter_tp2_ex3_depenses_haut})}
+	\caption{Interpolations de Newton et Neville -- (Tableaux \ref{inter_tp2_ex3_depenses_bas} (rouge)\& \ref{inter_tp2_ex3_depenses_haut}(bleu))}
       \end{figure}
+      
+      Les deux méthodes donnent des résultats dont la différence n'est pas perceptible à l'oeil nu, aussi afin d'alléger le graphique, nous n'avons tracé qu'une courbe pour chaque série.
     \newpage
     \section{Comparaison}
       Les méthodes d'interpolation permettent d'obtenir d'excellents résultats, avec des écarts particulièrement faibles, mais il est important de noter que ce sont des méthodes coûteuses en mémoire, et sensibles à la précision (raisons pour lesquelles nous avons choisi le compromis entre la précision et l'espace mémoire : un stockage double-précision 64 bits).\\ \\
       
-      Pour $N$ points, la méthode de Newton nécessitera $12 N^{2}+32N+56$ octets environ, et la méthode de Neville nécessitera $4 N^{3} + 6 N^{2} + 30N +40$ octets environ. Il est donc évident que la quantité de mémoire croîtra très rapidement dès que le nombre de points augmentera.\\ \\
+      Pour $N$ points, la méthode de Newton nécessitera $8 N^{2}+52N+64$ octets environ, et la méthode de Neville nécessitera $18 N^{2} + 54N + 60$ octets environ. Il est donc évident que la quantité de mémoire nécessaire croîtra très rapidement dès que le nombre de points augmentera.\\ \\
       
       La précision entre en compte dans les calculs car on recherche un polynôme dont le degré est fonction du nombre de points. Par conséquent, si les valeurs données en abscisse sont importantes et la précision des coefficients des grandes puissances trop faible, on aura des écarts très importants. Aussi nous avons choisi d'afficher les coefficients retournés par la machine de la manière la plus précise possible (plus d'une centaine de décimales) pour obtenir des résultats stables et des courbes correctes correspondant à l'écart calculé.\\ \\
       
@@ -726,7 +731,7 @@ Votre choix :
         
         On notera que ce type de courbe est plus approprié qu'un autre, et que l'erreur est faible au regard de la valeur moyenne des ordonnées : $\approx 83.5$.
     \section{Comparaison}
-      On pourra remarquer que la qualité des résultats par approximation est variable et dépend en grande partie des données. Par conséquent, une analyse préalable semble pertinente pour déterminer l'approximation la plus adaptée, et éventuellement pour éliminer des points pouvant être le résultat d'erreurs de mesure.\\ \\
+      On pourra remarquer que la qualité des résultats par approximation est variable et dépend en grande partie des données. Par conséquent, une analyse préalable semble pertinente pour déterminer l'approximation la plus adaptée, et éventuellement pour éliminer des points pouvant être le résultat d'erreurs de mesure.\\ De plus, il peut être nécessaire de vérifier les données car les méthodes d'ajustement ``puissance" et exponentiel font appel à des fonctions logarithmiques qui ne fonctionneront donc pas pour des valeurs de l'intervalle $]-\infty, 0]$\\
       Dans le cas d'un nuage de points, une régression linéaire donnera la plupart du temps de meilleurs résultats.
   \chapter{Conclusion}
     Le but des méthodes d'interpolation et d'approximation est d'obtenir une fonction mathématique dont la courbe passe au mieux par une série de points.\\
@@ -735,7 +740,7 @@ Votre choix :
     
     Lorsque ces interpolations ne permettent pas d'obtenir un résultat satisfaisant, on peut avoir recours à d'autres méthodes plus adaptées, ou bien se contenter de résultats moins fiables mais plus faciles à obtenir.\\
     
-    Les méthodes d'approximation abordées dans ce rapport permettent d'obtenir des résultats approchés, mais nécessitent une étude préalable des séries de points telle que le type de la fonction idéale, la vérification de la qualité des mesures (passant notamment par une suppression des points aberrants) ou la segmentation en sous-séries.\\
+    Les méthodes d'approximation abordées dans ce rapport permettent d'obtenir des résultats approchés, mais nécessitent une étude préalable des séries de points telle que la recherche du type de la fonction idéale, la vérification de la qualité des mesures (passant notamment par une suppression des points aberrants) ou la segmentation en sous-séries.\\
     
   \chapter{Annexe}
     \section{Menu principal}
