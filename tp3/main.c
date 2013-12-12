@@ -11,10 +11,9 @@ int main (int argc, char ** argv)
   int n, j;
   double** A;
   int i=1;
-  char c;
   while (i!=0)
   {
-    printf("Menu principal : Polynome caracteristique, valeurs propres et vecteurs propres\n\n");
+    printf("Menu principal : Polynome caractéristique, valeurs propres et vecteurs propres\n\n");
     printf("Matrice A :\n");
     printf("Dimension : ");
     scanf("%d",&n);
@@ -24,14 +23,13 @@ int main (int argc, char ** argv)
     i=1;
     while (i!=0 && i!=9)
     {
-      printf("\nQue voulez-vous faire ? ?\n");
+      printf("\nQue voulez-vous faire ?\n");
       printf("1- Méthode de Leverrier\n");
       printf("2- Méthode de Leverrier améliorée\n");
       printf("9- Nouvelle matrice (Menu principal)\n");
       printf("0- Quitter\n");
       printf("Votre choix : ");
       scanf("%d", &i);
-      c='0';
       cleanBuffer(); //vidage buffer
       switch (i)
       {

@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include "matrices.h"
 
 void remplirMatrice(double** matrice, int n, int m)
 {
@@ -257,37 +258,44 @@ double det (double** mat, int n)
 
 double trace(double** mat, int n)
 {
-	int i;
-	double resultat = .0;
-	for(i=0;i<n;i++)
-	{
-		resultat = resultat + mat[i][i];
-	}
-	return resultat;
+  int i;
+  double resultat = 0.0;
+  for(i=0;i<n;i++)
+  {
+    resultat = resultat + mat[i][i];
+  }
+  return resultat;
 }
 
 double** puissanceMatrice(double** mat, int n, int e)
 {
-	int i,j;
-	double** resultat = (double**) malloc(n*sizeof(double*));
-	for(i=0;i<n;i++)
-	{
-		resultat[i] = (double*) malloc(n*sizeof(double));
-	}
+  int i,j;
+  double** tmp;
+  double** resultat = (double**) malloc(n*sizeof(double*));
+  for(i=0;i<n;i++)
+  {
+    resultat[i] = (double*) malloc(n*sizeof(double));
+  }
 // 	copie des valeurs de mat dans resultat. Ici resultat = m^1
-	for(i=0;i<n;i++)
-	{
-		for(j=0;j<n;j++)
-		{
-			resultat[i][j] = mat[i][j];
-		}
-	}
-	
-	for(i=2;i<=e;i++)
-	{
-		resultat = produitMatriciel(resultat,mat,n,n,n);
-	}
-	return resultat;
+  for(i=0;i<n;i++)
+  {
+    for(j=0;j<n;j++)
+    {
+      resultat[i][j] = mat[i][j];
+    }
+  }
+  
+  for(i=2;i<=e;i++)
+  {
+    tmp=produitMatriciel(resultat,mat,n,n,n);
+    for (j=0;j<n;j++)
+    {
+      free(resultat[j]);
+    }
+    free(resultat);
+    resultat=tmp;
+  }
+  return resultat;
 }
 
 void convertMattoLatex(double** mat, int n, int m)

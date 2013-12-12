@@ -21,7 +21,9 @@ void leverrier(double** A, int n)
     tmp=puissanceMatrice(A, n, i);
     traces[i-1]=trace(tmp, n);
     for (j=0; j<n; j++)
-    {free(tmp[j]);}
+    {
+      free(tmp[j]);
+    }
     free(tmp);
   }
   
@@ -30,21 +32,14 @@ void leverrier(double** A, int n)
   {
     coeffs[i]=0;
   }
-  coeffs[0]=pow(-1.0,n);
+  coeffs[n]=pow(-1.0,n);
   for(i=1; i<=n; i++)
   {
     for(j=0;j<i;j++)
     {
-      coeffs[i] = coeffs[i] - coeffs[j]*traces[i-j-1];
+      coeffs[n-i] = coeffs[n-i] - coeffs[n-j]*traces[i-j-1];
     }
-    coeffs[i] = coeffs[i]/i;
-  }
-  //On inverse le tableau des coefficients
-  for(i=0;i<=(n/2)-1;i++)
-  {
-    tempo = coeffs[i];
-    coeffs[i] = coeffs[n-i];
-    coeffs[n-i] = tempo;
+    coeffs[n-i] = coeffs[n-i]/i;
   }
   p=creerPoly(n+1, "tableau", coeffs);
   menuAffichage(p);
@@ -52,7 +47,6 @@ void leverrier(double** A, int n)
   //liberation memoire
   //libération du tableau de trace
   free(traces);
-  free(coeffs);
   //libération du polynome
   free(p->poln);
   free(p);
@@ -62,9 +56,9 @@ void leverrierA(double** A, int n)
 {
   int i, j;
   double tempo;
+  double** tmp;
   double* coeffs=(double*) malloc ((n+1)*sizeof(double)); //tableau coeffs
   double** Ak=(double**) malloc (n*sizeof(double*));
-  double** tmp;
   double** B=(double**) malloc (n*sizeof(double*));
   double** I=(double**) malloc (n*sizeof(double*));
   polynome* p;
@@ -101,14 +95,21 @@ void leverrierA(double** A, int n)
     coeffs[i]=0;
   }
   
-  coeffs[0]=1;
+  coeffs[n]=pow(-1, n);
   
   
   for(i=1; i<=n; i++)
   {
     Ak=produitMatriciel(B,A,n,n,n);
-    coeffs[i]=-trace(Ak,n)/i;
-    tmp=produitSMatriciel(I,n,n,coeffs[i]);
+    if (n%2 == 0)
+    {
+      coeffs[n-i]=-trace(Ak,n)/i;
+    }
+    else
+    {
+      coeffs[n-i]=trace(Ak,n)/i;
+    }
+    tmp=produitSMatriciel(I,n,n,coeffs[n-i]);
     for(j=0;j<n;j++)
     {
       free(B[j]);
@@ -123,13 +124,6 @@ void leverrierA(double** A, int n)
     free(tmp); free(Ak);
   }
   
-  //On inverse le tableau des coefficients
-  for(i=0;i<=(n/2)-1;i++)
-  {
-    tempo = coeffs[i];
-    coeffs[i] = coeffs[n-i];
-    coeffs[n-i] = tempo;
-  }
   p=creerPoly(n+1, "tableau", coeffs);
   menuAffichage(p);
   
@@ -139,7 +133,6 @@ void leverrierA(double** A, int n)
     free(B[i]);
   }
   free(B);
-  free(coeffs);
   //libération du polynome
   free(p->poln);
   free(p);

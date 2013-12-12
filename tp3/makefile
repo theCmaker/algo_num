@@ -9,7 +9,7 @@ main: $(OBJS)
 	$(CC) -o $@ $^ -lm
 
 .c.o: #règle implicite -> dérive les .c vers des .o avec la règle définie dessous
-	$(CC) -c $*.c
+	$(CC) -c $*.c -lm
 
 clean:
 	rm *~ *.o *.aux *.toc *.log *.bbl *.blg *.gz
