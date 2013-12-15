@@ -78,13 +78,13 @@ void leverrierA(double** A, int n)
       Ak[i][j]=A[i][j];
       if (i==j) 
       {
-	I[i][j]=1; 
-	B[i][j]=1;
+        I[i][j]=1; 
+        B[i][j]=1;
       }
       else 
       {
-	I[i][j]=0; 
-	B[i][j]=0;
+        I[i][j]=0; 
+        B[i][j]=0;
       }
     }
   }
@@ -95,21 +95,14 @@ void leverrierA(double** A, int n)
     coeffs[i]=0;
   }
   
-  coeffs[n]=pow(-1, n);
+  coeffs[0]=pow(-1,n);
   
   
   for(i=1; i<=n; i++)
   {
     Ak=produitMatriciel(B,A,n,n,n);
-    if (n%2 == 0)
-    {
-      coeffs[n-i]=-trace(Ak,n)/i;
-    }
-    else
-    {
-      coeffs[n-i]=trace(Ak,n)/i;
-    }
-    tmp=produitSMatriciel(I,n,n,coeffs[n-i]);
+    coeffs[i]=trace(Ak,n)/i;
+    tmp=produitSMatriciel(I,n,n,coeffs[i]);
     for(j=0;j<n;j++)
     {
       free(B[j]);
@@ -122,6 +115,18 @@ void leverrierA(double** A, int n)
       free(tmp[j]);
     }
     free(tmp); free(Ak);
+  }
+  
+  //On inverse le tableau des coefficients
+  for(i=0;i<=((n+1)/2)-1;i++)
+  {
+    if ((n%2) == 0)
+    {
+      coeffs[i]=-coeffs[i];
+    }
+    tempo = coeffs[i];
+    coeffs[i] = coeffs[n-i];
+    coeffs[n-i] = tempo;
   }
   
   p=creerPoly(n+1, "tableau", coeffs);

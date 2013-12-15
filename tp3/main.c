@@ -23,7 +23,8 @@ int main (int argc, char ** argv)
     i=1;
     while (i!=0 && i!=9)
     {
-      printf("\nQue voulez-vous faire ?\n");
+      clear();
+      printf("Que voulez-vous faire ?\n");
       printf("1- Méthode de Leverrier\n");
       printf("2- Méthode de Leverrier améliorée\n");
       printf("9- Nouvelle matrice (Menu principal)\n");
