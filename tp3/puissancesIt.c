@@ -6,9 +6,9 @@
 #include "matrices.h" 
 #include "file.h" 
 
-void puissancesIt(double** A, int n)
+void puissancesIt(double** A, int n, double precision)
 {
-  int i;
+  int i, cpt=0;
   double ecart = 1.;
   double** x1 = (double**) malloc (n*sizeof(double*));
   double** x2;
@@ -21,8 +21,9 @@ void puissancesIt(double** A, int n)
     x1[i] = (double*) malloc (sizeof(double));
     x1[i][0] = 1.;
   }
-  while (ecart > 0.001)
+  while (ecart > precision)
   {
+    cpt++;
     x2 = produitMatriciel(A,x1,n,n,1); //x2 = A x1
     diviserComposantes(x2,n);
     x3 = difference(x2, x1, n, 1); //x3 = x2-x1
@@ -37,6 +38,7 @@ void puissancesIt(double** A, int n)
     free(x1);
     x1 = x2; //xi = x(i+1)
   }
+  printf("Nombre d'itérations : %d\n", cpt);
   printf("Approximation du vecteur propre :\n");
   for (i=0; i<n; i++)
   {

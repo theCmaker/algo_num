@@ -300,10 +300,22 @@ double** puissanceMatrice(double** mat, int n, int e)
 
 void diviserComposantes(double** x, int n)
 {
-  int i;
-  for (i=0; i<n; i++)
+  int i=n-1, ok=0;
+  while (i>=0 && ok!=1)//parcours inverse depuis la dernière composante
   {
-    x[i][0] = (x[i][0])/(x[n-1][0]);
+    if (x[i][0] != 0)
+    {
+      ok=i; //ok est temporairement l'indice de la première composante non nulle
+      for (i=0; i<n; i++) //on peut changer i puisqu'on a trouvé une composante non nulle donc on sortira de la boucle.
+      {
+	x[i][0] = (x[i][0])/(x[ok][0]); //on divise toutes les composantes par x[ok][0]
+      }
+      ok=1; //indicateur de division effectuée
+    }
+    else
+    {
+      i--; //décrémentation de l'indice car composante nulle
+    }
   }
 }
 

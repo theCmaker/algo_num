@@ -15,6 +15,7 @@ int main (int argc, char ** argv)
   int i=1;
   while (i!=0)
   {
+    clear();
     printf("Menu principal : Polynome caractéristique, valeurs propres et vecteurs propres\n\n");
     printf("Choisir le mode de saisie de la matrice :\n");
     printf("1- Utiliser le générateur de matrices\n");
@@ -95,6 +96,7 @@ int main (int argc, char ** argv)
       printf("Votre choix : ");
       scanf("%d", &i);
       cleanBuffer(); //vidage buffer
+      clear();
       convertMattoLatex(A,n,n);
       switch (i)
       {
@@ -110,7 +112,10 @@ int main (int argc, char ** argv)
 	  break;
 	case 3:
 	  printf("Méthode des puissances itérées ... \n");
-	  puissancesIt(A,n);
+	  printf("Précision souhaitée : ");
+	  scanf("%lf", &p);
+	  cleanBuffer();
+	  puissancesIt(A,n,p);
 	  hitToContinue();
 	  break;
 // 	case 4:
@@ -124,7 +129,6 @@ int main (int argc, char ** argv)
 // 	  hitToContinue();
 // 	  break;
       }
-      printf("\n\n");
     }
     
     //libération mémoire
@@ -133,7 +137,6 @@ int main (int argc, char ** argv)
       free(A[j]);
     }
     free(A);
-    clear(); //nettoyage écran
   }
   return 0;
 }
