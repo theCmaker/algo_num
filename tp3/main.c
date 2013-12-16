@@ -92,7 +92,7 @@ int main (int argc, char ** argv)
       printf("1- Méthode de Leverrier\n");
       printf("2- Méthode de Leverrier améliorée\n");
       printf("3- Méthode des Puissances Itérées\n");
-      printf("4- Fonction pour le rapport");
+      printf("4- Fonction pour le rapport\n");
       printf("9- Nouvelle matrice (Menu principal)\n");
       printf("0- Quitter\n");
       printf("Votre choix : ");

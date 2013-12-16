@@ -215,18 +215,18 @@ void fonctionRapport(double**A,int n, double precision)
     x1 = x2; //xi = x(i+1)
   }
   printf("Nombre d'itérations : %d\n", cpt);
-  fprintf(fichier,"Nombre d'itérations: %d\n",cpt);
+  fprintf(fichier,"Nombre d'itérations: $ %d $\n",cpt);
   
   printf("Approximation du vecteur propre :\n");
   fprintf(fichier,"Vecteur propre : \n");
-  fprintf(fichier,"\\begin{equation*}\n\\begin{pmatrix}\n");
+  fprintf(fichier,"\\begin{pmatrix}\n");
   
   //remplissage des cases
   for(i=0;i<n;i++)
   {
     fprintf(fichier,"%f \\\\ \n",x1[i][0]);
   }
-  fprintf(fichier,"\\end{pmatrix}\n\\label{}\n\\end{equation*}\n");
+  fprintf(fichier,"\\end{pmatrix}\n");
   
   for (i=0; i<n; i++)
   {
@@ -237,9 +237,9 @@ void fonctionRapport(double**A,int n, double precision)
   x3 = produitMatriciel(x2, x1, 1, n, 1); //xt A x
   xtx = produitMatriciel(xt, x1, 1, n, 1); //xt x
   printf("Approximation de la valeur propre maximum : %f\n", x3[0][0]/xtx[0][0]);
-  fprintf(fichier,"Valeur propre: $ %f $",x3[0][0]/xtx[0][0]);
-  fprintf(fichier,"Image par Leverrier: %f\n",imagePoly(p,x3[0][0]/xtx[0][0]));
-  fprintf(fichier,"Image par Leverrier amélioré: %f\n\n\n\n",imagePoly(pA,x3[0][0]/xtx[0][0]));
+  fprintf(fichier,"Valeur propre: $ %f $\n",x3[0][0]/xtx[0][0]);
+  fprintf(fichier,"Image par Leverrier: $ %f $\n",imagePoly(p,x3[0][0]/xtx[0][0]));
+  fprintf(fichier,"Image par Leverrier amélioré: $ %f $\n\n\n\n",imagePoly(pA,x3[0][0]/xtx[0][0]));
   fclose(fichier);
   //libération mémoire
   for (i=0; i<n; i++)

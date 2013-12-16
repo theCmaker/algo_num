@@ -1,25 +1,3 @@
-\begin{equation*}
-\begin{pmatrix}
-3.000000 & 6.000000 \\ 
-1.000000 & 4.000000 \\ 
-\end{pmatrix}
-\label{}
-\end{equation*}
-\begin{equation*}
-\begin{pmatrix}
-1.999999 & \\ 
-1.000000 & \\ 
-\end{pmatrix}
-\label{}
-\end{equation*}
-Polynome Leverrier: $P(x) \approx 6.000000-7.000000 \cdot x + 1.000000 \cdot x^{2} $
-
-Polynome Leverrier amélioré : $P(x) \approx -6.000000 + 7.000000 \cdot x- 1.000000 \cdot x^{2} $
-
-Nombre d'itérations: 8
-Vecteur propre : 
-Valeur propre: $ 6.000001 $Image par Leverrier: 0.000004
-Image par Leverrier amélioré: -0.000004
 
 \begin{equation*}
 \begin{pmatrix}
@@ -32,17 +10,40 @@ Polynome Leverrier: $P(x) \approx 6.000000-7.000000 \cdot x + 1.000000 \cdot x^{
 
 Polynome Leverrier amélioré : $P(x) \approx -6.000000 + 7.000000 \cdot x- 1.000000 \cdot x^{2} $
 
-Nombre d'itérations: 8
+Nombre d'itérations: $ 11 $
 Vecteur propre : 
-\begin{equation*}
 \begin{pmatrix}
-1.999999 \\ 
+2.000000 \\ 
 1.000000 \\ 
 \end{pmatrix}
+Valeur propre: $ 6.000000 $
+Image par Leverrier: 0.000000
+Image par Leverrier amélioré: -0.000000
+
+
+
+\begin{equation*}
+\begin{pmatrix}
+1.000000 & 2.000000 & 3.000000 \\ 
+0.000000 & 2.000000 & 3.000000 \\ 
+0.000000 & 0.000000 & 3.000000 \\ 
+\end{pmatrix}
 \label{}
 \end{equation*}
-Valeur propre: $ 6.000001 $Image par Leverrier: 0.000004
-Image par Leverrier amélioré: -0.000004
+Polynome Leverrier: $P(x) \approx 6.000000-11.000000 \cdot x + 6.000000 \cdot x^{2} - 1.000000 \cdot x^{3} $
+
+Polynome Leverrier amélioré : $P(x) \approx 6.000000-11.000000 \cdot x + 6.000000 \cdot x^{2} - 1.000000 \cdot x^{3} $
+
+Nombre d'itérations: $ 31 $
+Vecteur propre : 
+\begin{pmatrix}
+4.499986 \\ 
+2.999993 \\ 
+1.000000 \\ 
+\end{pmatrix}
+Valeur propre: $ 3.000003 $
+Image par Leverrier: -0.000006
+Image par Leverrier amélioré: -0.000006
 
 
 
