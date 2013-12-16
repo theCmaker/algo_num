@@ -44,13 +44,13 @@ double ** creerRemplirMatrice(int n, int m)
   }
   remplirMatrice(matrice,n,m);
   
-  //affichage
-  printf("Voulez-vous afficher votre matrice ? 0-non  1-oui : ");
-  scanf("%d",&rep);
-  if (rep)
-  {
-    afficherMatrice(matrice,n,m);
-  }
+  //affichage, inutile dans ce tp semble-t-il
+//   printf("Voulez-vous afficher votre matrice ? 0-non  1-oui : ");
+//   scanf("%d",&rep);
+//   if (rep)
+//   {
+//     afficherMatrice(matrice,n,m);
+//   }
   
   return matrice;
 }
@@ -106,10 +106,10 @@ double ** solveTriangulaireInf (double** mat, double** vec, int n)
 double ** transpose(double** mat, int m, int n)
 {
   int i, j;
-  double **tr = (double**) malloc(m*sizeof(double*));
+  double **tr = (double**) malloc(n*sizeof(double*));
   for (i=0; i<n; i++)
   {
-    tr[i]=(double*) malloc(n*sizeof(double));
+    tr[i]=(double*) malloc(m*sizeof(double));
   }
   
   //transposition

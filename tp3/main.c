@@ -16,14 +16,15 @@ int main (int argc, char ** argv)
   while (i!=0)
   {
     printf("Menu principal : Polynome caractéristique, valeurs propres et vecteurs propres\n\n");
-    printf("Choisir le mode de saisie de la matrice ? \n");
-    printf("1-Utiliser le générateur de matrices\n");
-    printf("0-Entrer manuellement les valeurs\n");
+    printf("Choisir le mode de saisie de la matrice :\n");
+    printf("1- Utiliser le générateur de matrices\n");
+    printf("0- Entrer manuellement les valeurs\n");
     printf("Votre choix : ");
     scanf("%d",&g);
+    clear();
     if(g)
     {
-      printf("\n\nMENU : GENERATION DE MATRICES\n\n");
+      printf("MENU : GENERATION DE MATRICES\n\n");
       printf("Choisir un type de matrice à générer :\n");
       printf("1. Creuse à 70%%\n");
       printf("2. A bord\n");
@@ -70,8 +71,7 @@ int main (int argc, char ** argv)
 	  A=moler(n);
 	  break;
       }
-      printf("Matrice générée :\n");
-      afficherMatrice(A, n, n);
+//    Déplacement de afficher matrice pour l'afficher au-dessus du menu de choix, ainsi elle est systématiquement affichée
     }
     else
     {
@@ -80,13 +80,13 @@ int main (int argc, char ** argv)
       scanf("%d",&n);
       A=creerRemplirMatrice(n,n);
     }
-    cleanBuffer();
-    hitToContinue();
     i=1;
     while (i!=0 && i!=9)
     {
       clear();
-      printf("Que voulez-vous faire ?\n");
+      printf("Matrice :\n");
+      afficherMatrice(A, n, n);
+      printf("\nQue voulez-vous faire ?\n");
       printf("1- Méthode de Leverrier\n");
       printf("2- Méthode de Leverrier améliorée\n");
       printf("3- Méthode des Puissances Itérées\n");

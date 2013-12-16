@@ -23,10 +23,11 @@ void puissancesIt(double** A, int n)
   }
   while (ecart > 0.001)
   {
-    x2 = produitMatriciel(A,x1,n,n,1);
+    x2 = produitMatriciel(A,x1,n,n,1); //x2 = A x1
     diviserComposantes(x2,n);
-    x3 = difference(x2, x1, n, 1);
-    ecart = norme(x3, n);
+    x3 = difference(x2, x1, n, 1); //x3 = x2-x1
+    ecart = norme(x3, n); //norme(x2-x1)-> écart
+    //libération mémoire
     for (i=0; i<n; i++)
     {
       free(x3[i]);
@@ -34,7 +35,7 @@ void puissancesIt(double** A, int n)
     }
     free(x3);
     free(x1);
-    x1 = x2;
+    x1 = x2; //xi = x(i+1)
   }
   printf("Approximation du vecteur propre :\n");
   for (i=0; i<n; i++)
@@ -42,8 +43,15 @@ void puissancesIt(double** A, int n)
     printf("x[%d]=%f\n", (i+1), x1[i][0]);
   }
   xt = transpose(x1, n, 1);
-  x2 = produitMatriciel(xt, A, 1, n, n);
-  x3 = produitMatriciel(x2, x1, 1, n, 1);
-  xtx = produitMatriciel(xt, x1, 1, n, 1);
+  x2 = produitMatriciel(xt, A, 1, n, n); //xt A
+  x3 = produitMatriciel(x2, x1, 1, n, 1); //xt A x
+  xtx = produitMatriciel(xt, x1, 1, n, 1); //xt x
   printf("Approximation de la valeur propre maximum : %f\n", x3[0][0]/xtx[0][0]);
+  //libération mémoire
+  for (i=0; i<n; i++)
+  {
+    free(x1[i]);
+  }
+  free(xt[0]); free(x2[0]); free(x3[0]); free(xtx[0]);
+  free(xt); free(x2); free(x3); free(xtx); free(x1);
 }
