@@ -9,7 +9,8 @@
 
 int main (int argc, char ** argv)
 {
-  int n, j, g, choice, p;
+  int n, j, g, choice;
+  double p;
   double** A;
   int i=1;
   while (i!=0)
@@ -23,18 +24,18 @@ int main (int argc, char ** argv)
     if(g)
     {
       printf("\n\nMENU : GENERATION DE MATRICES\n\n");
-    printf("Choisir un type de matrice à générer :\n");
-    printf("1. Creuse à 70%%\n");
-    printf("2. A bord\n");
-    printf("3. Ding-Dong\n");
-    printf("4. Franc\n");
-    printf("5. Hilbert\n");
-    printf("6. KMS\n");
-    printf("7. Lehmer\n");
-    printf("8. Lotkin\n");
-    printf("9. Moler\n");
-    printf("Votre choix : ");
-    scanf("%d", &choice);
+      printf("Choisir un type de matrice à générer :\n");
+      printf("1. Creuse à 70%%\n");
+      printf("2. A bord\n");
+      printf("3. Ding-Dong\n");
+      printf("4. Franc\n");
+      printf("5. Hilbert\n");
+      printf("6. KMS\n");
+      printf("7. Lehmer\n");
+      printf("8. Lotkin\n");
+      printf("9. Moler\n");
+      printf("Votre choix : ");
+      scanf("%d", &choice);
       printf("Dimension : ");
       scanf("%d", &n);
       switch (choice)
@@ -74,14 +75,13 @@ int main (int argc, char ** argv)
     }
     else
     {
-    printf("Matrice A :\n");
-    printf("Dimension : ");
-    scanf("%d",&n);
-    A=creerRemplirMatrice(n,n);
+      printf("Matrice A :\n");
+      printf("Dimension : ");
+      scanf("%d",&n);
+      A=creerRemplirMatrice(n,n);
     }
-    
-    convertMattoLatex(A,n,n);
-  
+    cleanBuffer();
+    hitToContinue();
     i=1;
     while (i!=0 && i!=9)
     {
@@ -89,11 +89,13 @@ int main (int argc, char ** argv)
       printf("Que voulez-vous faire ?\n");
       printf("1- Méthode de Leverrier\n");
       printf("2- Méthode de Leverrier améliorée\n");
+      printf("3- Méthode des Puissances Itérées\n");
       printf("9- Nouvelle matrice (Menu principal)\n");
       printf("0- Quitter\n");
       printf("Votre choix : ");
       scanf("%d", &i);
       cleanBuffer(); //vidage buffer
+      convertMattoLatex(A,n,n);
       switch (i)
       {
 	case 1:
@@ -106,11 +108,11 @@ int main (int argc, char ** argv)
 	  leverrierA(A,n);
 	  hitToContinue();
 	  break;
-// 	case 3:
-// 	  printf("Résolution par Régression linéaire ... \n");
-// 	  reglinD(tab,n);
-// 	  hitToContinue();
-// 	  break;
+	case 3:
+	  printf("Méthode des puissances itérées ... \n");
+	  puissancesIt(A,n);
+	  hitToContinue();
+	  break;
 // 	case 4:
 // 	  printf("Résolution par Approximation par une fonction exponentielle... \n");
 // 	  reglinE(tab,n);

@@ -18,6 +18,6 @@ void cleanBuffer()
 
 void hitToContinue()
 {
-  printf("Appuyez sur une touche pour continuer. ");
+  printf("Appuyez sur Entrée pour continuer. ");
   cleanBuffer();
 }

@@ -103,10 +103,10 @@ double ** solveTriangulaireInf (double** mat, double** vec, int n)
   return x;
 }
 
-double ** transpose(double** mat, int n)
+double ** transpose(double** mat, int m, int n)
 {
   int i, j;
-  double **tr = (double**) malloc(n*sizeof(double*));
+  double **tr = (double**) malloc(m*sizeof(double*));
   for (i=0; i<n; i++)
   {
     tr[i]=(double*) malloc(n*sizeof(double));
@@ -115,7 +115,7 @@ double ** transpose(double** mat, int n)
   //transposition
   for (i=0; i<n ; i++)
   {
-    for (j=0 ; j<n ; j++)
+    for (j=0 ; j<m ; j++)
     {
       tr[i][j]=mat[j][i];
     }
@@ -140,7 +140,7 @@ double ** produitMatriciel(double** a, double** b, int n, int m, int o)
     for (j=0; j<o; j++)
     {
       c[i][j]=0;
-      for (k=0; k<n; k++)
+      for (k=0; k<m; k++)
       {
 	c[i][j]=c[i][j]+a[i][k]*b[k][j];
       }
@@ -296,6 +296,15 @@ double** puissanceMatrice(double** mat, int n, int e)
     resultat=tmp;
   }
   return resultat;
+}
+
+void diviserComposantes(double** x, int n)
+{
+  int i;
+  for (i=0; i<n; i++)
+  {
+    x[i][0] = (x[i][0])/(x[n-1][0]);
+  }
 }
 
 void convertMattoLatex(double** mat, int n, int m)
