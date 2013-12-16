@@ -1,0 +1,23 @@
+\begin{equation*}
+\begin{pmatrix}
+3.000000 & 6.000000 \\ 
+1.000000 & 4.000000 \\ 
+\end{pmatrix}
+\label{}
+\end{equation*}
+\begin{equation*}
+\begin{pmatrix}
+1.999999 & \\ 
+1.000000 & \\ 
+\end{pmatrix}
+\label{}
+\end{equation*}
+Polynome Leverrier: $P(x) \approx 6.000000-7.000000 \cdot x + 1.000000 \cdot x^{2} $
+
+Polynome Leverrier amélioré : $P(x) \approx -6.000000 + 7.000000 \cdot x- 1.000000 \cdot x^{2} $
+
+Nombre d'itérations: 8
+Vecteur propre : 
+Valeur propre: $ 6.000001 $Image par Leverrier: 0.000004
+Image par Leverrier amélioré: -0.000004
+
