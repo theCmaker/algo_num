@@ -15,9 +15,9 @@ int main (int argc, char ** argv)
   while (i!=0)
   {
     printf("Menu principal : Polynome caractéristique, valeurs propres et vecteurs propres\n\n");
-    printf("Voulez-vous utiliser le générateur de matrice ? \n");
-    printf("1-oui\n");
-    printf("0-non\n");
+    printf("Choisir le mode de saisie de la matrice ? \n");
+    printf("1-Utiliser le générateur de matrices\n");
+    printf("0-Entrer manuellement les valeurs\n");
     printf("Votre choix : ");
     scanf("%d",&g);
     if(g)

@@ -81,7 +81,9 @@ basicstyle=\ttfamily,
       \begin{lstlisting}[style=apercu, name=Menu Principal]
 Menu principal : Polynôme caractéristique, valeurs propres et vecteurs propres
 
-Entrez n la dimension de la matrice : 
+Choisir le mode de saisie de la matrice : 
+1- Utiliser le générateur de matrices
+2- Entrer manuellement les valeurs
 %*\textit{(Saisie des valeurs de la matrice...)}*)
 
 %*\textit{(Affichage de la matrice correspondants...)}*)
@@ -99,10 +101,9 @@ Le menu principal est codé dans le fichier source \verb"main.c". Les méthodes 
 La liste de tous ces fichiers est présentée figure \ref{arborescence}.\\
 
 Le stockage des valeurs se fait en double précision (type \verb"double", 64 bits) afin d'obtenir des résultats suffisamment précis.\\
-De plus, les méthodes de leverrier utilisent une structure de polynôme (composée du degré et des coefficients), présentée figure \ref{structpoly}, pour faciliter la compréhension du code et les méthodes de puissances itérées et déflation utilisent une structure de file, présentée figure  afin de stocker les valeurs propres et les vecteurs propres associées.
+De plus, les méthodes de leverrier utilisent une structure de polynôme (composée du degré et des coefficients), présentée figure \ref{structpoly}, pour faciliter la compréhension du code.
 
 \lstinputlisting[style=customc, name=Structure de Polynôme, label=structpoly, firstline=4, lastline=8, firstnumber=4]{polynome.h}
-% \lstinputlisting[style=customc, name=Structure de file, label=structfile, firstline=4, lastline=8, firstnumber=4]{file.h}
 \newpage
 \lstinputlisting[style=apercu, name=Arborescence des fichiers \lstinline"C" et \lstinline"makefile", label=arborescence]{arborescence}
 
@@ -121,11 +122,11 @@ De plus, les méthodes de leverrier utilisent une structure de polynôme (compos
 	a_{p} = -\frac{{\overset{p-1}{\underset{i=0}{\sum}}} a_{i} \cdot S_{p-1}} {p} \\
 	\end{array} \right.$
       \subsection{Programme}
-	\lstinputlisting[style=customc, firstline=9,lastline=59, firstnumber=9]{leverrier.c}
+	\lstinputlisting[style=customc, firstline=9,lastline=53, firstnumber=9]{leverrier.c}
     \section{Méthode de Leverrier améliorée}
       \subsection{Présentation}
       \subsection{Programme}
-	\lstinputlisting[style=customc, firstline=61,lastline=146, firstnumber=61]{leverrier.c}
+	\lstinputlisting[style=customc, firstline=55,lastline=144, firstnumber=55]{leverrier.c}
     \section{Résultat des tests}
 
 \end{document}
