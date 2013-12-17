@@ -324,7 +324,7 @@ void convertMattoLatex(double** mat, int n, int m)
   FILE* fichier = fopen("resultat","a+");
   int i,j;
   //déclaration de l'environnement et de n+1 colonnes
-  fprintf(fichier,"\\begin{equation*}\n\\begin{pmatrix}\n");
+  fprintf(fichier,"\\begin{equation}\n\\begin{pmatrix}\n");
   
   //remplissage des cases
   for(i=0;i<n;i++)
@@ -336,6 +336,6 @@ void convertMattoLatex(double** mat, int n, int m)
   }
   fprintf(fichier,"\\\\ \n");
   }
-  fprintf(fichier,"\\end{pmatrix}\n\\label{}\n\\end{equation*}\n");
+  fprintf(fichier,"\\end{pmatrix}\n\\label{}\n\\end{equation}\n");
   fclose(fichier);
 }
