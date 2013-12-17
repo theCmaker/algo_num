@@ -219,14 +219,14 @@ void fonctionRapport(double**A,int n, double precision)
   
   printf("Approximation du vecteur propre :\n");
   fprintf(fichier,"Vecteur propre : \n");
-  fprintf(fichier,"\\begin{pmatrix}\n");
+  fprintf(fichier,"$\\begin{pmatrix}\n");
   
   //remplissage des cases
   for(i=0;i<n;i++)
   {
     fprintf(fichier,"%f \\\\ \n",x1[i][0]);
   }
-  fprintf(fichier,"\\end{pmatrix}\n");
+  fprintf(fichier,"\\end{pmatrix}$\n");
   
   for (i=0; i<n; i++)
   {
