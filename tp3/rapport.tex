@@ -269,10 +269,29 @@ De plus, les méthodes de leverrier utilisent une structure de polynôme (compos
 	\hline
       \end{tabular}
       \renewcommand{\arraystretch}{1}
+      \newpage
     \section{Comparaisons}
-  \chapter{Valeurs propres et vecteurs propres}
+    On peut remarquer des différences entre les deux méthodes. \\
+    
+    Tout d'abord, les polynômes sont différents dans le cas des puissances paires. La méthode de Leverrier nous donne les polynômes caractéristique mathématiques exacts (c'est à dire que le coefficient du plus grand monome est $(-1)^n$) alors que la méthode de Leverrier améliorée nous donne l'opposé du polynôme précédent. Cependant, pour l'objectif du TP, ceci n'est pas important car il n'affecte pas les valeurs propres de la matrice. \\
+    
+    De plus, les compléxités des algorithmes sont différentes. En effet, la méthode de Leverrier est en $O(n^5)$ (donc couteuse) alors que la version améliorée est en $O(n^3)$. Cette différence se ressent au niveau du système \eqref{syst4} où les premiers termes des polynômes sont différents. Cet écart est du aux imprécisions de calcul de la machine entrainant un résultat erroné pour la méthode de Leverrier. \\
+    
+    Enfin, on peut noter qu'il est possible de faire partiellement la méthode de Leverrier en parralèle lors du calcul des puissances et traces des matrices alors que la méthode de Leverrier améliorée est un processus itératif où on a toujours besoin de connaitre les valeurs précédentes pour continuer.
+    
+    \chapter{Valeurs propres et vecteurs propres}
     \section{Méthode des puissances itérées}
       \subsection{Présentation}
+      La méthode des puissances itérées est un algorithme itératif permettant de trouver la plus grande valeur propre d'une matrice et un vecteur propre. \\
+      
+      \begin{enumerate}
+      \item{On commence par choisir un vecteur initial $x_0$ non nul(nous avons choisi de prendre le vecteur unité pour tous nos tests)}
+      \item{On calcule $x_{i+1}$ à l'aide de la relation de réccurrence $x_{i+1} = A \cdot x_i$.} 
+      \item{On arrete l'algorithme quand les vecteurs $x_i$ et $x_{i+1}$ sont proches (nous avons choisi de les comparer à l'aide de leur norme euclidienne).}
+      \end{enumerate}
+      
+      Ceci est possible uniquement si les valeurs propres sont toutes différentes. En effet, la méthode s'appuie sur le fait que la limite du quotient d'une valeur propre sur la plus grande tend vers 0. On peut alors emettre l'hypothèse que si les valeurs propres sont très proches alors le nombre d'itération pour obtenir un résultat est important. Cette hypothèse sera testée en dernière partie de test.
+      
       \subsection{Programme}
 	\lstinputlisting[style=customc, firstline=10,lastline=60, firstnumber=10]{puissancesIt.c}
     \section{Résultats des tests}
@@ -423,6 +442,60 @@ De plus, les méthodes de leverrier utilisent une structure de polynôme (compos
 	  \hline
 	\end{tabular}
 	\renewcommand{\arraystretch}{1}
+	
+	\subsection{Test de l'hypothèse du lien entre les itérations et les valeurs propres}
+	Dans ces exemples, les valeurs propres de la matrice sont $1.000001$ et $1.000000$ et le polynôme caractéristique est $P(x) = 1.000001-2.000001 \cdot x + 1.000000 \cdot x^{2} $. \\
+	
+	Les systèmes analysés sont les suivants : 
+	  \begin{equation}
+	  \begin{pmatrix}
+	  2.000001 & -1.000001 \\ 
+	  1.000000 & 0.000000 \\ 
+	  \end{pmatrix}
+	  \label{systfail1}
+	  \end{equation}
+	  
+	  \begin{equation}
+	  \begin{pmatrix}
+	  1.000001 & 1.000000 \\ 
+	  0.000000 & 1.000000 \\ 
+	  \end{pmatrix}
+	  \label{systfail2}
+	  \end{equation}
+	  
+	\renewcommand{\arraystretch}{1.8}
+	\begin{tabular}{|c|c|c|c|c|c|}
+	  \hline
+	  Système analysé &Itération& Vecteur & Valeur\\
+	  \hline
+	  \eqref{systfail1}& $1$ & $\begin{pmatrix}
+				    1.000000 \\ 
+				    1.000000 \\ 
+				    \end{pmatrix}$ & $ 1.000000 $ \\
+	  \hline
+	  \eqref{systfail2} & Non terminé & Non déterminé & Non déterminé \\
+	  \hline
+	 \end{tabular}
+	 \renewcommand{\arraystretch}{1}
+	 \newpage
     \section{Comparaisons}
+    La méthode des puissances donne globalement des résultats corrects et précis. \\
+    
+    On peut noter que les itérations sont assez peu prévisible. On peut seulement dire que le nombre d'itération:
+    \begin{itemize}
+    \item{ne dépend pas de la taille de la matrice puisque le système \eqref{syst3} a été résolu en $365$ itérations alors que le système \eqref{syst5} a été résolu en $11$}
+    \item{ne dépend pas des valeurs propres. Dans la présentation, nous avons supposé que plus les valeurs propres étaient proches de la plus grande, plus le nombre d'itération était grand. Or le système \eqref{systfail1} du dernier jeu de test montre que ce n'est pas toujours le cas puisque les valeurs propres diffèrent de $0.000001$ et l'algorithme s'effectue en $1$ itération.}
+    \item{dépend de la précision voulue. En effet, on peut noter que le nombre d'itération entre les précisions $10^{-5}$ et $10^{-9}$ est fortement augmenté.}
+    \end{itemize}
+    
+    Cependant, tous les tests n'ont pas donné des résultats fiables. \\
+    
+    Le système \eqref{syst2} nous donne une image de la valeur propre erronée alors que le polynôme caractéristique de la matrice est juste (il a été testé avec un logiciel mathématique). \\
+    Ensuite, la valeur propre du système \eqref{syst4} n'est pas une valeur propre de la matrice (aussi vérifié à l'aide d'un logiciel mathématique) car les polynômes caractéristiques sont corrects. \\
+    Enfin, les systèmes \eqref{systfail1} et \eqref{systfail2} du dernier jeu de test montrent deux choses.
+    \begin{enumerate}
+    \item{L'algorithme ne donne pas les mêmes résultats alors que les racines des polynômes sont les mêmes (puisque ce sont les mêmes polynômes)}
+    \item{Les résultats ne sont pas obtenus comme le montre le système \eqref{systfail2} ou ils sont faux pour le système \eqref{systfail1} car la plus grande valeur propre n'est pas $1.000000$ mais $1.000001$.}
+    \end{enumerate}
   \chapter{Conclusion}
 \end{document}
