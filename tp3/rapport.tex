@@ -92,6 +92,7 @@ Choisir le mode de saisie de la matrice :
 Quelle résolution utiliser ?
 1- Méthode de Leverrier
 2- Méthode de Leverrier améliorée
+3- Méthode des Puissances Itérées
 9- Nouvelle série de points (Menu principal)
 0- Quitter
 Votre choix :
@@ -99,11 +100,11 @@ Votre choix :
       
       Au lancement, le programme demande la saisie des valeurs, qu'il stocke dans un tableau, puis affiche le menu. Après chaque méthode, il est possible de réutiliser le jeu de données (chaque méthode qui doit modifier les valeurs utilise un duplicata). \\
 
-Le menu principal est codé dans le fichier source \verb"main.c". Les méthodes sont codées dans des fichiers individuels sauf les méthodes de leverrier qui sont réunies. Les prototypes des fonctions sont écrits dans les headers correspondants. 
+Le menu principal est codé dans le fichier source \verb"main.c". Les méthodes sont codées dans des fichiers individuels sauf les méthodes de Leverrier qui sont réunies. Les prototypes des fonctions sont écrits dans les headers correspondants. 
 La liste de tous ces fichiers est présentée figure \ref{arborescence}.\\
 
 Le stockage des valeurs se fait en double précision (type \verb"double", 64 bits) afin d'obtenir des résultats suffisamment précis.\\
-De plus, les méthodes de leverrier utilisent une structure de polynôme (composée du degré et des coefficients), présentée figure \ref{structpoly}, pour faciliter la compréhension du code.
+De plus, les méthodes de Leverrier utilisent une structure de polynôme (composée du degré et des coefficients), présentée figure \ref{structpoly}, pour faciliter la compréhension du code.
 
 \lstinputlisting[style=customc, name=Structure de Polynôme, label=structpoly, firstline=4, lastline=8, firstnumber=4]{polynome.h}
 \newpage
@@ -114,10 +115,12 @@ De plus, les méthodes de leverrier utilisent une structure de polynôme (compos
       Le compilateur utilisé est \verb"GCC".
       Il suffit de taper \verb"make" pour lancer la compilation, puis \verb"./main" pour lancer le programme.\\
       Pour nettoyer les fichiers temporaires, il faudra taper \verb"make clean".\\
-      Ce \verb"makefile" permet également de générer ce rapport ainsi que quelques fichiers qui y sont intégrés.\\ \\
+      Ce \verb"makefile" permet également de générer ce rapport ainsi que quelques fichiers qui y sont intégrés.\\
+      
+      Afin de vérifier les résultats, nous avons utilisé le logiciel de calcul mathématique Maple.\\
       
     \section{Jeux de tests}
-      Nous avons choisi d'effectuer les tests des méthodes de Leverrier et des puissances itérées sur les mêmes matrices. Les matrices utilisées sont celles du TP sur les méthodes de résolution de systèmes d'équations, de dimension 3 à 15. Ceci nous permet de calculer l'image de la valeur propre donnée par la puissance itérée du polynôme caractéristique obtenu dans les méthodes de Leverrier. On peut ainsi contrôler les résultats puisque normalement, l'image d'une valeur propre par le polynôme caractéristique de la matrice associée est égale à 0. \\
+      Nous avons choisi d'effectuer les tests des méthodes de Leverrier et des puissances itérées sur les mêmes matrices. Les matrices utilisées sont celles du TP sur les méthodes de résolution de systèmes d'équations, de dimension 3 à 15. Ceci nous permet de calculer l'image de la valeur propre (donnée par la puissance itérée) par le polynôme caractéristique obtenu avec les méthodes de Leverrier. On peut ainsi contrôler les résultats puisque normalement, l'image d'une valeur propre par le polynôme caractéristique de la matrice associée est égale à 0. \\
       
       \underline{Note}: Les résultats sont tronqués à $10^{-6}$ pour des raisons de lisibilité mais les calculs ont été effectués avec la précision de la machine.
       
@@ -209,9 +212,9 @@ De plus, les méthodes de leverrier utilisent une structure de polynôme (compos
     \section{Méthode de Leverrier}
       \subsection{Présentation}
       
-      La méthode de Leverrier permet de déterminer le polynôme caractéristique d'une matrice $A \in M_{n,n}(\Re)$ c'est-à-dire le déterminant $|A-\lambda I_n| = P(\lambda)$ où $I_n$ est la matrice identité. Le but est donc de déterminer les coefficients $a_i$ du polynome $P(\lambda) = a_n + a_{n-1}\lambda + \dots + a_{0}\lambda^n$.\\
+      La méthode de Leverrier permet de déterminer le polynôme caractéristique d'une matrice $A \in M_{n,n}(\Re)$ c'est-à-dire le déterminant $|A-\lambda I_n| = P(\lambda)$ où $I_n$ est la matrice identité. Le but est donc de déterminer les coefficients $a_i$ du polynôme $P(\lambda) = a_n + a_{n-1}\lambda + \dots + a_{0}\lambda^n$.\\
       
-      Pour les trouver, on définit d'abord $S_p = Tr(A^p)$ puis on applique les identités de Newton l'aide de la formule suivante : \\ \\
+      Pour les trouver, on définit d'abord $S_p = \text{Tr}(A^p)$ puis on applique les identités de Newton à l'aide de la formule suivante : \\ \\
       $\forall p \in \{1,\cdots,n\}$, \indent
       $\left\{
       \begin{array}{l }
@@ -222,6 +225,11 @@ De plus, les méthodes de leverrier utilisent une structure de polynôme (compos
 	\lstinputlisting[style=customc, firstline=9,lastline=53, firstnumber=9]{leverrier.c}
     \section{Méthode de Leverrier améliorée}
       \subsection{Présentation}
+	La méthode de Leverrier améliorée consiste à appliquer un algorithme itératif calculant deux matrices $A$ et $B$ pour obtenir l'un après l'autre les coefficients $a_1$ à $a_n$.\\
+	On a $a_{0}=(-1)^{n}$, et on calcule les autres coefficients $a_{k}$ de la manière suivante : \\
+	$\text{Pour } k=1 \cdots n, \indent A_{k}=B_{k-1}A ; \indent a_{k}=\frac{1}{k}\text{Tr}(A_{k}) ; \indent B_{k}=A_{k}-a_{k}I$ \indent avec $B_{0}=I$.
+	
+	
       \subsection{Programme}
 	\lstinputlisting[style=customc, firstline=55,lastline=144, firstnumber=55]{leverrier.c}
 	\newpage
@@ -232,37 +240,37 @@ De plus, les méthodes de leverrier utilisent une structure de polynôme (compos
 	Système analysé & Polynôme caractéristique obtenu \\
 	\hline
 	\multirow{2}{*}{\eqref{syst1}}
-	& Polynome Leverrier: $P(x) \approx  + 6.000000 \cdot x^{4} - 1.000000 \cdot x^{5} $ \\
-	& Polynome Leverrier amélioré: $P(x) \approx  + 6.000000 \cdot x^{4} - 1.000000 \cdot x^{5} $ \\
+	& \textbf{Polynôme Leverrier:} $P(x) \approx  + 6.000000 \cdot x^{4} - 1.000000 \cdot x^{5} $ \\
+	& \textbf{Polynôme Leverrier amélioré:} $P(x) \approx  + 6.000000 \cdot x^{4} - 1.000000 \cdot x^{5} $ \\
 	\hline
 	\multirow{5}{*}{\eqref{syst2}} 
-	& Polynome Leverrier: $P(x) \approx 0.666687-6.000122 \cdot x + 23.000305 \cdot x^{2} - 49.333740 \cdot x^{3} $\\
+	& \textbf{Polynôme Leverrier:} $P(x) \approx 0.666687-6.000122 \cdot x + 23.000305 \cdot x^{2} - 49.333740 \cdot x^{3} $\\
 	& $+ 65.000305 \cdot x^{4} - 54.000122 \cdot x^{5}  + 27.666687 \cdot x^{6} - 8.000000 \cdot x^{7}  + 1.000000 \cdot x^{8} $ \\
-	& Polynome Leverrier amélioré : $P(x) \approx -0.666687 + 6.000122 \cdot x- 23.000305 \cdot x^{2}   $ \\
+	& \textbf{Polynôme Leverrier amélioré :} $P(x) \approx -0.666687 + 6.000122 \cdot x- 23.000305 \cdot x^{2}   $ \\
 	& $ + 49.333740 \cdot x^{3} - 65.000305 \cdot x^{4} - 54.000122 \cdot x^{5}  + 27.666687 \cdot x^{6} - 8.000000 \cdot x^{7} $ \\
 	& $- 1.000000 \cdot x^{8} $ \\
 	\hline
 	\multirow{3}{*}{\eqref{syst3}}
-	& Polynome Leverrier: $P(x) \approx -1.896296 + 2.311111 \cdot x + 0.866667 \cdot x^{2} - 1.000000 \cdot x^{3} $ \\
-	& Polynome Leverrier amélioré : $P(x) \approx -1.896296 + 2.311111 \cdot x + 0.866667 \cdot x^{2} $ \\
+	& \textbf{Polynôme Leverrier:} $P(x) \approx -1.896296 + 2.311111 \cdot x + 0.866667 \cdot x^{2} - 1.000000 \cdot x^{3} $ \\
+	& \textbf{Polynôme Leverrier amélioré :} $P(x) \approx -1.896296 + 2.311111 \cdot x + 0.866667 \cdot x^{2} $ \\
 	& $ - 1.000000 \cdot x^{3}$ \\
 	\hline
 	\multirow{8}{*}{\eqref{syst4}}
-	& Polynome Leverrier: $P(x) \approx -1884.003497-58.681818 \cdot x + 3081.727273 \cdot x^{2} $\\ 
+	& \textbf{Polynôme Leverrier:} $P(x) \approx -1884.003497-58.681818 \cdot x + 3081.727273 \cdot x^{2} $\\ 
 	& $- 49621.000000 \cdot x^{3} + 406120.000000 \cdot x^{4} - 1693692.000000 \cdot x^{5}  + 3506217.000000 \cdot x^{6} $ \\
 	& $- 3506217.000000 \cdot x^{7} + 1693692.000000 \cdot x^{8} - 406120.000000 \cdot x^{9}  + 49621.000000 \cdot x^{10}$ \\
 	& $ - 3081.000000 \cdot x^{11}  + 91.000000 \cdot x^{12} - 1.000000 \cdot x^{13} $ \\
-	& Polynome Leverrier amélioré : $P(x) \approx 1.000000-91.000000 \cdot x + 3081.000000 \cdot x^{2} $ \\ 
+	& \textbf{Polynôme Leverrier amélioré :} $P(x) \approx 1.000000-91.000000 \cdot x + 3081.000000 \cdot x^{2} $ \\ 
 	& $- 49621.000000 \cdot x^{3}  + 406120.000000 \cdot x^{4} - 1693692.000000 \cdot x^{5}  + 3506217.000000 \cdot x^{6}$ \\
 	& $- 3506217.000000 \cdot x^{7}  + 1693692.000000 \cdot x^{8} - 406120.000000 \cdot x^{9}  + 49621.000000 \cdot x^{10}$ \\
 	& $ - 3081.000000 \cdot x^{11}  + 91.000000 \cdot x^{12} - 1.000000 \cdot x^{13} $ \\
 	\hline
 	\multirow{8}{*}{\eqref{syst5}}
-	& Polynome Leverrier: $P(x) \approx -0.000000-0.000000 \cdot x- 0.000000 \cdot x^{2} $ \\
+	& \textbf{Polynôme Leverrier :} $P(x) \approx -0.000000-0.000000 \cdot x- 0.000000 \cdot x^{2} $ \\
 	& $ - 0.000000 \cdot x^{3} - 0.000000 \cdot x^{4}  + 0.000000 \cdot x^{5}  + 0.000000 \cdot x^{6} - 0.000000 \cdot x^{7}   $ \\
 	& $ + 0.000000 \cdot x^{8}- 0.000000 \cdot x^{9} + 0.000000 \cdot x^{10} - 0.000277 \cdot x^{11}  + 0.050664 \cdot x^{12} $\\
 	&   $- 0.931768 \cdot x^{13} + 2.335873 \cdot x^{14} - 1.000000 \cdot x^{15} $ \\
-	& Polynome Leverrier amélioré : $P(x) \approx 0.000000 + 0.000000 \cdot x + 0.000000 \cdot x^{2}  $ \\
+	& \textbf{Polynôme Leverrier amélioré :} $P(x) \approx 0.000000 + 0.000000 \cdot x + 0.000000 \cdot x^{2}  $ \\
 	& $+ 0.000000 \cdot x^{3}  + 0.000000 \cdot x^{4}  + 0.000000 \cdot x^{5}  + 0.000000 \cdot x^{6}  + 0.000000 \cdot x^{7}  $ \\
 	& $+ 0.000000 \cdot x^{8} - 0.000000 \cdot x^{9}  + 0.000000 \cdot x^{10} - 0.000277 \cdot x^{11}  + 0.050664 \cdot x^{12} $\\
 	& $- 0.931768 \cdot x^{13}  + 2.335873 \cdot x^{14} - 1.000000 \cdot x^{15} $ \\
@@ -273,11 +281,11 @@ De plus, les méthodes de leverrier utilisent une structure de polynôme (compos
     \section{Comparaisons}
     On peut remarquer des différences entre les deux méthodes. \\
     
-    Tout d'abord, les polynômes sont différents dans le cas des puissances paires. La méthode de Leverrier nous donne les polynômes caractéristique mathématiques exacts (c'est à dire que le coefficient du plus grand monome est $(-1)^n$) alors que la méthode de Leverrier améliorée nous donne l'opposé du polynôme précédent. Cependant, pour l'objectif du TP, ceci n'est pas important car il n'affecte pas les valeurs propres de la matrice. \\
+    Tout d'abord, les polynômes sont différents dans le cas des puissances paires. La méthode de Leverrier nous donne les polynômes caractéristiques mathématiques exacts (c'est à dire que le coefficient du plus grand monome est $(-1)^{n}$) alors que la méthode de Leverrier améliorée nous donne l'opposé du polynôme précédent. Cependant, pour l'objectif du TP, ceci n'est pas important car il n'affecte pas les valeurs propres de la matrice. \\
     
-    De plus, les compléxités des algorithmes sont différentes. En effet, la méthode de Leverrier est en $O(n^5)$ (donc couteuse) alors que la version améliorée est en $O(n^3)$. Cette différence se ressent au niveau du système \eqref{syst4} où les premiers termes des polynômes sont différents. Cet écart est du aux imprécisions de calcul de la machine entrainant un résultat erroné pour la méthode de Leverrier. \\
+    De plus, les complexités des algorithmes sont différentes. En effet, la méthode de Leverrier est en $O(n^5)$ (donc coûteuse) alors que la version améliorée est en $O(n^3)$. Cette différence se ressent au niveau du système \eqref{syst4} où les premiers termes des polynômes sont différents. Cet écart est dû aux imprécisions de calcul de la machine entraînant un résultat erroné pour la méthode de Leverrier. \\
     
-    Enfin, on peut noter qu'il est possible de faire partiellement la méthode de Leverrier en parralèle lors du calcul des puissances et traces des matrices alors que la méthode de Leverrier améliorée est un processus itératif où on a toujours besoin de connaitre les valeurs précédentes pour continuer.
+    Enfin, on peut noter qu'il est possible de faire partiellement la méthode de Leverrier en parallèle lors du calcul des puissances et traces des matrices alors que la méthode de Leverrier améliorée est un processus itératif où on a toujours besoin de connaitre les valeurs précédentes pour continuer.
     
     \chapter{Valeurs propres et vecteurs propres}
     \section{Méthode des puissances itérées}
@@ -285,12 +293,12 @@ De plus, les méthodes de leverrier utilisent une structure de polynôme (compos
       La méthode des puissances itérées est un algorithme itératif permettant de trouver la plus grande valeur propre d'une matrice et un vecteur propre. \\
       
       \begin{enumerate}
-      \item{On commence par choisir un vecteur initial $x_0$ non nul(nous avons choisi de prendre le vecteur unité pour tous nos tests)}
-      \item{On calcule $x_{i+1}$ à l'aide de la relation de réccurrence $x_{i+1} = A \cdot x_i$.} 
-      \item{On arrete l'algorithme quand les vecteurs $x_i$ et $x_{i+1}$ sont proches (nous avons choisi de les comparer à l'aide de leur norme euclidienne).}
+      \item{On commence par choisir un vecteur initial $x_{0}$ non nul(nous avons choisi de prendre le vecteur unité pour tous nos tests),}
+      \item{On calcule $x_{i+1}$ à l'aide de la relation de récurrence $x_{i+1} = A \cdot x_i$,} 
+      \item{On arrête l'algorithme quand les vecteurs $x_i$ et $x_{i+1}$ sont proches (nous avons choisi de les comparer à l'aide de leur norme euclidienne).}
       \end{enumerate}
       
-      Ceci est possible uniquement si les valeurs propres sont toutes différentes. En effet, la méthode s'appuie sur le fait que la limite du quotient d'une valeur propre sur la plus grande tend vers 0. On peut alors emettre l'hypothèse que si les valeurs propres sont très proches alors le nombre d'itération pour obtenir un résultat est important. Cette hypothèse sera testée en dernière partie de test.
+      Ceci est possible uniquement si les valeurs propres sont toutes différentes. En effet, la méthode s'appuie sur le fait que la limite du quotient d'une valeur propre sur la plus grande tend vers 0. On peut alors émettre l'hypothèse que si les valeurs propres sont très proches alors le nombre d'itérations pour obtenir un résultat est important. Cette hypothèse sera testée en dernière partie de test.
       
       \subsection{Programme}
 	\lstinputlisting[style=customc, firstline=10,lastline=60, firstnumber=10]{puissancesIt.c}
@@ -300,7 +308,7 @@ De plus, les méthodes de leverrier utilisent une structure de polynôme (compos
 	\renewcommand{\arraystretch}{1.8}
 	\begin{tabular}{|c|c|c|c|c|c|}
 	  \hline
-	  Système analysé &Itération& Vecteur & Valeur & Image par Leverrier & Image par Leverrier amélioré \\
+	  Système analysé &Itérations& Vecteur & Valeur & Image par Leverrier & Image par Leverrier amélioré \\
 	  \hline
 	  \eqref{syst1} & $ 3 $ & $\begin{pmatrix}
 	    1.000000 \\ 
@@ -331,7 +339,7 @@ De plus, les méthodes de leverrier utilisent une structure de polynôme (compos
 	\newpage
 	\begin{tabular}{|c|c|c|c|c|c|}
 	  \hline
-	  Système analysé &Itération& Vecteur & Valeur & Image par Leverrier & Image par Leverrier amélioré \\
+	  Système analysé &Itérations& Vecteur & Valeur & Image par Leverrier & Image par Leverrier amélioré \\
 	  \hline
 	  \eqref{syst4} & $ 33 $ & $\begin{pmatrix}
 	    1.557371 \\ 
@@ -373,7 +381,7 @@ De plus, les méthodes de leverrier utilisent une structure de polynôme (compos
 	\renewcommand{\arraystretch}{1.8}
 	\begin{tabular}{|c|c|c|c|c|c|}
 	  \hline
-	  Système analysé &Itération& Vecteur & Valeur & Image par Leverrier & Image par Leverrier amélioré \\
+	  Système analysé &Itérations& Vecteur & Valeur & Image par Leverrier & Image par Leverrier amélioré \\
 	  \hline
 	  \eqref{syst1} & $ 3 $ & $\begin{pmatrix}
 	    1.000000 \\ 
@@ -420,7 +428,7 @@ De plus, les méthodes de leverrier utilisent une structure de polynôme (compos
 	\newpage
 	\begin{tabular}{|c|c|c|c|c|c|}
 	  \hline
-	  Système analysé &Itération& Vecteur & Valeur & Image par Leverrier & Image par Leverrier amélioré \\
+	  Système analysé &Itérations& Vecteur & Valeur & Image par Leverrier & Image par Leverrier amélioré \\
 	  \hline
 	  \eqref{syst5} & $ 17 $ & $\begin{pmatrix}
 	    7.243208 \\ 
@@ -466,7 +474,7 @@ De plus, les méthodes de leverrier utilisent une structure de polynôme (compos
 	\renewcommand{\arraystretch}{1.8}
 	\begin{tabular}{|c|c|c|c|c|c|}
 	  \hline
-	  Système analysé &Itération& Vecteur & Valeur\\
+	  Système analysé &Itérations& Vecteur & Valeur\\
 	  \hline
 	  \eqref{systfail1}& $1$ & $\begin{pmatrix}
 				    1.000000 \\ 
@@ -481,11 +489,11 @@ De plus, les méthodes de leverrier utilisent une structure de polynôme (compos
     \section{Comparaisons}
     La méthode des puissances donne globalement des résultats corrects et précis. \\
     
-    On peut noter que les itérations sont assez peu prévisible. On peut seulement dire que le nombre d'itération:
+    On peut noter que le nombre d'itérations est assez peu prévisible. On peut seulement dire que le nombre d'itérations :
     \begin{itemize}
-    \item{ne dépend pas de la taille de la matrice puisque le système \eqref{syst3} a été résolu en $365$ itérations alors que le système \eqref{syst5} a été résolu en $11$}
-    \item{ne dépend pas des valeurs propres. Dans la présentation, nous avons supposé que plus les valeurs propres étaient proches de la plus grande, plus le nombre d'itération était grand. Or le système \eqref{systfail1} du dernier jeu de test montre que ce n'est pas toujours le cas puisque les valeurs propres diffèrent de $0.000001$ et l'algorithme s'effectue en $1$ itération.}
-    \item{dépend de la précision voulue. En effet, on peut noter que le nombre d'itération entre les précisions $10^{-5}$ et $10^{-9}$ est fortement augmenté.}
+    \item{ne dépend pas de la taille de la matrice puisque le système \eqref{syst3} a été résolu en $365$ itérations alors que le système \eqref{syst5} a été résolu en $11$,}
+    \item{ne dépend pas des valeurs propres. Dans la présentation, nous avons supposé que plus les valeurs propres étaient proches de la plus grande, plus le nombre d'itérations était grand. Or le système \eqref{systfail1} du dernier jeu de test montre que ce n'est pas toujours le cas puisque les valeurs propres diffèrent de $0.000001$ et l'algorithme s'effectue en $1$ itération.}
+    \item{dépend de la précision voulue. En effet, on peut noter que le nombre d'itérations entre les précisions $10^{-5}$ et $10^{-9}$ a fortement augmenté.}
     \end{itemize}
     
     Cependant, tous les tests n'ont pas donné des résultats fiables. \\
@@ -495,7 +503,7 @@ De plus, les méthodes de leverrier utilisent une structure de polynôme (compos
     Enfin, les systèmes \eqref{systfail1} et \eqref{systfail2} du dernier jeu de test montrent deux choses.
     \begin{enumerate}
     \item{L'algorithme ne donne pas les mêmes résultats alors que les racines des polynômes sont les mêmes (puisque ce sont les mêmes polynômes)}
-    \item{Les résultats ne sont pas obtenus comme le montre le système \eqref{systfail2} ou ils sont faux pour le système \eqref{systfail1} car la plus grande valeur propre n'est pas $1.000000$ mais $1.000001$.}
+    \item{Les résultats ne sont pas obtenus comme le montre le système \eqref{systfail2} où ils sont faux pour le système \eqref{systfail1} car la plus grande valeur propre n'est pas $1.000000$ mais $1.000001$.}
     \end{enumerate}
   \chapter{Conclusion}
 \end{document}
