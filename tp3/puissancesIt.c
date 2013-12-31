@@ -110,7 +110,7 @@ void fonctionRapport(double**A,int n, double precision)
     coeffs[n-i] = coeffs[n-i]/i;
   }
   p=creerPoly(n+1, "tableau", coeffs);
-  fprintf(fichier,"Polynome Leverrier: ");
+  fprintf(fichier,"\\textbf{Polynôme Leverrier : }");
   afficherPoly(p,"latex",fichier);
   
   
@@ -140,7 +140,7 @@ void fonctionRapport(double**A,int n, double precision)
     }
   }
   
-  //On rempAlit le tableau des coefficients
+  //On remplit le tableau des coefficients
   for(i=0; i<=n; i++)
   {
     coeffsA[i]=0;
@@ -181,7 +181,7 @@ void fonctionRapport(double**A,int n, double precision)
   }
   
   pA=creerPoly(n+1, "tableau", coeffsA);
-  fprintf(fichier,"Polynome Leverrier amélioré : ");
+  fprintf(fichier,"\\textbf{Polynôme Leverrier amélioré : }");
   afficherPoly(pA,"latex",fichier);
   
   //liberation memoire

@@ -1,6 +1,6 @@
-CC=gcc -g
+CC = gcc -g
 
-OBJS=main.o leverrier.o polynome.o matrices.o useful.o puissancesIt.o file.o generateur.o
+OBJS = main.o leverrier.o polynome.o matrices.o useful.o puissancesIt.o file.o generateur.o
 
 SUFFIXES ?= .c .o #pour reconnaître les extensions comme suffixe
 .SUFFIXES: $(SUFFIXES) .
