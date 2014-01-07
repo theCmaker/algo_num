@@ -6,6 +6,7 @@
 #include "matrices.h" 
 #include "file.h" 
 #include "polynome.h"
+#include "useful.h"
 
 void puissancesIt(double** A, int n, double precision)
 {
@@ -16,12 +17,16 @@ void puissancesIt(double** A, int n, double precision)
   double** x3;
   double** xt;
   double** xtx;
-  //Initialisation de x1 -> vecteur unité
-  for (i=0; i<n; i++)
-  {
-    x1[i] = (double*) malloc (sizeof(double));
-    x1[i][0] = 1.;
-  }
+  //Initialisation de x1
+  printf("Vecteur initial :\n");
+  x1 = creerRemplirMatrice(n,1);
+  cleanBuffer();
+//   version initiale : vecteur unité
+//   for (i=0; i<n; i++)
+//   {
+//     x1[i] = (double*) malloc (sizeof(double));
+//     x1[i][0] = 1.;
+//   }
   while (ecart > precision)
   {
     cpt++;
