@@ -1,16 +1,12 @@
-generateur.c
 leverrier.c
 main.c
 matrices.c
-pile.c
 polynome.c
 puissancesIt.c
 useful.c
-file.h
 generateur.h
 leverrier.h
 matrices.h
-pile.h
 polynome.h
 puissancesIt.h
 useful.h

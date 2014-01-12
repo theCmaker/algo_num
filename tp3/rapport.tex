@@ -104,6 +104,7 @@ Le menu principal est codé dans le fichier source \verb"main.c". Les méthodes 
 La liste de tous ces fichiers est présentée figure \ref{arborescence}.\\
 
 Le stockage des valeurs se fait en double précision (type \verb"double", 64 bits) afin d'obtenir des résultats suffisamment précis.\\
+
 De plus, les méthodes de Leverrier utilisent une structure de polynôme (composée du degré et des coefficients), présentée figure \ref{structpoly}, pour faciliter la compréhension du code.
 
 \lstinputlisting[style=customc, name=Structure de Polynôme, label=structpoly, firstline=4, lastline=8, firstnumber=4]{polynome.h}
@@ -118,7 +119,7 @@ De plus, les méthodes de Leverrier utilisent une structure de polynôme (compos
       Ce \verb"makefile" permet également de générer ce rapport ainsi que quelques fichiers qui y sont intégrés.\\
       
       Afin de vérifier les résultats, nous avons utilisé le logiciel de calcul mathématique Maple.\\
-      
+    \newpage
     \section{Jeux de tests}
       Nous avons choisi d'effectuer les tests des méthodes de Leverrier et des puissances itérées sur les mêmes matrices. Les matrices utilisées sont celles du TP sur les méthodes de résolution de systèmes d'équations, de dimension 3 à 15. Ceci nous permet de calculer l'image de la valeur propre (donnée par la puissance itérée) par le polynôme caractéristique obtenu avec les méthodes de Leverrier. On peut ainsi contrôler les résultats puisque normalement, l'image d'une valeur propre par le polynôme caractéristique de la matrice associée est égale à 0. \\
       
@@ -369,7 +370,7 @@ De plus, les méthodes de Leverrier utilisent une structure de polynôme (compos
     
     De plus, les complexités des algorithmes sont différentes. En effet, la méthode de Leverrier est en $O(n^5)$ (donc coûteuse) alors que la version améliorée est en $O(n^3)$. Cette différence se ressent au niveau du système \eqref{syst4} où les premiers termes des polynômes sont différents. Cet écart est dû aux imprécisions de calcul de la machine entraînant un résultat erroné pour la méthode de Leverrier. \\
     
-    Enfin, on peut noter qu'il est possible de faire partiellement la méthode de Leverrier en parallèle lors du calcul des puissances et traces des matrices alors que la méthode de Leverrier améliorée est un processus itératif où on a toujours besoin de connaitre les valeurs précédentes pour continuer.
+    Enfin, on peut noter qu'il est possible de faire partiellement la méthode de Leverrier en parallèle lors du calcul des puissances et traces des matrices alors que la méthode de Leverrier améliorée est un processus itératif où on a toujours besoin de connaître les valeurs précédentes pour continuer.
     
     \chapter{Valeurs propres et vecteurs propres}
     \section{Méthode des puissances itérées}
@@ -377,7 +378,7 @@ De plus, les méthodes de Leverrier utilisent une structure de polynôme (compos
       La méthode des puissances itérées est un algorithme itératif permettant de trouver la plus grande valeur propre d'une matrice et un vecteur propre. \\
       
       \begin{enumerate}
-      \item{On commence par choisir un vecteur initial $x_{0}$ non nul(nous avons choisi de prendre le vecteur unité pour tous nos tests),}
+      \item{On commence par choisir un vecteur initial $x_{0}$ non nul (nous avions initialement choisi de prendre le vecteur unité pour tous nos tests, mais nous avons finalement laissé le choix à l'utilisateur),}
       \item{On calcule $x_{i+1}$ à l'aide de la relation de récurrence $x_{i+1} = A \cdot x_i$,} 
       \item{On arrête l'algorithme quand les vecteurs $x_i$ et $x_{i+1}$ sont proches (nous avons choisi de les comparer à l'aide de leur norme euclidienne).}
       \end{enumerate}
@@ -385,9 +386,10 @@ De plus, les méthodes de Leverrier utilisent une structure de polynôme (compos
       Ceci est possible uniquement si les valeurs propres sont toutes différentes. En effet, la méthode s'appuie sur le fait que la limite du quotient d'une valeur propre sur la plus grande tend vers 0. On peut alors émettre l'hypothèse que si les valeurs propres sont très proches alors le nombre d'itérations pour obtenir un résultat est important. Cette hypothèse sera testée en dernière partie de test.
       
       \subsection{Programme}
-	\lstinputlisting[style=customc, firstline=10,lastline=60, firstnumber=10]{puissancesIt.c}
+	\lstinputlisting[style=customc, firstline=9,lastline=64, firstnumber=9]{puissancesIt.c}
+    \newpage
     \section{Résultats des tests}
-      \underline{Remarque}: Les tests ont été effectués deux fois : une en précision $10^{-5}$ et une en $10^{-9}$ afin d'observer l'impact de la précision sur les résultats.
+      \underline{Remarque}: Les tests ont été effectués deux fois : une en précision $10^{-5}$ et une en $10^{-9}$ afin d'observer l'impact de la précision sur les résultats. Afin de pouvoir comparer les résultats, nous avons utilisé le vecteur unité comme vecteur initial.
       \subsection{Résultats avec une précision $10^{-5}$}
 	\renewcommand{\arraystretch}{1.8}
 	\begin{tabular}{|c|c|c|c|c|c|}
@@ -678,5 +680,33 @@ De plus, les méthodes de Leverrier utilisent une structure de polynôme (compos
     \item{L'algorithme ne donne pas les mêmes résultats alors que les racines des polynômes sont les mêmes (puisque ce sont les mêmes polynômes)}
     \item{Les résultats ne sont pas obtenus comme le montre le système \eqref{systfail2} où ils sont faux pour le système \eqref{systfail1} car la plus grande valeur propre n'est pas $1.000000$ mais $1.000001$.}
     \end{enumerate}
+    
   \chapter{Conclusion}
+    Nous pourrons noter que ces algorithmes offrent des résultats intéressants, mais que le conditionnement des systèmes reste indispensable pour obtenir des valeurs correctes et convaincantes.\\
+    
+    En effet, nous avons pu remarquer en choisissant d'autres vecteurs initiaux pour la méthode des Puissances Itérées que les résultats variaient. Ainsi par exemple, pour la matrice A suivante, on obtenait un calcul impossible (Not a Number) avec le vecteur unité, mais un résultat correct avec le vecteur $b$.\\ \\
+    \indent
+    $A = \begin{pmatrix}
+      -0.666667 & 0.000000 & 1.333333 \\ 
+      0.277778 & 2.000000 & 0.111111 \\ 
+      0.166667 & 0.000000 & -0.333333 \\
+    \end{pmatrix}$
+    \indent
+    $b=\begin{pmatrix}
+      0 \\ 
+      1 \\ 
+      0 \\
+    \end{pmatrix}$
+    \indent
+    Valeur propre maximum : $2$.\\
+    \\
+    Ce phénomène peut s'expliquer de la manière suivante : si la matrice est symétrique, la méthode est convergente avec le vecteur unité. N'ayant pas systématiquement des matrices symétriques, cela explique certaines erreurs dans nos résultats. C'est la raison pour laquelle nous avons finalement choisi de laisser le choix du vecteur initial à l'utilisateur car la méthode peut converger avec d'autres vecteurs.
+    \\
+    
+    Ainsi, on obtiendra des valeurs correctes pour le système \eqref{systfail2} du dernier jeu de tests avec pour vecteur initial  $\begin{pmatrix}
+      1 \\ 
+      0 \\
+    \end{pmatrix}$.
+    
+    On peut finalement remarquer que ces algorithmes restent simples et peuvent être améliorés pour devenir plus génériques et fonctionner pour un plus large éventail de systèmes.
 \end{document}

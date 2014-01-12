@@ -4,7 +4,6 @@
 #include <math.h>
 #include "puissancesIt.h" 
 #include "matrices.h" 
-#include "file.h" 
 #include "polynome.h"
 #include "useful.h"
 
