@@ -92,7 +92,6 @@ int main (int argc, char ** argv)
       printf("1- Méthode de Leverrier\n");
       printf("2- Méthode de Leverrier améliorée\n");
       printf("3- Méthode des Puissances Itérées\n");
-      printf("4- Fonction pour le rapport\n");
       printf("9- Nouvelle matrice (Menu principal)\n");
       printf("0- Quitter\n");
       printf("Votre choix : ");
@@ -119,19 +118,6 @@ int main (int argc, char ** argv)
 	  puissancesIt(A,n,p);
 	  hitToContinue();
 	  break;
-	case 4:
-	  printf("Fonction du rapport... \n");
-	  printf("Précision souhaitée : ");
-	  scanf("%lf", &p);
-	  fonctionRapport(A,n,p);
-	  cleanBuffer();
-	  hitToContinue();
-	  break;
-// 	case 5:
-// 	  printf("Résolution par Approximation par une fonction puissance... \n");
-// 	  reglinP(tab,n);
-// 	  hitToContinue();
-// 	  break;
       }
     }
     

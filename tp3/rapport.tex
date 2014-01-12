@@ -112,12 +112,11 @@ De plus, les méthodes de Leverrier utilisent une structure de polynôme (compos
 \lstinputlisting[style=apercu, name=Arborescence des fichiers \lstinline"C" et \lstinline"makefile", label=arborescence]{arborescence}
 
     \section{Compilation et logiciels utilisés}
-      \noindent La compilation est gérée par un \verb"makefile".\\
+      \noindent La compilation est gérée par un \verb"makefile" (présenté en annexe).\\
       Le compilateur utilisé est \verb"GCC".
       Il suffit de taper \verb"make" pour lancer la compilation, puis \verb"./main" pour lancer le programme.\\
       Pour nettoyer les fichiers temporaires, il faudra taper \verb"make clean".\\
-      Ce \verb"makefile" permet également de générer ce rapport ainsi que quelques fichiers qui y sont intégrés.\\
-      
+      Ce \verb"makefile" permet également de générer ce rapport ainsi que quelques fichiers qui y sont intégrés.\\ \\      
       Afin de vérifier les résultats, nous avons utilisé le logiciel de calcul mathématique Maple.\\
     \newpage
     \section{Jeux de tests}
@@ -386,7 +385,7 @@ De plus, les méthodes de Leverrier utilisent une structure de polynôme (compos
       Ceci est possible uniquement si les valeurs propres sont toutes différentes. En effet, la méthode s'appuie sur le fait que la limite du quotient d'une valeur propre sur la plus grande tend vers 0. On peut alors émettre l'hypothèse que si les valeurs propres sont très proches alors le nombre d'itérations pour obtenir un résultat est important. Cette hypothèse sera testée en dernière partie de test.
       
       \subsection{Programme}
-	\lstinputlisting[style=customc, firstline=9,lastline=64, firstnumber=9]{puissancesIt.c}
+	\lstinputlisting[style=customc, firstline=10,lastline=64, firstnumber=10]{puissancesIt.c}
     \newpage
     \section{Résultats des tests}
       \underline{Remarque}: Les tests ont été effectués deux fois : une en précision $10^{-5}$ et une en $10^{-9}$ afin d'observer l'impact de la précision sur les résultats. Afin de pouvoir comparer les résultats, nous avons utilisé le vecteur unité comme vecteur initial.
@@ -706,7 +705,13 @@ De plus, les méthodes de Leverrier utilisent une structure de polynôme (compos
     Ainsi, on obtiendra des valeurs correctes pour le système \eqref{systfail2} du dernier jeu de tests avec pour vecteur initial  $\begin{pmatrix}
       1 \\ 
       0 \\
-    \end{pmatrix}$.
+    \end{pmatrix}$.\\
     
     On peut finalement remarquer que ces algorithmes restent simples et peuvent être améliorés pour devenir plus génériques et fonctionner pour un plus large éventail de systèmes. Par exemple, une recherche des valeurs propres et des vecteurs propres utilisée par Matlab est la méthode de décomposition QR qui fournit un algorithme itératif efficace afin de déterminer les valeurs propres de la matrice rapidement (à l'aide d'optimisation sur la convergence) et qui fonctionne dans presque tous les cas.
+    
+  \chapter{Annexe}
+    \section{Menu principal}
+      \lstinputlisting[style=customc]{main.c}
+    \section{Makefile}
+      \lstinputlisting[language=bash]{makefile}
 \end{document}
